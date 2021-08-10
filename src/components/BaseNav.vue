@@ -1,22 +1,6 @@
 <template>
-  <div
-    class="bg-white shadow-md w-full text-center py-4 px-4"
-    v-if="mobileView"
-  >
-    <div class="flex justify-between items-center">
-      <div v-if="mobileView" @click="showNavHam()">
-        <svg
-          width="25"
-          height="18"
-          viewBox="0 0 25 18"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <line y1="1.5" x2="25" y2="1.5" stroke="#2D2D2D" stroke-width="3" />
-          <line y1="16.5" x2="25" y2="16.5" stroke="#2D2D2D" stroke-width="3" />
-          <line y1="9" x2="25" y2="9" stroke="#2D2D2D" stroke-width="3" />
-        </svg>
-      </div>
+  <header class="bg-white shadow-md">
+    <div class="container mx-auto p-3 flex justify-between">
       <router-link to="/">
         <svg
           width="91"
@@ -31,6 +15,8 @@
           />
         </svg>
       </router-link>
+
+      <div class="flex items-center space-x-7">
       <svg
         width="30"
         height="30"
@@ -43,40 +29,22 @@
           fill="#2D2D2D"
         />
       </svg>
+      <svg
+        width="25"
+        height="25"
+        viewBox="0 0 25 25"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M20.8333 22.9166H18.75V20.8333C18.75 20.0045 18.4207 19.2096 17.8347 18.6236C17.2486 18.0375 16.4538 17.7083 15.625 17.7083H9.37496C8.54616 17.7083 7.7513 18.0375 7.16525 18.6236C6.5792 19.2096 6.24996 20.0045 6.24996 20.8333V22.9166H4.16663V20.8333C4.16663 19.452 4.71536 18.1272 5.69211 17.1504C6.66886 16.1737 7.99362 15.625 9.37496 15.625H15.625C17.0063 15.625 18.3311 16.1737 19.3078 17.1504C20.2846 18.1272 20.8333 19.452 20.8333 20.8333V22.9166ZM12.5 13.5416C11.6792 13.5416 10.8665 13.38 10.1082 13.0659C9.3499 12.7518 8.66091 12.2914 8.08054 11.711C7.50018 11.1307 7.0398 10.4417 6.72571 9.6834C6.41162 8.92511 6.24996 8.11239 6.24996 7.29163C6.24996 6.47086 6.41162 5.65814 6.72571 4.89985C7.0398 4.14157 7.50018 3.45257 8.08054 2.87221C8.66091 2.29184 9.3499 1.83147 10.1082 1.51738C10.8665 1.20329 11.6792 1.04163 12.5 1.04163C14.1576 1.04163 15.7473 1.70011 16.9194 2.87221C18.0915 4.04431 18.75 5.63402 18.75 7.29163C18.75 8.94923 18.0915 10.5389 16.9194 11.711C15.7473 12.8831 14.1576 13.5416 12.5 13.5416ZM12.5 11.4583C13.605 11.4583 14.6648 11.0193 15.4462 10.2379C16.2276 9.4565 16.6666 8.3967 16.6666 7.29163C16.6666 6.18656 16.2276 5.12675 15.4462 4.34535C14.6648 3.56395 13.605 3.12496 12.5 3.12496C11.3949 3.12496 10.3351 3.56395 9.55368 4.34535C8.77228 5.12675 8.33329 6.18656 8.33329 7.29163C8.33329 8.3967 8.77228 9.4565 9.55368 10.2379C10.3351 11.0193 11.3949 11.4583 12.5 11.4583Z"
+          fill="#2D2D2D"
+        />
+      </svg>
     </div>
-  </div>
-  <base-nav-mobile v-if="showNav" />
-  <base-nav v-if="!mobileView" />
+    </div>
+  </header>
 </template>
-
 <script>
-// @ is an alias to /src
-import BaseNav from "../components/BaseNav.vue";
-import BaseNavMobile from "../components/BaseNavMobile.vue";
-
-export default {
-  name: "Home",
-  components: {
-    BaseNav,
-    BaseNavMobile,
-  },
-  data() {
-    return {
-      mobileView: true,
-      showNav: false,
-    };
-  },
-  methods: {
-    showNavHam() {
-      this.showNav = !this.showNav;
-    },
-    handleView() {
-      this.mobileView = window.innerWidth <= 990;
-    },
-  },
-  created() {
-    this.handleView();
-    window.addEventListener("resize", this.handleView);
-  },
-};
+export default {};
 </script>
