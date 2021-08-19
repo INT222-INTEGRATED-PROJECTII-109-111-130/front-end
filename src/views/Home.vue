@@ -23,103 +23,139 @@
   <base-nav-mobile v-if="showNav" />
   <base-nav v-if="!mobileView" />
 
-
 <img src="../assets/Banner-desk.png" class="object-center mx-auto px-24 pt-8 w-full" v-if="!bannerMobile">
+<img src="../assets/Banner-mobile.png" class="mx-auto pt-4 px-4 w-full" v-if="bannerMobile">
 
 <section class="text-gray-600 body-font">
-  <div class="container pb-24 px-9 mx-auto">
-    <h1 class="text-4xl py-10 font-medium">Products</h1>
-    <div class="flex flex-wrap -m-4">
-      <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-        <a class="block relative h-48 rounded overflow-hidden">
-          <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/420x260">
+  <div class="container sm:pb-24 pb-16 sm:px-9 px-4 mx-auto">
+    <h1 class="sm:text-4xl sm:py-7 py-4 font-medium text-xl">Products</h1>
+    <div class="grid sm:grid-cols-4 sm:gap-6 gap-2 grid-cols-2">
+
+      <div class="bg-white sm:rounded-lg rounded-md shadow-2xl">
+        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
+          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
         </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-          <p class="mt-1">$16.00</p>
+        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
+          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
         </div>
       </div>
-      <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-        <a class="block relative h-48 rounded overflow-hidden">
-          <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/421x261">
+
+      <div class="bg-white sm:rounded-lg rounded-md shadow-2xl">
+        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
+          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
         </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
-          <p class="mt-1">$21.15</p>
+        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
+          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
         </div>
       </div>
-      <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-        <a class="block relative h-48 rounded overflow-hidden">
-          <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/422x262">
+
+
+
+      <div class="bg-white sm:rounded-lg rounded-md shadow-2xl">
+        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
+          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
         </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Neptune</h2>
-          <p class="mt-1">$12.00</p>
+        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
+          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
         </div>
       </div>
-      <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-        <a class="block relative h-48 rounded overflow-hidden">
-          <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/423x263">
+
+      <div class="bg-white sm:rounded-lg rounded-md shadow-2xl">
+        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
+          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
         </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">The 400 Blows</h2>
-          <p class="mt-1">$18.40</p>
+        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
+          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
         </div>
       </div>
-      <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-        <a class="block relative h-48 rounded overflow-hidden">
-          <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/424x264">
+
+      <div class="bg-white sm:rounded-lg rounded-md shadow-2xl">
+        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
+          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
         </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-          <p class="mt-1">$16.00</p>
+        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
+          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
         </div>
       </div>
-      <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-        <a class="block relative h-48 rounded overflow-hidden">
-          <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/425x265">
+
+      <div class="bg-white sm:rounded-lg rounded-md shadow-2xl">
+        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
+          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
         </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Shooting Stars</h2>
-          <p class="mt-1">$21.15</p>
+        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
+          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
         </div>
       </div>
-      <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-        <a class="block relative h-48 rounded overflow-hidden">
-          <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/427x267">
+  
+      <div class="bg-white sm:rounded-lg rounded-md shadow-2xl">
+        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
+          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
         </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">Neptune</h2>
-          <p class="mt-1">$12.00</p>
+        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
+          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
         </div>
       </div>
-      <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-        <a class="block relative h-48 rounded overflow-hidden">
-          <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/428x268">
+
+      <div class="bg-white sm:rounded-lg rounded-md shadow-2xl">
+        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
+          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
         </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-          <h2 class="text-gray-900 title-font text-lg font-medium">The 400 Blows</h2>
-          <p class="mt-1">$18.40</p>
+        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
+          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
         </div>
       </div>
+    
+      <div class="bg-white sm:rounded-lg rounded-md shadow-2xl">
+        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
+          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
+        </a>
+        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
+          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
+        </div>
+      </div>
+
+      <div class="bg-white sm:rounded-lg rounded-md shadow-2xl">
+        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
+          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
+        </a>
+        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
+          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
+        </div>
+      </div>
+
+      <div class="bg-white sm:rounded-lg rounded-md shadow-2xl">
+        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
+          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
+        </a>
+        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
+          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
+        </div>
+      </div>
+
+      <div class="bg-white sm:rounded-lg rounded-md shadow-2xl">
+        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
+          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
+        </a>
+        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
+          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
-
-
-
-
-
-
-
 
 
 </template>
