@@ -24,6 +24,7 @@
   <base-nav-mobile v-if="showNav" />
   <base-nav v-if="!mobileView" />
 
+
   <div class="container sm:px-7 px-3 py-8 mx-auto flex flex-wrap">
     <div class="sm:h-96 sm:w-2/4 h-64 w-full rounded-lg overflow-hidden">
       <img alt="feature" class="object-cover object-center h-full w-full" src="../assets/popcat.jpg">
@@ -41,7 +42,7 @@
           <div class="mb-4">
           <h2 class="text-lg font-semibold">Description</h2>
           <p class="">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fringilla aliquet eget elementum erat. Nec sed aliquam risus auctor pharetra vitae.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fringilla aliquet eget elementum erat. Nec sed aliquam risus auctor pharetra vitae. Facilisi ornare consectetur feugiat ultrices quisque congue. Volutpat non quam non morbi elementum.
           </p>
           </div>
           <h1 class="text-secondary text-3xl mb-4">THB 12123</h1>
@@ -60,8 +61,9 @@
                 </div>
               </div>
             </button>
-            <ul class="absolute mt-1 w-64 rounded-md z-50 shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" v-show="active">
-              <li v-for="color in colors" :key="color" @click="setColor(color.colorValue, color.colorName)" class="block px-2 py-2 text-sm hover:bg-light">
+
+            <ul class="absolute mt-1 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" v-show="active">
+              <li v-for="color in colors" :key="color" @click="setColor(color.colorValue, color.colorName)" class="text-gray-700 block px-2 py-2 text-sm">
                 <span :style="{background: color.colorValue}" class="inline-flex rounded-full px-3 py-3 bg-white"></span> 
                   {{color.colorName}}
               </li>
@@ -108,31 +110,24 @@
               </option>
             </select>
 
-            <!-- <p class="text-red-500 text-xs font-light" v-if="errorBrand">
+            <p class="text-red-500 text-xs font-light" v-if="errorBrand">
               "Please Select Any Brand"
-            </p> -->
+            </p>
+          
+
+
+
+
           </div>
 
-          <div class="mb-5">
-            <label class="text-sm flex text-primary">Quantity</label>
-              <div class="flex flex-row h-9 w-32 rounded-full relative bg-light mt-1">
-                <button @click="decrement()" class="bg-gray-300 text-primary  h-full w-20 rounded-l cursor-pointer outline-none">
-                  <span class="m-auto text-2xl font-thin">−</span>
-                </button>
-                <input type="text" :value="quantity" readonly class="focus:outline-none text-center w-full bg-light text-md flex items-center outline-none">
-                <button @click="increment()" class="bg-gray-300 text-primary  h-full w-20 rounded-l cursor-pointer outline-none">
-                  <span class="m-auto text-2xl font-thin">+</span>
-                </button>
-              </div>
-          </div>
+
         </div>
-       <base-button buttonLabel="Add to Basket"/> 
+
         </div>
       </div>
+
+
     </div>
-
-
-
   </div>
 
   </div>
@@ -141,14 +136,12 @@
 <script>
 // @ is an alias to /src
 import BaseNavMobile from "../components/BaseNavMobile.vue";
-import BaseButton from "../components/BaseButton.vue";  
 
 export default {
   name: "Home",
 	el: '#color-picker',
   components: {
     BaseNavMobile,
-    BaseButton
   },
   data() {
     return {
@@ -160,8 +153,7 @@ export default {
 		selectedColorName: '',
 		colors: [{colorValue:'#00759A', colorName: 'Blue'},
             {colorValue:'#F7941D', colorName: 'Orange'}
-    ],
-    quantity: 1
+    ]
     };
   },
 
@@ -192,16 +184,6 @@ computed: {
 		toggleDropdown: function() {
 			this.active = !this.active;
 		},
-    increment () {
-      this.quantity++
-    },
-    decrement () {
-      if(this.quantity === 1) {
-        alert('Negative quantity not allowed')
-      } else {
-        this.quantity--
-      }
-    }
   },
   created() {
     this.handleView();

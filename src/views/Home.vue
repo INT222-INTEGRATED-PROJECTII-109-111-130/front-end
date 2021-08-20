@@ -205,11 +205,13 @@
 // @ is an alias to /src
 
 import BaseNavMobile from "../components/BaseNavMobile.vue";
+// import Product from "../components/Product.vue";
 
 export default {
   name: "Home",
   components: {
     BaseNavMobile,
+    // Product
   },
   data() {
     return {
