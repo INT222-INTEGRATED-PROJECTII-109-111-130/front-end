@@ -144,7 +144,7 @@ import BaseNavMobile from "../components/BaseNavMobile.vue";
 import BaseButton from "../components/BaseButton.vue";  
 
 export default {
-  name: "Home",
+  name: "Product",
 	el: '#color-picker',
   components: {
     BaseNavMobile,
