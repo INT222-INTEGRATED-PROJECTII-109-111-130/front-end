@@ -22,8 +22,8 @@
   </div>
   <base-nav-mobile v-if="showNav" />
   <base-nav v-if="!mobileView" />
-<!-- Banner deesktop -->
-<img src="../assets/Banner-desk.png" class="object-center mx-auto px-24 pt-8 w-full" v-if="!bannerMobile">
+<!-- Banner desktop -->
+<img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-64 lg:px-44 pt-8 w-full" v-if="!bannerMobile">
 <!-- Seach in mobile -->
       <div class="relative flex w-full flex-wrap pt-5 px-3" v-if="bannerMobile">
         <span class="z-10 h-full text-xl text-gray absolute justify-center pl-3 py-3">

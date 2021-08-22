@@ -24,7 +24,7 @@
   <base-nav-mobile v-if="showNav" />
   <base-nav v-if="!mobileView" />
 
-  <img src="../assets/Shopping_cart.png" class="object-center mx-auto sm:px-96 sm:pt-10 sm:w-5/6 px-20 pt-16 w-auto">
+  <img src="../assets/Shopping_cart.png" class="object-center mx-auto sm:px-96 sm:pt-28 sm:w-4/6 px-20 pt-16 w-auto">
   <h1 class="sm:text-2xl text-xl font-semibold text-center sm:pt-6 pt-4">Your Basket is Empty</h1>
   <p class="text-center text-gray pt-2 pb-4 sm:text-base text-xs">Looks like you haven’t made your choice yet</p>
   <div class="sm:w-96 mx-auto w-52 sm:text-base text-sm">
