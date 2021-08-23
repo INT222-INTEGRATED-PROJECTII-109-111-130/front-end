@@ -17,7 +17,7 @@
           </svg>
         </router-link>
         <router-link to="/basket">
-          <span class="material-icons-outlined text-xl hover:text-primary transition duration-200">local_mall</span>
+          <span class="fi-rr-shopping-bag text-lg"></span>
         </router-link>
       </div>
 
@@ -25,27 +25,24 @@
        <div class="mt-4">
       <router-link to="/">
           <div class="flex justify-center items-center">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19.25 18.3333C19.25 18.5764 19.1534 18.8096 18.9815 18.9815C18.8096 19.1534 18.5764 19.25 18.3333 19.25H3.66667C3.42355 19.25 3.19039 19.1534 3.01849 18.9815C2.84658 18.8096 2.75 18.5764 2.75 18.3333V8.69916C2.7499 8.55947 2.78173 8.42161 2.84306 8.2961C2.90438 8.17059 2.99358 8.06076 3.10383 7.97499L10.4372 2.27149C10.5981 2.14631 10.7961 2.07835 11 2.07835C11.2039 2.07835 11.4019 2.14631 11.5628 2.27149L18.8962 7.97499C19.0064 8.06076 19.0956 8.17059 19.1569 8.2961C19.2183 8.42161 19.2501 8.55947 19.25 8.69916V18.3333ZM17.4167 17.4167V9.14649L11 4.15616L4.58333 9.14649V17.4167H17.4167Z" fill="#2D2D2D"/>
-            </svg>
-            <p class="font-medium ml-1 text-base">Home</p>
+            <span class="fi-rr-home text-sm mt-1"></span>
+            <p class="font-medium ml-2 text-base">Home</p>
           </div>
       </router-link>
 
       <router-link to="/team">
-          <div class="flex justify-center items-center">
-            <span class="material-icons-outlined text-2xl">groups</span>
+          <div class="flex justify-center items-center mt-1">
+            <span class="fi-rr-users text-sm mt-1"></span>
             <p class="font-medium ml-2 text-base">Team</p>
           </div>
       </router-link>
 
       <router-link to="/login">
-          <div class="flex justify-center items-center">
-            <span class="material-icons-outlined text-xl text-primary hover:text-dark transition duration-200">person</span>
-            <p class="font-medium ml-1 text-base text-primary hover:text-dark transition duration-200">Login</p>
+          <div class="flex justify-center items-center mt-1">
+            <span class="fi-rr-user text-primary text-sm mt-1"></span>
+            <p class="font-medium ml-2 text-base text-primary hover:text-dark transition duration-200">Login</p>
           </div>
       </router-link>
-
 
       </div>
       </div>

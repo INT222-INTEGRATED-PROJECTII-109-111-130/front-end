@@ -17,7 +17,7 @@
         </svg>
       </router-link>
       <router-link to="/basket">
-         <span class="material-icons-outlined text-xl hover:text-primary transition duration-200">local_mall</span>
+         <span class="fi-rr-shopping-bag text-lg"></span>
       </router-link>
     </div>
   </div>
@@ -33,22 +33,22 @@
       <div class="flex flex-col lg:items-start items-center">
 
         <div class="flex-grow">
-          <h1 class="sm:text-3xl font-medium text-xl ">Name</h1>
-          <div class="flex justify-between mb-4">
-            <p class="text-secondary">Brand</p>
-            <p class="text-sm">DD-MM-YYYY</p>
+          <h1 class="sm:text-3xl font-semibold   text-xl sm:mt-0 mt-2">Name</h1>
+          <div class="flex justify-between mb-3">
+            <p class="text-secondary sm:text-base text-xs">Brand</p>
+            <p class="sm:text-base text-xs">DD-MM-YYYY</p>
           </div>
-          <div class="mb-4">
-          <h2 class="text-lg font-semibold">Description</h2>
-          <p class="">
+          
+          <h2 class="sm:text-lg text-sm font-semibold">Description</h2>
+          <p class="sm:text-base text-xs">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fringilla aliquet eget elementum erat. Nec sed aliquam risus auctor pharetra vitae.
           </p>
-          </div>
-          <h1 class="text-secondary text-3xl mb-4">THB 12123</h1>
+          
+          <h1 class="text-secondary sm:text-3xl text-xl sm:my-4 my-3">THB 12123</h1>
     <!-- Dropdown -->
-      <div class="grid sm:grid-cols-2 gap-3">
+      <div class="grid sm:grid-cols-2 grid-cols-2 sm:gap-3 gap-2">
         <!-- Color -->
-          <div>
+          <!-- <div>
             <label class="text-sm flex text-primary">Color</label>
             <button @click="toggleDropdown()" class="w-full rounded-full px-4 py-2 bg-light">
             <div class="flex justify-between">
@@ -66,7 +66,7 @@
                   {{color.colorName}}
               </li>
             </ul>
-          </div>
+          </div> -->
         <!-- Size -->
           <!-- <div>
             <label class="text-sm flex text-primary">Size</label>
@@ -88,11 +88,12 @@
               </li>
             </ul>
           </div> -->
-
+        
+        <!-- Color 2 -->
           <div>
-            <label class="text-sm flex text-primary">Size</label>
+            <label class="text-sm flex text-primary">Color</label>
            
-            <select id="brand" name="brand" v-model="brand" class="w-full rounded-full px-4 py-2 bg-light appearance-none">
+            <select id="brand" name="brand" v-model="brand" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light appearance-none">
 
             <div class="flex justify-between">
               <div class="pr-1 text-gray">Select</div>
@@ -112,16 +113,41 @@
               "Please Select Any Brand"
             </p> -->
           </div>
+          
+        <!-- Size -->
+          <div>
+            <label class="text-sm flex text-primary">Size</label>
+           
+            <select id="brand" name="brand" v-model="brand" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light appearance-none">
 
+            <div class="flex justify-between">
+              <div class="pr-1 text-gray">Select</div>
+                <div>
+                  <svg class="text-gray fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                  </svg>
+                </div>
+              </div>
+
+              <option v-for="brands in allbrand" :key="brands.brandId" :value="brands.brandId">
+                {{ brands.brandName }}
+              </option>
+            </select>
+
+            <!-- <p class="text-red-500 text-xs font-light" v-if="errorBrand">
+              "Please Select Any Brand"
+            </p> -->
+          </div>
+        <!-- Quantity -->
           <div class="mb-5">
             <label class="text-sm flex text-primary">Quantity</label>
-              <div class="flex flex-row h-9 w-32 rounded-full relative bg-light mt-1">
+              <div class="flex flex-row sm:h-9 sm:w-32 w-24 rounded-full relative bg-light mt-1">
                 <button @click="decrement()" class="bg-gray-300 text-primary  h-full w-20 rounded-l cursor-pointer outline-none">
-                  <span class="m-auto text-2xl font-thin">−</span>
+                  <span class="m-auto sm:text-2xl text-xl font-thin">−</span>
                 </button>
-                <input type="text" :value="quantity" readonly class="focus:outline-none text-center w-full bg-light text-md flex items-center outline-none">
+                <input type="text" :value="quantity" readonly class="focus:outline-none text-center w-full bg-light sm:text-base text-sm flex items-center outline-none">
                 <button @click="increment()" class="bg-gray-300 text-primary  h-full w-20 rounded-l cursor-pointer outline-none">
-                  <span class="m-auto text-2xl font-thin">+</span>
+                  <span class="m-auto sm:text-2xl text-xl font-thin">+</span>
                 </button>
               </div>
           </div>
@@ -155,12 +181,12 @@ export default {
     mobileView: true,
     bannerMobile: true,
     showNav: false,
-		active: false,
-		selectedColor: '',
-		selectedColorName: '',
-		colors: [{colorValue:'#00759A', colorName: 'Blue'},
-            {colorValue:'#F7941D', colorName: 'Orange'}
-    ],
+		// active: false,
+		// selectedColor: '',
+		// selectedColorName: '',
+		// colors: [{colorValue:'#00759A', colorName: 'Blue'},
+    //         {colorValue:'#F7941D', colorName: 'Orange'}
+    // ],
     quantity: 1
     };
   },
@@ -184,14 +210,14 @@ computed: {
       this.mobileView = window.innerWidth <= 990;
       this.bannerMobile = window.innerWidth <= 990;
     },
-		setColor: function(color, colorName) {
-			this.selectedColor = color;
-			this.selectedColorName = colorName;
-			this.active = false;
-		},
-		toggleDropdown: function() {
-			this.active = !this.active;
-		},
+		// setColor: function(color, colorName) {
+		// 	this.selectedColor = color;
+		// 	this.selectedColorName = colorName;
+		// 	this.active = false;
+		// },
+		// toggleDropdown: function() {
+		// 	this.active = !this.active;
+		// },
     increment () {
       this.quantity++
     },

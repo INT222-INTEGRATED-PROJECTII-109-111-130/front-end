@@ -16,7 +16,7 @@
         </svg>
       </router-link>
       <router-link to="/basket">
-         <span class="material-icons-outlined text-xl hover:text-primary transition duration-200">local_mall</span>
+         <span class="fi-rr-shopping-bag text-lg"></span>
       </router-link>
     </div>
   </div>
@@ -26,10 +26,8 @@
 <img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-64 lg:px-44 pt-8 w-full" v-if="!bannerMobile">
 <!-- Seach in mobile -->
       <div class="relative flex w-full flex-wrap pt-5 px-3" v-if="bannerMobile">
-        <span class="z-10 h-full text-xl text-gray absolute justify-center pl-3 py-3">
-          <svg width="20" height="20" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.083 1.83337C14.637 1.83337 18.333 5.52937 18.333 10.0834C18.333 14.6374 14.637 18.3334 10.083 18.3334C5.52901 18.3334 1.83301 14.6374 1.83301 10.0834C1.83301 5.52937 5.52901 1.83337 10.083 1.83337ZM10.083 16.5C13.6278 16.5 16.4997 13.6281 16.4997 10.0834C16.4997 6.53771 13.6278 3.66671 10.083 3.66671C6.53734 3.66671 3.66634 6.53771 3.66634 10.0834C3.66634 13.6281 6.53734 16.5 10.083 16.5ZM17.8609 16.5651L20.4542 19.1575L19.1571 20.4545L16.5648 17.8613L17.8609 16.5651Z" fill="#A3A3A3"/>
-          </svg>
+        <span class="z-10 h-full text-sm text-gray absolute justify-center pl-3 py-3">
+          <span class="fi-rr-search"></span> 
         </span>
         <input type="text" placeholder="Search" class="px-2 py-2 placeholder-gray relative bg-light rounded-full text-md outline-none focus:ring-2 focus:ring-primary w-full pl-8"/>
       </div>
@@ -52,7 +50,6 @@
         </router-link>
       </div>
     
-
       <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
         <router-link to="/product">
         <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">

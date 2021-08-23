@@ -17,7 +17,7 @@
         </svg>
       </router-link>
       <router-link to="/basket">
-         <span class="material-icons-outlined text-xl hover:text-primary transition duration-200">local_mall</span>
+         <span class="fi-rr-shopping-bag text-lg"></span>
       </router-link>
     </div>
   </div>
@@ -29,29 +29,29 @@
     <div class="grid sm:grid-cols-3 sm:gap-6 gap-2 grid-cols-1">
 
       <div class="bg-light sm:rounded-lg rounded-md transition duration-500 sm:py-10 py-4 grid sm:grid-cols-1 grid-cols-2">
-        <img class="sm:h-44 h-24 rounded-full mx-auto" src="../assets/popcatp.jpg" alt="profile"/>
+        <img class="sm:h-44 h-24 rounded-full mx-auto" src="../assets/unknown.png" alt="profile"/>
           <div class="sm:pt-4 pt-2 sm:text-center text-left">         
-            <h2 class="sm:text-lg text-xs uppercase font-semibold"> chananan likitsarawit </h2>
-            <h3 class="text-gray my-1 sm:text-base text-xs">62130500111</h3>
-            <p class="sm:text-center text-left sm:text-base text-xs">Frontend</p>
+            <h2 class="sm:text-lg text-xs uppercase font-semibold">POONPIPAT SUVANARAWAT</h2>
+            <h3 class="text-gray my-1 sm:text-base text-xs">62130500130</h3>
+            <p class="sm:text-center text-left sm:text-base text-xs">Backend</p>
           </div>
       </div>
         
       <div class="bg-light sm:rounded-lg rounded-md transition duration-500 sm:py-10 py-4 grid sm:grid-cols-1 grid-cols-2">
-        <img class="sm:h-44 h-24 rounded-full mx-auto" src="../assets/popcatp.jpg" alt="profile"/>
+        <img class="sm:h-44 h-24 rounded-full mx-auto" src="../assets/Boss1.jpg" alt="profile"/>
           <div class="sm:pt-4 pt-2 sm:text-center text-left">         
-            <h2 class="sm:text-lg text-xs uppercase font-semibold"> chananan likitsarawit </h2>
-            <h3 class="text-gray my-1 sm:text-base text-xs">62130500111</h3>
-            <p class="sm:text-center text-left sm:text-base text-xs">Frontend</p>
+            <h2 class="sm:text-lg text-xs uppercase font-semibold">poonpipat suvanarawat</h2>
+            <h3 class="text-gray my-1 sm:text-base text-xs">62130500130</h3>
+            <p class="sm:text-center text-left sm:text-base text-xs">Backend</p>
           </div>
       </div>
 
       <div class="bg-light sm:rounded-lg rounded-md transition duration-500 sm:py-10 py-4 grid sm:grid-cols-1 grid-cols-2">
-        <img class="sm:h-44 h-24 rounded-full mx-auto" src="../assets/popcatp.jpg" alt="profile"/>
+        <img class="sm:h-44 h-24 rounded-full mx-auto" src="../assets/image0.jpg" alt="profile"/>
           <div class="sm:pt-4 pt-2 sm:text-center text-left">         
-            <h2 class="sm:text-lg text-xs uppercase font-semibold"> chananan likitsarawit </h2>
-            <h3 class="text-gray my-1 sm:text-base text-xs">62130500111</h3>
-            <p class="sm:text-center text-left sm:text-base text-xs">Frontend</p>
+            <h2 class="sm:text-lg text-xs uppercase font-semibold">POONPIPAT Jirayut</h2>
+            <h3 class="text-gray my-1 sm:text-base text-xs">62130500130</h3>
+            <p class="sm:text-center text-left sm:text-base text-xs">Backend</p>
           </div>
       </div>
           
