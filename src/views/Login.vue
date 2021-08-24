@@ -39,11 +39,39 @@
         </li>
       </ul>
 
-      <div class="">
         <div class="py-5 flex-auto">
           <div class="tab-content tab-space">
+          <!-- Login -->
+          <form @submit.prevent="login">
             <div v-bind:class="{'hidden': openTab !== 1, 'block': openTab === 1}">
               <div>
+                <label class="text-sm flex text-primary pb-1">Email</label>
+                <input type="email" placeholder="example@mail.com" v-model="login" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+              </div>
+              <div class="pt-6">
+                <label class="text-sm flex text-primary pb-1">Password</label>
+                <input type="password" placeholder="Password" v-model="password" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+              </div>
+              <div class="mx-auto flex justify-center sm:pt-10 pt-10">
+                <button type="submit" class="items-center sm:text-lg text-xs bg-primary sm:py-2 py-1 w-full hover:bg-primarydark rounded-full text-white transition duration-400 ease-in-out">
+                Login
+                </button>
+              </div>         
+            </div>
+          </form>
+          <!-- Register -->
+            <div v-bind:class="{'hidden': openTab !== 2, 'block': openTab === 2}">
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="text-sm flex text-primary pb-1">First Name</label>
+                  <input type="text" placeholder="First Name" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                </div>
+                <div>
+                  <label class="text-sm flex text-primary pb-1">Last Name</label>
+                  <input type="text" placeholder="Last Name" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                </div>               
+              </div>
+              <div class="pt-6">
                 <label class="text-sm flex text-primary pb-1">Email</label>
                 <input type="email" placeholder="example@mail.com" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
               </div>
@@ -51,23 +79,18 @@
                 <label class="text-sm flex text-primary pb-1">Password</label>
                 <input type="password" placeholder="Password" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
               </div>
-            <div class="mx-auto flex justify-center sm:pt-10 pt-10">
-              <button class="items-center sm:text-lg text-xs bg-primary sm:py-2 py-1 w-full hover:bg-primarydark rounded-full text-white transition duration-400 ease-in-out">
-              Login
-              </button>
-            </div>         
-            </div>
+            
+              <div class="mx-auto flex justify-center sm:pt-10 pt-10">
+                <button class="items-center sm:text-lg text-xs bg-primary sm:py-2 py-1 w-full hover:bg-primarydark rounded-full text-white transition duration-400 ease-in-out">
+                Register
+                </button>
+              </div> 
 
-            <div v-bind:class="{'hidden': openTab !== 2, 'block': openTab === 2}">
-          <div>
-            <label class="text-sm flex text-primary">Email</label>
-            <input type="email" placeholder="example@mail.com" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
-          </div>
             </div>
 
           </div>
         </div>
-      </div>
+     
     </div>
   </div>
 
@@ -89,6 +112,8 @@ export default {
       mobileView: true,
       showNav: false,
       openTab: 1,
+      login: '',
+      password: ''
 
     }
   },

@@ -30,14 +30,19 @@
           <span class="fi-rr-shopping-bag text-xl hover:text-primary transition duration-200"></span>
         </router-link>
         <router-link to="/login">
+        
           <span class="fi-rr-user text-xl hover:text-primary transition duration-200"></span>
         </router-link>
-
+<!-- <popover/> -->
       </div>
     </div>
   </header>
 </template>
 
 <script>
-export default {};
+// import popover from './popover.vue';
+export default {
+  components: { 
+    // popover 
+    },};
 </script>
