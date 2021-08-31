@@ -33,7 +33,7 @@
       <div class="flex flex-col lg:items-start items-center">
 
         <div class="flex-grow">
-          <h1 class="sm:text-3xl font-semibold   text-xl sm:mt-0 mt-2">Name</h1>
+          <h1 class="sm:text-3xl font-semibold text-xl sm:mt-0 mt-2">Name</h1>
           <div class="flex justify-between mb-3">
             <p class="text-secondary sm:text-base text-xs">Brand</p>
             <p class="sm:text-base text-xs">DD-MM-YYYY</p>
@@ -91,7 +91,7 @@
         
         <!-- Color 2 -->
           <div>
-            <label class="text-sm flex text-primary">Color</label>
+            <label class="sm:text-sm text-xs flex text-primary">Color</label>
            
             <select id="brand" name="brand" v-model="brand" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light appearance-none">
 
@@ -116,7 +116,7 @@
           
         <!-- Size -->
           <div>
-            <label class="text-sm flex text-primary">Size</label>
+            <label class="sm:text-sm text-xs flex text-primary">Size</label>
            
             <select id="brand" name="brand" v-model="brand" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light appearance-none">
 
@@ -140,7 +140,7 @@
           </div>
         <!-- Quantity -->
           <div class="mb-5">
-            <label class="text-sm flex text-primary">Quantity</label>
+            <label class="sm:text-sm text-xs flex text-primary">Quantity</label>
               <div class="flex flex-row sm:h-9 sm:w-32 w-24 rounded-full relative bg-light mt-1">
                 <button @click="decrement()" class="bg-gray-300 text-primary  h-full w-20 rounded-l cursor-pointer outline-none">
                   <span class="m-auto sm:text-2xl text-xl font-thin">−</span>
@@ -166,15 +166,11 @@
 
 <script>
 // @ is an alias to /src
-import BaseNavMobile from "../components/BaseNavMobile.vue";
-import BaseButton from "../components/BaseButton.vue";  
 
 export default {
-  name: "Product",
 	el: '#color-picker',
   components: {
-    BaseNavMobile,
-    BaseButton
+
   },
   data() {
     return {

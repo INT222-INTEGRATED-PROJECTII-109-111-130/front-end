@@ -24,7 +24,7 @@
   <base-nav-mobile v-if="showNav" />
   <base-nav v-if="!mobileView" />
 
-  <div class="sm:px-96 sm:pt-24 my-auto mx-auto flex flex-wrap">
+  <div class="sm:px-96 sm:pt-24 my-auto mx-auto flex flex-wrap" v-if="!loginMobile">
     <div class="w-full">
       <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
         <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -60,6 +60,7 @@
             </div>
           </form>
           <!-- Register -->
+          <form @submit.prevent="register">
             <div v-bind:class="{'hidden': openTab !== 2, 'block': openTab === 2}">
               <div class="grid grid-cols-2 gap-4">
                 <div>
@@ -87,31 +88,82 @@
               </div> 
 
             </div>
-
+          </form>
           </div>
         </div>
      
     </div>
   </div>
+  
+  <!-- Mobile -->
+  <div v-if="loginMobile">
+    <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
+      <form @submit.prevent="login">
+        <div v-bind:class="{'hidden': openTabMobile !== 3, 'block': openTabMobile === 3}">
+          <h1 class="sm:text-4xl sm:py-7 pt-6 pb-3 font-semibold text-xl">Login</h1>
+              <div>
+                <label class="text-xs flex text-primary pb-1">Email</label>
+                <input type="email" placeholder="example@mail.com" v-model="login" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+              </div>
+              <div class="pb-7">
+                <label class="text-xs flex text-primary pb-1 pt-4">Password</label>
+                <input type="password" placeholder="Password" v-model="password" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+              </div>
+              <base-button buttonLabel="Login"/>
+              <div class="text-center text-xs text-gray pt-2">Don't have an account?
+                <a class="text-secondary" v-on:click="toggleTabs(4)" v-bind:class="{'': openTabMobile !== 4, '': openTabMobile === 4}">
+                  Register
+                </a>
+              </div>
+        </div>
+      </form>
+        <!-- Register -->
+      <form @submit.prevent="register">
+        <div v-bind:class="{'hidden': openTabMobile !== 4, 'block': openTabMobile === 4}">
+          <h1 class="sm:text-4xl sm:py-7 pt-6 pb-3 font-semibold text-xl">Register</h1>
+            <div>
+              <label class="text-xs flex text-primary pb-1">First Name</label>
+              <input type="text" placeholder="First Name" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+            </div>
+            <div>
+              <label class="text-xs flex text-primary pb-1 pt-4">Last Name</label>
+              <input type="text" placeholder="Last Name" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+            </div>
+            <div>
+              <label class="text-xs flex text-primary pb-1 pt-4">Email</label>
+              <input type="email" placeholder="example@mail.com" v-model="login" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+            </div>
+            <div class="pb-7">
+              <label class="text-xs flex text-primary pb-1 pt-4">Password</label>
+              <input type="password" placeholder="Password" v-model="password" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+            </div>
+            <base-button buttonLabel="Register"/>
+            <div class="text-center text-xs text-gray pt-2">Already have an account?
+              <a class="text-secondary" v-on:click="toggleTabs(3)" v-bind:class="{'': openTabMobile !== 3, '': openTabMobile === 3}">
+                Login
+              </a>
+            </div>
+        </div>
+      </form>
 
-
+    </div>
+  </div>
   </div>
 </template>
 
 <script>
-import BaseNavMobile from "../components/BaseNavMobile.vue";
-
 
 export default {
   components: {
-    BaseNavMobile,
-    // Product
+
   },
   data() {
     return {
       mobileView: true,
       showNav: false,
+      loginMobile: true,
       openTab: 1,
+      openTabMobile: 3,
       login: '',
       password: ''
 
@@ -120,13 +172,14 @@ export default {
   methods: {
     toggleTabs: function(tabNumber){
       this.openTab = tabNumber
+      this.openTabMobile = tabNumber
     },
     showNavHam() {
       this.showNav = !this.showNav;
     },
     handleView() {
       this.mobileView = window.innerWidth <= 990;
-      this.bannerMobile = window.innerWidth <= 990;
+      this.loginMobile = window.innerWidth <= 990;
     },
   },
   created() {

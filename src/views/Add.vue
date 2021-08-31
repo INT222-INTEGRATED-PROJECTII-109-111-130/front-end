@@ -211,15 +211,11 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
-import BaseNavMobile from "../components/BaseNavMobile.vue";
-import BaseButton from "../components/BaseButton.vue";  
+// @ is an alias to /src 
 
 export default {
   components: {
-    BaseNavMobile,
-    BaseButton
+
   },
   data() {
     return {

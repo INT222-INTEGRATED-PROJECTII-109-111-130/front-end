@@ -25,7 +25,7 @@
   <base-nav v-if="!mobileView" />
 
   <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
-    <h1 class="sm:text-4xl sm:py-7 py-3 font-medium text-xl">Team</h1>
+    <h1 class="sm:text-4xl sm:py-7 pt-6 pb-3 sm:font-medium font-semibold text-xl">Team</h1>
     <div class="grid sm:grid-cols-3 sm:gap-6 gap-2 grid-cols-1">
 
       <div class="bg-light sm:rounded-lg rounded-md transition duration-500 sm:py-10 py-4 grid sm:grid-cols-1 grid-cols-2">
@@ -65,14 +65,10 @@
   </div>
 </template>
 <script>
-import BaseNav from "../components/BaseNav.vue";
-import BaseNavMobile from "../components/BaseNavMobile.vue";
 // @ is an alias to /src
 export default {
-  name: "Team",
   components: {
-    BaseNav,
-    BaseNavMobile,
+
   },
   data() {
     return {
