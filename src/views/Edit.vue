@@ -1,5 +1,5 @@
 <template>
-<div class="add">
+<div class="edit">
   <!-- Navbar -->
   <div class="bg-white shadow-md w-full text-center py-4 px-3" v-if="mobileView">
     <div class="flex justify-between items-center">
@@ -26,7 +26,7 @@
 
     <form @submit.prevent="addProduct">
     <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
-        <h1 class="sm:text-4xl sm:py-7 py-3 font-medium text-xl">Add Product</h1>
+        <h1 class="sm:text-4xl sm:py-7 py-3 font-medium text-xl">Edit Product</h1>
         <div class="grid grid-cols-2 gap-x-32 gap-y-4">
             <!-- Product Name -->
             <div>
@@ -200,7 +200,7 @@
                 <!-- <p class="text-red-500 text-xs font-light" v-if="errorImage">"No File Chosen"</p> -->
                 
             </div>
-            <base-button class="col-start-2" buttonLabel="Add"/>
+            <base-button class="col-start-2" buttonLabel="Save"/>
             <router-link to="/" class="text-gray col-start-2 text-center hover:text-opacity-80">Cancel</router-link> 
         </div>
 

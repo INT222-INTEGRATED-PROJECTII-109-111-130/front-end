@@ -5,6 +5,7 @@ import Team from '../views/Team.vue'
 import Basket from '../views/Basket.vue'
 import Product from '../views/Product.vue'
 import Add from '../views/Add.vue'
+import Edit from '../views/Edit.vue'
 
 const routes = [
   {
@@ -44,6 +45,11 @@ const routes = [
     path: '/add',
     name: 'Add',
     component: Add
+  },
+  {
+    path: '/edit',
+    name: 'Edit',
+    component: Edit
   },
 ]
 
