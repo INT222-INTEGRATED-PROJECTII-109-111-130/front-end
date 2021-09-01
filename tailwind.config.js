@@ -10,7 +10,8 @@ module.exports = {
         primary: '#2FDBBC',
         primarydark: '#1EAE94',
         secondary: '#F99928',
-        dark: '#2D2D2D'
+        dark: '#2D2D2D',
+        error: '#F77272'
       }
     },
   },

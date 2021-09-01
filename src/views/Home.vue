@@ -35,7 +35,7 @@
 <img src="../assets/Banner-mobile.png" class="mx-auto pt-4 px-3 w-full" v-if="bannerMobile">
 <!-- Product -->
   <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
-    <h1 class="sm:text-4xl sm:py-7 py-3 sm:font-medium font-semibold text-xl">Products</h1>
+    <h1 class="sm:text-4xl sm:py-7 py-3 font-semibold text-xl">Products</h1>
     <div class="grid sm:grid-cols-4 sm:gap-6 gap-2 grid-cols-2">
 
       <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">

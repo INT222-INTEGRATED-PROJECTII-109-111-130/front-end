@@ -25,7 +25,7 @@
   <base-nav v-if="!mobileView" />
 
   <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
-    <h1 class="sm:text-4xl sm:py-7 pt-6 pb-3 sm:font-medium font-semibold text-xl">Team</h1>
+    <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 pt-6 pb-3 font-semibold text-xl">Team</h1>
     <div class="grid sm:grid-cols-3 sm:gap-6 gap-2 grid-cols-1">
 
       <div class="bg-light sm:rounded-lg rounded-md transition duration-500 sm:py-10 py-4 grid sm:grid-cols-1 grid-cols-2">

@@ -151,6 +151,8 @@
                 </button>
               </div>
           </div>
+
+          
         </div>
        <base-button buttonLabel="Add to Basket"/> 
         </div>
