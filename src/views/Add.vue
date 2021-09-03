@@ -31,12 +31,22 @@
             <!-- Product Name -->
             <div>
                 <label class="text-sm flex text-primary pb-1">Product Name</label>
-                <input type="email" placeholder="example@mail.com" v-model="login" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                <input type="text" placeholder="Product Name" name="name" id="name" v-model="name" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                <div v-if="errorName"> 
+                    <span class="fi-rr-exclamation text-error flex items-center text-xs pt-1 pl-1">
+                        <p class="pl-1"> Please Enter Name</p>
+                    </span>
+                </div>
             </div>
             <!-- Product Description -->
             <div class="col-start-1 row-span-2">
                 <label class="text-sm flex text-primary pb-1">Product Description</label>
-                <textarea rows="4" cols="50" type="text" placeholder="example@mail.com" v-model="login" class="pl-4 py-3 placeholder-gray relative bg-light rounded-xl outline-none focus:ring-2 focus:ring-primary w-full"/>
+                <textarea rows="4" cols="50" type="text" name="description" id="description" placeholder="Description" v-model="description" class="pl-4 py-3 placeholder-gray relative bg-light rounded-xl outline-none focus:ring-2 focus:ring-primary w-full"/>
+                <div v-if="errorDescription"> 
+                    <span class="fi-rr-exclamation text-error flex items-center text-xs pl-1">
+                        <p class="pl-1"> Please Enter Description</p>
+                    </span>
+                </div>            
             </div>
             <!-- Color -->
             <div class="col-start-1">
@@ -56,62 +66,11 @@
                                 </div>
                             </div>
 
-                            <div class="flex items-start">
-                            <!-- color loop -->
-                                <div class="rounded flex items-center h-5">
-                                    <input id="color" name="color" type="checkbox" :value="colors" class="h-4 w-4 rounded" v-model="colorspicked"/>
-                                </div>
-                                <div class="ml-2 mr-4 text-sm">
-                                    <label for="color" class="font-medium text-gray-700">color</label>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                            <!-- color loop -->
-                                <div class="rounded flex items-center h-5">
-                                    <input id="color" name="color" type="checkbox" :value="colors" class="h-4 w-4 rounded" v-model="colorspicked"/>
-                                </div>
-                                <div class="ml-2 mr-4 text-sm">
-                                    <label for="color" class="font-medium text-gray-700">color</label>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                            <!-- color loop -->
-                                <div class="rounded flex items-center h-5">
-                                    <input id="color" name="color" type="checkbox" :value="colors" class="h-4 w-4 rounded" v-model="colorspicked"/>
-                                </div>
-                                <div class="ml-2 mr-4 text-sm">
-                                    <label for="color" class="font-medium text-gray-700">color</label>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                            <!-- color loop -->
-                                <div class="rounded flex items-center h-5">
-                                    <input id="color" name="color" type="checkbox" :value="colors" class="h-4 w-4 rounded" v-model="colorspicked"/>
-                                </div>
-                                <div class="ml-2 mr-4 text-sm">
-                                    <label for="color" class="font-medium text-gray-700">color</label>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                            <!-- color loop -->
-                                <div class="rounded flex items-center h-5">
-                                    <input id="color" name="color" type="checkbox" :value="colors" class="h-4 w-4 rounded" v-model="colorspicked"/>
-                                </div>
-                                <div class="ml-2 mr-4 text-sm">
-                                    <label for="color" class="font-medium text-gray-700">color</label>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                            <!-- color loop -->
-                                <div class="rounded flex items-center h-5">
-                                    <input id="color" name="color" type="checkbox" :value="colors" class="h-4 w-4 rounded" v-model="colorspicked"/>
-                                </div>
-                                <div class="ml-2 mr-4 text-sm">
-                                    <label for="color" class="font-medium text-gray-700">color</label>
-                                </div>
-                            </div>
-                            <!-- </div> -->
-                                <!-- <p class="text-red-500 text-xs font-light" v-if="errorColor">"Plese Select Any Color"</p> -->
+                            <div v-if="errorColor"> 
+                                <span class="fi-rr-exclamation text-error flex items-center text-xs pl-1">
+                                    <p class="pl-1"> Please Enter Description</p>
+                                </span>
+                            </div>   
                             </div>
                          </div>
                     </fieldset>
@@ -121,30 +80,25 @@
                 <label class="text-sm flex text-primary">Size</label>
                     <fieldset>
                         <div class="space-y-3">
-                        <!-- Checkbox color -->
+                        <!-- Checkbox size -->
                             <div class="grid grid-cols-5 gap-y-1.5 items-start">
                             <!-- <div v-for="colors in allcolor" :key="colors.colorId"> -->
                             <div class="flex items-start">
-                            <!-- color loop -->
+                            <!-- size loop -->
                                 <div class="rounded flex items-center h-5">
-                                    <input id="color" name="color" type="checkbox" :value="colors" class="h-4 w-4 rounded" v-model="colorspicked"/>
+                                    <input id="size" name="size" type="checkbox" class="h-4 w-4 rounded" v-model="size"/>
                                 </div>
                                 <div class="ml-2 mr-4 text-sm">
-                                    <label for="color" class="font-medium text-gray-700">color</label>
+                                    <label for="size" class="font-medium text-gray-700">size</label>
                                 </div>
                             </div>
 
-                            <div class="flex items-start">
-                            <!-- color loop -->
-                                <div class="rounded flex items-center h-5">
-                                    <input id="color" name="color" type="checkbox" :value="colors" class="h-4 w-4 rounded" v-model="colorspicked"/>
-                                </div>
-                                <div class="ml-2 mr-4 text-sm">
-                                    <label for="color" class="font-medium text-gray-700">color</label>
-                                </div>
+                            <div v-if="errorSize"> 
+                                <span class="fi-rr-exclamation text-error flex items-center text-xs pt-1 pl-1">
+                                    <p class="pl-1"> Please Enter Name</p>
+                                </span>
                             </div>
-                            <!-- </div> -->
-                                <!-- <p class="text-red-500 text-xs font-light" v-if="errorColor">"Plese Select Any Color"</p> -->
+ 
                             </div>
                          </div>
                     </fieldset>
@@ -152,7 +106,12 @@
             <!-- Price -->
             <div class="col-start-2 row-start-1">
                 <label class="text-sm flex text-primary pb-1">Price</label>
-                <input type="email" placeholder="example@mail.com" v-model="login" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                <input type="text" placeholder="Ex. 300.00" v-model="price" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                <div v-if="errorPrice"> 
+                    <span class="fi-rr-exclamation text-error flex items-center text-xs pl-1 pt-1">
+                        <p class="pl-1"> Please Enter Price</p>
+                    </span>
+                </div>             
             </div>
             <!-- Brand -->
             <div class="col-start-2 row-start-2">
@@ -170,9 +129,11 @@
                     {{ brands.brandName }}
                 </option>
                 </select>
-            <!-- <p class="text-red-500 text-xs font-light" v-if="errorBrand">
-              "Please Select Any Brand"
-            </p> -->
+                <div v-if="errorBrand"> 
+                    <span class="fi-rr-exclamation text-error flex items-center text-xs pl-1 pt-1">
+                        <p class="pl-1"> Please Enter Brand</p>
+                    </span>
+                </div>  
             </div>
             <!-- Image -->
             <div class="col-start-2 row-start-3 row-span-4">
@@ -197,10 +158,14 @@
                 
               </div>
             </div>
-                <!-- <p class="text-red-500 text-xs font-light" v-if="errorImage">"No File Chosen"</p> -->
+            <div v-if="errorImage"> 
+                <span class="fi-rr-exclamation text-error flex items-center text-xs pl-1 pt-1">
+                    <p class="pl-1"> No File Chosen</p>
+                </span>
+            </div>  
                 
             </div>
-            <base-button class="col-start-2" buttonLabel="Add"/>
+            <base-button type="submit" class="col-start-2" buttonLabel="Add"/>
             <router-link to="/" class="text-gray col-start-2 text-center hover:text-opacity-80">Cancel</router-link> 
         </div>
 
@@ -221,9 +186,71 @@ export default {
     return {
       mobileView: true,
       showNav: false,
+      name: '',
+      description: '',
+      brand: null,
+      price: '',
+      image: '',
+      imageshow: '',
+      color: null,
+      size: null,
+      errorName: false,
+      errorDescription: false,
+      errorBrand: false,
+      errorPrice: false,
+      errorImage: false,
+      errorColor: false,
+      errorSize: false,
     };
   },
   methods: {
+    addProduct() {
+      this.errorName = this.name === '' ? true : false;
+      this.errorDescription = this.description === '' ? true : false;
+      this.errorBrand = this.brand === null ? true : false;
+      this.errorPrice = this.price === '' ? true : false;
+      this.errorImage = this.image === null ? true : false;
+      this.errorColor = this.colorspicked.length == 0 ? true : false;
+      this.errorSize = this.size.length == 0 ? true : false;
+
+      if (
+        this.errorName === false &&
+        this.errorDescription === false &&
+        this.errorBrand === false &&
+        this.errorPrice === false &&
+        this.errorImage === false &&
+        this.errorColor === false &&
+        this.errorSize === false
+      ) {
+        this.addNewProduct({
+          id: this.prodid,
+          name: this.name,
+          description: this.description,
+          brand: this.brand,
+          date: this.date,
+          price: this.price,
+          image: this.image.name,
+        });
+        console.log("startupload");
+        this.addUploadImage(this.image);
+        console.log("endupload");
+        this.sleep(4000);
+        console.log("con");
+        this.loopfethpc();
+        this.colorspicked = [];
+      }
+    },
+    uploadPhoto(e) {
+      this.image = e.target.files[0];
+      this.imageshow = e.target.files[0];
+      var reader = new FileReader();
+      reader.onload = (e) => {
+        this.imageshow = e.target.result;
+      };
+      reader.readAsDataURL(this.imageshow);
+      console.log(this.image);
+      console.log(this.image.name);
+    },
     showNavHam() {
       this.showNav = !this.showNav;
     },
