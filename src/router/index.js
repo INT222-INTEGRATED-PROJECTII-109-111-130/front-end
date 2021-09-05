@@ -30,7 +30,7 @@ const routes = [
     component: Basket
   },
   {
-    path: '/product',
+    path: '/product/:id',
     name: 'Product',
     component: Product
   },

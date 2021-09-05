@@ -37,151 +37,24 @@
   <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
     <h1 class="sm:text-4xl sm:py-7 py-3 font-semibold text-xl">Products</h1>
     <div class="grid sm:grid-cols-4 sm:gap-6 gap-2 grid-cols-2">
-
-      <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
-        <router-link to="/product">
-        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
-          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
-        </a>
-        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
-          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
+      <div v-for="product in allproduct" :key="product.productId">
+        <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
+          <router-link 
+                 :to="{
+                    name: 'Product',
+                    params: { id: product.productId },
+                  }"
+          >
+          <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
+            <img class="object-cover object-center w-full h-full block" :src="product.productImage">
+          </a>
+          <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+            <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">{{product.productName}}</h2>
+            <p class="mt-1 text-primary sm:text-base text-xs">THB {{product.productPrice}}</p>
+          </div>
+          </router-link>
         </div>
-        </router-link>
       </div>
-    
-      <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
-        <router-link to="/product">
-        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
-          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
-        </a>
-        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
-          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
-        </div>
-        </router-link>
-      </div>
-
-      <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
-        <router-link to="/product">
-        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
-          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
-        </a>
-        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
-          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
-        </div>
-        </router-link>
-      </div>
-
-      <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
-        <router-link to="/product">
-        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
-          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
-        </a>
-        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
-          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
-        </div>
-        </router-link>
-      </div>
-
-      <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
-        <router-link to="/product">
-        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
-          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
-        </a>
-        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
-          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
-        </div>
-        </router-link>
-      </div>
-
-      <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
-        <router-link to="/product">
-        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
-          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
-        </a>
-        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
-          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
-        </div>
-        </router-link>
-      </div>
-  
-      <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
-        <router-link to="/product">
-        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
-          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
-        </a>
-        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
-          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
-        </div>
-        </router-link>
-      </div>
-
-      <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
-        <router-link to="/product">
-        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
-          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
-        </a>
-        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
-          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
-        </div>
-        </router-link>
-      </div>
-    
-      <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
-        <router-link to="/product">
-        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
-          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
-        </a>
-        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
-          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
-        </div>
-        </router-link>
-      </div>
-
-      <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
-        <router-link to="/product">
-        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
-          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
-        </a>
-        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
-          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
-        </div>
-        </router-link>
-      </div>
-
-      <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
-        <router-link to="/product">
-        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
-          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
-        </a>
-        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
-          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
-        </div>
-        </router-link>
-      </div>
-
-      <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-00">
-        <router-link to="/product">
-        <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
-          <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
-        </a>
-        <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-          <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">Pop Cat</h2>
-          <p class="mt-1 text-primary sm:text-base text-xs">THB 12123</p>
-        </div>
-        </router-link>
-      </div>
-
     </div>
   </div>
 
@@ -211,6 +84,9 @@ export default {
       mobileView: true,
       bannerMobile: true,
       showNav: false,
+      errorMessage: null,
+      allproduct: [],
+      urlprod:"http://localhost:80/showallproduct",
     };
   },
   methods: {
@@ -221,9 +97,32 @@ export default {
       this.mobileView = window.innerWidth <= 990;
       this.bannerMobile = window.innerWidth <= 990;
     },
+    async getProduct(){
+     const res =  await fetch(this.urlprod);
+     console.log(res)
+      if(res.ok){
+        var data = await res.json();
+        return data
+      } else {
+        res.json().then((body) => {
+          throw new Error(body.error);
+        }).catch((error) => {
+          this.errorMessage = error.message
+          console.log(this.errorMessage);
+        })
+      }
+    }
   },
-  created() {
+  async created() {
     this.handleView();
+    this.allproduct = await this.getProduct();
+    if(this.allproduct != undefined){
+      for (let index = 0; index < this.allproduct.length; index++) {
+        var element = "http://localhost:80/files/";
+        this.allproduct[index].productImage = element + this.allproduct[index].productImage;
+        //console.log(this.allproduct[index].productImage);
+      }
+    }
     window.addEventListener("resize", this.handleView);
   },
 };
