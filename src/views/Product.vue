@@ -23,10 +23,10 @@
   </div>
   <base-nav-mobile v-if="showNav" />
   <base-nav v-if="!mobileView" />
-
+<!-- v-for="product in prod" :key="product.productId" -->
   <div class="container sm:px-7 px-3 py-8 mx-auto flex flex-wrap">
     <div class="sm:h-96 sm:w-2/4 h-64 w-full rounded-lg overflow-hidden">
-      <img alt="feature" class="object-cover object-center h-full w-full" src="../assets/popcat.jpg">
+      <img alt="feature" class="object-cover object-center h-full w-full" :src=image>
     </div>
     <div class="flex flex-wrap lg:w-1/2 lg:pl-8">
 
@@ -37,14 +37,18 @@
           <div class="flex justify-between mb-3">
             <p class="text-secondary sm:text-base text-xs">Brand</p>
             <p class="sm:text-base text-xs">DD-MM-YYYY</p>
+            
           </div>
-          
+          <div class="flex justify-between mb-3">
+            <p class="sm:text-base text-xs">{{this.prod.brands.brandName}}</p>
+            <p class="sm:text-base text-xs">{{this.prod.onsaleDate}}</p>
+          </div>
           <h2 class="sm:text-lg text-sm font-semibold">Description</h2>
           <p class="sm:text-base text-xs">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fringilla aliquet eget elementum erat. Nec sed aliquam risus auctor pharetra vitae.
+            {{this.prod.productDescription}}
           </p>
           
-          <h1 class="text-secondary sm:text-3xl text-xl sm:my-4 my-3">THB 12123</h1>
+          <h1 class="text-secondary sm:text-3xl text-xl sm:my-4 my-3">THB {{this.prod.productPrice}}</h1>
     <!-- Dropdown -->
       <div class="grid sm:grid-cols-2 grid-cols-2 sm:gap-3 gap-2">
         <!-- Color -->
@@ -93,7 +97,7 @@
           <div>
             <label class="sm:text-sm text-xs flex text-primary">Color</label>
            
-            <select id="brand" name="brand" v-model="brand" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light appearance-none">
+            <select id="color" name="color" v-model="color" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light appearance-none">
 
             <div class="flex justify-between">
               <div class="pr-1 text-gray">Select</div>
@@ -103,9 +107,11 @@
                   </svg>
                 </div>
               </div>
-
-              <option v-for="brands in allbrand" :key="brands.brandId" :value="brands.brandId">
-                {{ brands.brandName }}
+               <option :value="null" disabled class="hidden">
+                - Select Brand -
+              </option>
+              <option v-for="product in prod.productcolors" :key="product.productcolorId" :value="product.productcolorId">
+                {{ product.colors.colorName }}
               </option>
             </select>
 
@@ -185,7 +191,13 @@ export default {
 		// colors: [{colorValue:'#00759A', colorName: 'Blue'},
     //         {colorValue:'#F7941D', colorName: 'Orange'}
     // ],
-    quantity: 1
+    color:null,
+    quantity: 1,
+    id: this.$route.params.id,
+    prod:null,
+    urlprod:"http://localhost:80/show1prod/",
+    errorMessage: null,
+    image:null
     };
   },
 
@@ -226,8 +238,37 @@ computed: {
         this.quantity--
       }
     }
+    ,
+    async getOneProd(){
+      const res =  await fetch(this.urlprod+this.id);
+      console.log(res)
+      // console.log(res.json())
+      if(res.ok){
+        const data = await res.json();
+        console.log(data)
+        return data
+      } else {
+        this.errorMessage = await res.json();
+         console.log(this.errorMessage)
+        // res.json().then((body) => {
+        //   console.log(body.error)
+        //   throw new Error(body.error);
+        // }).catch((error) => {
+        //   this.errorMessage = error.message
+        //   console.log(this.errorMessage);
+        // })
+      }
+    }
   },
-  created() {
+  async created() {
+    this.prod = await this.getOneProd();
+    if(this.prod != undefined){
+        var element = "http://localhost:80/files/";
+        this.prod.productImage = element + this.prod.productImage;
+        console.log( this.prod.productImage)
+        this.image = this.prod.productImage
+    } 
+    
     this.handleView();
     window.addEventListener("resize", this.handleView);
   },
