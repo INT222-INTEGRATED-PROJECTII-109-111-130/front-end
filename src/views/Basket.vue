@@ -5,6 +5,7 @@
   <base-nav-mobile v-if="mobileView" /> 
   <!-- Error -->
     <div class="bg-error py-2 text-white text-center">Text here</div>
+    <div class="bg-primary py-2 text-white text-center">Text here</div>
     
   <!-- Emptry Basket -->
   <div v-if="!emptry">

@@ -4,6 +4,8 @@
   <base-nav-mobile v-if="mobileView" /> 
   <!-- Error -->
     <div class="bg-error py-2 text-white text-center">Text here</div>
+    <div class="bg-primary py-2 text-white text-center">Text here</div>
+    
   <div class="container sm:px-7 px-3 py-8 mx-auto flex flex-wrap">
     <div class="sm:h-96 sm:w-2/4 h-64 w-full rounded-lg overflow-hidden">
       <img alt="feature" class="object-cover object-center h-full w-full" :src=image>

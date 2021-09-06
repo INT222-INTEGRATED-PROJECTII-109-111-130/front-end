@@ -5,6 +5,7 @@
   <base-nav-mobile v-if="mobileView" /> 
   <!-- Error -->
     <div class="bg-error py-2 text-white text-center">Text here</div>
+    <div class="bg-primary py-2 text-white text-center">Text here</div>
     
     <div class="container sm:pb-16 pb-10 sm:px-72 px-3 mx-auto">
         <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 pt-6 pb-3 font-semibold text-xl text-center">My Account</h1>

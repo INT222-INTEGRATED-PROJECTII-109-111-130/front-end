@@ -5,9 +5,7 @@
   <base-nav-mobile v-if="mobileView" /> 
   <!-- Error -->
     <div class="bg-error py-2 text-white text-center">Text here</div>
-
-  <!-- Error -->
-    <div class="bg-error py-2 text-white text-center">Text here</div>
+    <div class="bg-primary py-2 text-white text-center">Text here</div>
 
   <div class="sm:px-96 sm:pt-24 my-auto mx-auto flex flex-wrap" v-if="!mobileView">
     <div class="w-full">
