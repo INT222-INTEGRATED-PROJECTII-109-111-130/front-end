@@ -33,6 +33,7 @@
           <span class="fi-rr-user text-xl hover:text-primary transition duration-200"></span>
         </router-link>
 <!-- <popover/> -->
+    
       </div>
     </div>
   </header>
