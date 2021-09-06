@@ -1,8 +1,8 @@
 <template>
+  <div class="home">
   <!-- Navbar -->
   <div class="bg-white shadow-md w-full text-center py-4 px-3" v-if="mobileView">
     <div class="flex justify-between items-center">
-      <!-- Nav Mobile -->
       <div v-if="mobileView" @click="showNavHam()">
         <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <line y1="1.5" x2="25" y2="1.5" stroke="#2D2D2D" stroke-width="3" />
@@ -68,7 +68,7 @@
     </button>
   </div>
 
-
+  </div>
 </template>
 
 <script>
