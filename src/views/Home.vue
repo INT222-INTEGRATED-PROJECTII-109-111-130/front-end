@@ -1,6 +1,7 @@
 <template>
   <div class="home">
   <!-- Navbar -->
+<<<<<<< HEAD
   <div class="bg-white shadow-md w-full text-center py-4 px-3" v-if="mobileView">
     <div class="flex justify-between items-center">
       <div v-if="mobileView" @click="showNavHam()">
@@ -22,6 +23,10 @@
   </div>
   <base-nav-mobile v-if="showNav" />
   <base-nav v-if="!mobileView" />
+=======
+  <base-nav v-if="showNav" />
+  <base-nav-mobile v-if="mobileView" /> 
+>>>>>>> 549ed7e38fd0df6a9c5b342c8ca2dc111706074a
 <!-- Banner desktop -->
 <img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-64 lg:px-44 pt-8 w-full" v-if="!bannerMobile">
 <!-- Seach in mobile -->
@@ -94,7 +99,13 @@ export default {
       this.showNav = !this.showNav;
     },
     handleView() {
-      this.mobileView = window.innerWidth <= 990;
+      if(window.innerWidth <= 990){
+          this.mobileView = true;
+          this.showNav = false;
+      } else if (window.innerWidth > 990){
+          this.mobileView = false;
+          this.showNav = true;
+      }
       this.bannerMobile = window.innerWidth <= 990;
     },
     async getProduct(){

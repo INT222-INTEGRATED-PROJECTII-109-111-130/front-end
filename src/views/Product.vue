@@ -1,7 +1,14 @@
 <template>
   <div class="product">
+<<<<<<< HEAD
   <base-nav v-if="showNav" />
   <base-nav-mobile v-if="mobileView" /> 
+=======
+  <!-- Navbar -->
+  <base-nav v-if="showNav" />
+  <base-nav-mobile v-if="mobileView" /> 
+
+>>>>>>> 549ed7e38fd0df6a9c5b342c8ca2dc111706074a
   <div class="container sm:px-7 px-3 py-8 mx-auto flex flex-wrap">
     <div class="sm:h-96 sm:w-2/4 h-64 w-full rounded-lg overflow-hidden">
       <img alt="feature" class="object-cover object-center h-full w-full" :src=image>
@@ -11,19 +18,30 @@
         <div class="flex-grow">
           <h1 class="sm:text-3xl font-semibold text-xl sm:mt-0 mt-2">Name</h1>
           <div class="flex justify-between mb-3">
+<<<<<<< HEAD
             <p class="text-secondary sm:text-base text-xs" >Brand</p>
             <p class="sm:text-base text-xs">DD-MM-YYYY</p>
           </div>
           <div class="flex justify-between mb-3">
             <p class="sm:text-base text-xs">{{prodbrand}}</p>
             <p class="sm:text-base text-xs">{{proddate}}</p>
+=======
+            <p class="text-secondary sm:text-base text-xs">{{this.prod.brands.brandName}}</p>
+            <p class="sm:text-base text-xs">{{this.prod.onsaleDate}}</p>           
+>>>>>>> 549ed7e38fd0df6a9c5b342c8ca2dc111706074a
           </div>
+
           <h2 class="sm:text-lg text-sm font-semibold">Description</h2>
           <p class="sm:text-base text-xs">
             {{proddes}}
           </p>
           <h1 class="text-secondary sm:text-3xl text-xl sm:my-4 my-3">THB {{prodprice}}</h1>
       <div class="grid sm:grid-cols-2 grid-cols-2 sm:gap-3 gap-2">
+<<<<<<< HEAD
+=======
+  
+        <!-- Color 2 -->
+>>>>>>> 549ed7e38fd0df6a9c5b342c8ca2dc111706074a
           <div>
             <label class="sm:text-sm text-xs flex text-primary">Color</label>
             <select id="color" name="color" v-model="color" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light appearance-none">
@@ -194,12 +212,16 @@ export default {
         console.log( this.prod.productImage)
         this.image = this.prod.productImage
     } 
+<<<<<<< HEAD
     this.prodcol  = await this.prod.productcolors
     this.prodsize = await this.prod.productsizes
     this.prodbrand = await this.prod.brands.brandName
     this.proddate = await this.prod.onsaleDate
     this.proddes = await this.prod.productDescription    
     this.prodprice = await this.prod.productPrice
+=======
+    
+>>>>>>> 549ed7e38fd0df6a9c5b342c8ca2dc111706074a
     window.addEventListener("resize", this.handleView);
   },
 };
