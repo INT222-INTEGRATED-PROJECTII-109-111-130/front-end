@@ -1,9 +1,8 @@
 <template>
   <div class="product">
   <!-- Navbar -->
-  <div class="bg-white shadow-md w-full text-center py-4 px-3" v-if="mobileView">
+  <!-- <div class="bg-white shadow-md w-full text-center py-4 px-3" v-show="mobileView">
     <div class="flex justify-between items-center">
-      <!-- Nav Mobile -->
       <div v-if="mobileView" @click="showNavHam()">
         <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
           <line y1="1.5" x2="25" y2="1.5" stroke="#2D2D2D" stroke-width="3" />
@@ -20,9 +19,9 @@
          <span class="fi-rr-shopping-bag text-lg"></span>
       </router-link>
     </div>
-  </div>
-  <base-nav-mobile v-if="showNav" />
-  <base-nav v-if="!mobileView" />
+  </div> -->
+  <base-nav v-if="showNav" />
+  <base-nav-mobile v-if="mobileView" /> 
 <!-- v-for="product in prod" :key="product.productId" -->
   <div class="container sm:px-7 px-3 py-8 mx-auto flex flex-wrap">
     <div class="sm:h-96 sm:w-2/4 h-64 w-full rounded-lg overflow-hidden">
@@ -108,8 +107,8 @@
                 </div>
               </div>
                <option :value="null" disabled class="hidden">
-                - Select Brand -
-              </option>
+               - Select Brand -
+              </option> 
               <option v-for="product in prod.productcolors" :key="product.productcolorId" :value="product.productcolorId">
                 {{ product.colors.colorName }}
               </option>
@@ -124,7 +123,7 @@
           <div>
             <label class="sm:text-sm text-xs flex text-primary">Size</label>
            
-            <select id="brand" name="brand" v-model="brand" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light appearance-none">
+            <select id="size" name="size" v-model="size" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light appearance-none">
 
             <div class="flex justify-between">
               <div class="pr-1 text-gray">Select</div>
@@ -134,9 +133,11 @@
                   </svg>
                 </div>
               </div>
-
-              <option v-for="brands in allbrand" :key="brands.brandId" :value="brands.brandId">
-                {{ brands.brandName }}
+                <option :value="null" disabled class="hidden">
+                - Select Size -
+                </option> 
+              <option v-for="product in prod.productsizes" :key="product.productsizeId" :value="product.productsizeId">
+                {{ product.sizes.sizeValue }}
               </option>
             </select>
 
@@ -192,6 +193,7 @@ export default {
     //         {colorValue:'#F7941D', colorName: 'Orange'}
     // ],
     color:null,
+    size:null,
     quantity: 1,
     id: this.$route.params.id,
     prod:null,
@@ -217,8 +219,15 @@ computed: {
       this.showNav = !this.showNav;
     },
     handleView() {
-      this.mobileView = window.innerWidth <= 990;
-      this.bannerMobile = window.innerWidth <= 990;
+      if(window.innerWidth <= 990){
+          this.mobileView = true;
+          this.showNav = false;
+      } else if (window.innerWidth > 990){
+          this.mobileView = false;
+          this.showNav = true;
+      }
+      console.log(this.showNav)
+      console.log(this.mobileView)
     },
 		// setColor: function(color, colorName) {
 		// 	this.selectedColor = color;
@@ -261,6 +270,7 @@ computed: {
     }
   },
   async created() {
+    this.handleView();
     this.prod = await this.getOneProd();
     if(this.prod != undefined){
         var element = "http://localhost:80/files/";
@@ -269,7 +279,7 @@ computed: {
         this.image = this.prod.productImage
     } 
     
-    this.handleView();
+    
     window.addEventListener("resize", this.handleView);
   },
 };
