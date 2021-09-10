@@ -11,9 +11,11 @@
                         </span>
                         <input type="text" placeholder="Search" class="px-2 py-2 pr-4 placeholder-gray relative bg-white rounded-full text-lg outline-none focus:ring-2 focus:ring-primary w-full pl-9"/>
                         <div class="pl-3">
+                          <router-link to="/add">
                             <button type="button" class="px-2 py-2 sm:w-40 w-full text-white bg-primary rounded-full transition duration-400 hover:bg-primarydark focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">
                                 Add Product
                             </button>
+                          </router-link>
                         </div>
                     </div>
                 </div>
