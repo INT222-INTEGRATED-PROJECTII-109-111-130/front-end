@@ -148,7 +148,7 @@
             </div>  
                 
             </div>
-            <base-button type="submit" class="col-start-2" buttonLabel="Add"/>
+            <base-button type="submit" class="col-start-2" buttonLabel="Save"/>
             <router-link to="/" class="text-gray col-start-2 text-center hover:text-opacity-80">Cancel</router-link> 
         </div>
 
