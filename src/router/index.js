@@ -7,6 +7,7 @@ import Product from '../views/Product.vue'
 import Add from '../views/Add.vue'
 import Edit from '../views/Edit.vue'
 import EditProfile from '../views/EditProfile.vue'
+import Manage from '../views/Manage.vue'
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     path: '/editProfile',
     name: 'EditProfile',
     component: EditProfile
+  },
+  {
+    path: '/manage',
+    name: 'Manage',
+    component: Manage
   },
 ]
 

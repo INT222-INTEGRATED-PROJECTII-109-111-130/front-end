@@ -33,7 +33,7 @@
             <img class="object-cover object-center w-full h-full block" :src="product.productImage">
           </a>
           <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-            <h2 class="text-gray-900 title-font sm:text-lg text-sm font-semibold">{{product.productName}}</h2>
+            <h2 class="title-font sm:text-lg text-sm font-semibold">{{product.productName}}</h2>
             <p class="mt-1 text-primary sm:text-base text-xs">THB {{product.productPrice}}</p>
           </div>
           </router-link>
