@@ -3,10 +3,13 @@
   <!-- Navbar -->
   <base-nav v-if="showNav" />
   <base-nav-mobile v-if="mobileView" /> 
-
+  <!-- Error -->
+    <div class="bg-error py-2 text-white text-center">Text here</div>
+    <div class="bg-primary py-2 text-white text-center">Text here</div>
+    
   <!-- Emptry Basket -->
-  <div v-if="emptry">
-  <img src="../assets/Shopping_cart.png" class="object-center mx-auto sm:px-96 sm:pt-28 sm:w-4/6 px-20 pt-16 w-auto">
+  <div v-if="!emptry">
+  <img src="../assets/Shopping_cart.png" class="object-center mx-auto sm:px-96 sm:pt-28 sm:w-4/6 px-20 pt-32 w-auto">
   <h1 class="sm:text-2xl text-xl font-semibold text-center sm:pt-6 pt-4">Your Basket is Empty</h1>
     <p class="text-center text-gray pt-2 pb-4 sm:text-base text-xs">Looks like you haven’t made your choice yet</p>
     <div class="sm:w-96 mx-auto w-52 sm:text-base text-sm">
@@ -17,8 +20,8 @@
   </div>
 
   <!-- Have Product -->
-  <div v-if="!emptry">
-    <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
+  <div v-if="emptry">
+    <div class="container sm:pb-16 pb-10 pt-10 sm:px-9 px-3 mx-auto">
       <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 pt-6 pb-3 font-semibold text-xl">Basket</h1>
       <!-- Loop here -->
       <div class="w-full pb-4">

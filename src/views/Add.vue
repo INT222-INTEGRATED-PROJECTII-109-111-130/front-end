@@ -3,7 +3,11 @@
   <!-- Navbar -->
   <base-nav v-if="showNav" />
   <base-nav-mobile v-if="mobileView" /> 
-
+  <!-- Error -->
+    <div v-show="checktran">
+      <div v-show="red" class="bg-error py-2 text-white text-center">Error !! : {{errorMessage}}</div>
+      <div v-show="green" class="bg-primary py-2 text-white text-center">Success</div>
+    </div>
     <form @submit.prevent="addProduct">
     <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
         <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 py-3 font-semibold text-xl">Add Product</h1>
@@ -35,17 +39,17 @@
                         <div class="space-y-3">
                         <!-- Checkbox color -->
                             <div class="grid grid-cols-5 gap-y-1.5 items-start">
-                            <!-- <div v-for="colors in allcolor" :key="colors.colorId"> -->
+                            <div v-for="colors in allcolor" :key="colors.colorId"> 
                             <div class="flex items-start">
                             <!-- color loop -->
                                 <div class="rounded flex items-center h-5">
-                                    <input id="color" name="color" type="checkbox" :value="colors" class="h-4 w-4 rounded" v-model="colorspicked"/>
+                                    <input id="color" name="color" type="checkbox" :value="colors.colorId" class="h-4 w-4 rounded" v-model="colorspicked"/>
                                 </div>
                                 <div class="ml-2 mr-4 text-sm">
-                                    <label for="color" class="font-medium text-gray-700">color</label>
+                                    <label for="color" class="font-medium text-gray-700">{{colors.colorName}}</label>
                                 </div>
                             </div>
-
+                            </div>
                             <div v-if="errorColor"> 
                                 <span class="fi-rr-exclamation text-error flex items-center text-xs pl-1">
                                     <p class="pl-1"> Please Enter Description</p>
@@ -62,17 +66,17 @@
                         <div class="space-y-3">
                         <!-- Checkbox size -->
                             <div class="grid grid-cols-5 gap-y-1.5 items-start">
-                            <!-- <div v-for="colors in allcolor" :key="colors.colorId"> -->
+                             <div v-for="size in allsize" :key="size.sizeId">
                             <div class="flex items-start">
                             <!-- size loop -->
                                 <div class="rounded flex items-center h-5">
-                                    <input id="size" name="size" type="checkbox" class="h-4 w-4 rounded" v-model="size"/>
+                                    <input id="size" name="size" type="checkbox" class="h-4 w-4 rounded" :value="size.sizeId" v-model="sizepicked"/>
                                 </div>
                                 <div class="ml-2 mr-4 text-sm">
-                                    <label for="size" class="font-medium text-gray-700">size</label>
+                                    <label for="size" class="font-medium text-gray-700">{{size.sizeValue}}</label>
                                 </div>
                             </div>
-
+                             </div>
                             <div v-if="errorSize"> 
                                 <span class="fi-rr-exclamation text-error flex items-center text-xs pt-1 pl-1">
                                     <p class="pl-1"> Please Enter Name</p>
@@ -89,7 +93,7 @@
                 <input type="text" placeholder="Ex. 300.00" v-model="price" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
                 <div v-if="errorPrice"> 
                     <span class="fi-rr-exclamation text-error flex items-center text-xs pl-1 pt-1">
-                        <p class="pl-1"> Please Enter Price</p>
+                        <p class="pl-1"> Please Enter Price or Number</p>
                     </span>
                 </div>             
             </div>
@@ -105,6 +109,9 @@
                             </svg>
                         </div>
                     </div>
+                <option :value="null" disabled class="hidden">
+                    - Select Brand -
+                </option> 
                 <option v-for="brands in allbrand" :key="brands.brandId" :value="brands.brandId">
                     {{ brands.brandName }}
                 </option>
@@ -172,15 +179,23 @@ export default {
       price: '',
       image: '',
       imageshow: '',
-      color: null,
-      size: null,
+      colorspicked: [],
+      sizepicked: [],
       errorName: false,
       errorDescription: false,
       errorBrand: false,
       errorPrice: false,
+      errorDate: false,
       errorImage: false,
       errorColor: false,
       errorSize: false,
+      checktran:null,
+      errorMessage: null,
+      red:false,
+      green:false,
+      allcolor:[],
+      allbrand:[],
+      allsize:[],
     };
   },
   methods: {
@@ -189,9 +204,11 @@ export default {
       this.errorDescription = this.description === '' ? true : false;
       this.errorBrand = this.brand === null ? true : false;
       this.errorPrice = this.price === '' ? true : false;
+      this.errorPrice = isNaN(parseFloat(this.price)) ? true : false;
+    
       this.errorImage = this.image === null ? true : false;
       this.errorColor = this.colorspicked.length == 0 ? true : false;
-      this.errorSize = this.size.length == 0 ? true : false;
+      this.errorSize = this.sizepicked.length == 0 ? true : false;
 
       if (
         this.errorName === false &&
@@ -202,22 +219,18 @@ export default {
         this.errorColor === false &&
         this.errorSize === false
       ) {
-        this.addNewProduct({
-          id: this.prodid,
+          this.add({
           name: this.name,
           description: this.description,
           brand: this.brand,
-          date: this.date,
           price: this.price,
           image: this.image.name,
-        });
-        console.log("startupload");
-        this.addUploadImage(this.image);
-        console.log("endupload");
-        this.sleep(4000);
-        console.log("con");
-        this.loopfethpc();
-        this.colorspicked = [];
+        },this.colorspicked
+        ,this.image
+        ,this.sizepicked
+        );
+      this.image = null;
+      this.imageshow = null;
       }
     },
     uploadPhoto(e) {
@@ -228,8 +241,6 @@ export default {
         this.imageshow = e.target.result;
       };
       reader.readAsDataURL(this.imageshow);
-      console.log(this.image);
-      console.log(this.image.name);
     },
     showNavHam() {
       this.showNav = !this.showNav;
@@ -243,8 +254,72 @@ export default {
           this.showNav = true;
       }
     },
+    async add(prod,color,image,size){
+            try {
+          var dateString = new Date();
+        //  console.log(dateString);
+        //  console.log(prod);
+        //  console.log(color);
+        //  console.log(size);
+         var formData = new FormData();
+        formData.append("prod", JSON.stringify({
+            productId: 1,
+            productName: prod.name,
+            productDescription: prod.description,
+            onsaleDate: dateString,
+            productPrice: parseFloat(prod.price),
+            productImage: prod.image,
+            brandId: prod.brand,
+          }));
+        formData.append("prodcolor", color);
+        formData.append("file", image, image.name);
+        formData.append("size", size);
+        var url = "http://localhost:80/"
+        const res = await fetch(url+"addprod", {
+          method: "POST",
+          body: formData,
+        });
+        if( res.ok){
+            this.checktran = true;
+            this.red = false;
+            this.green = true;
+            setTimeout(()=>{this.checktran = false } , 9000);
+        }else {
+            this.checktran = true;
+            this.red = true;
+            this.green = false;
+            this.errorMessage = await res.json().message
+            console.log (this.errorMessage)
+            setTimeout(()=>{this.checktran = false } , 9000);
+        }
+      } catch (error) {
+        alert(`Could not add ${error}`);
+      }
+      
+      this.name = "";
+      this.description = "";
+      this.brand = null;
+      this.colorspicked = [];
+      this.sizepicked = [];
+      this.price = "";
+      this.image = null;
+      this.imageshow = null;
+    }
+    ,
+    async getall(){
+      var url = "http://localhost:80/"
+      const resbrand =  await fetch(url+"showallbrand");
+      const rescolor =  await fetch(url+"showallcolor");
+      const ressize =  await fetch(url+"showallsize");
+      if(resbrand.ok && rescolor.ok){
+        this.allbrand = await resbrand.json();
+        this.allcolor = await rescolor.json();
+        this.allsize = await ressize.json();
+      }
+    }
   },
-  created() {
+  async created() {
+    await this.getall();
     this.handleView();
     window.addEventListener("resize", this.handleView);
   },

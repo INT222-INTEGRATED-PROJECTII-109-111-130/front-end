@@ -3,6 +3,9 @@
   <!-- Navbar -->
   <base-nav v-if="showNav" />
   <base-nav-mobile v-if="mobileView" /> 
+  <!-- Error -->
+    <div class="bg-error py-2 text-white text-center">Text here</div>
+    <div class="bg-primary py-2 text-white text-center">Text here</div>
 
   <div class="sm:px-96 sm:pt-24 my-auto mx-auto flex flex-wrap" v-if="!mobileView">
     <div class="w-full">
@@ -77,7 +80,7 @@
   
   <!-- Mobile -->
   <div v-if="mobileView">
-    <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
+    <div class="container sm:pb-16 pb-10 sm: pt-10 sm:px-9 px-3 mx-auto">
       <form @submit.prevent="login">
         <div v-bind:class="{'hidden': openTabMobile !== 3, 'block': openTabMobile === 3}">
           <h1 class="sm:text-4xl sm:py-7 pt-6 pb-3 font-semibold text-xl">Login</h1>

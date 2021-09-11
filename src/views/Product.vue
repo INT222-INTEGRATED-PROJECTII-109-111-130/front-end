@@ -2,6 +2,11 @@
   <div class="product">
   <base-nav v-if="showNav" />
   <base-nav-mobile v-if="mobileView" /> 
+  <!-- Error -->
+  <div v-show="checktran">
+    <div v-if="red" class="bg-error py-2 text-white text-center">Error !! : {{mexxage}}</div>
+    <div v-else class="bg-primary py-2 text-white text-center">Success</div>
+  </div>  
   <div class="container sm:px-7 px-3 py-8 mx-auto flex flex-wrap">
     <div class="sm:h-96 sm:w-2/4 h-64 w-full rounded-lg overflow-hidden">
       <img alt="feature" class="object-cover object-center h-full w-full" :src=image>
@@ -25,11 +30,12 @@
           </p>
           <h1 class="text-secondary sm:text-3xl text-xl sm:my-4 my-3">THB {{prodprice}}</h1>
       <div class="grid sm:grid-cols-2 grid-cols-2 sm:gap-3 gap-2">
+  
+        <!-- Color 2 -->
           <div>
             <label class="sm:text-sm text-xs flex text-primary">Color</label>
             <select id="color" name="color" v-model="color" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light appearance-none">
             <div class="flex justify-between">
-              <div class="pr-1 text-gray">Select</div>
                 <div>
                   <svg class="text-gray fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                   <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
@@ -48,7 +54,6 @@
             <label class="sm:text-sm text-xs flex text-primary">Size</label>
             <select id="size" name="size" v-model="size" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light appearance-none">
             <div class="flex justify-between">
-              <div class="pr-1 text-gray">Select</div>
                 <div>
                   <svg class="text-gray fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                   <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
@@ -76,7 +81,7 @@
               </div>
           </div>
         </div>
-       <base-button buttonLabel="Add to Basket"/> 
+       <base-button @click="addBasket()" buttonLabel="Add to Basket"/> 
         </div>
       </div>
      </div>
@@ -97,12 +102,6 @@ export default {
     mobileView: true,
     bannerMobile: true,
     showNav: false,
-		// active: false,
-		// selectedColor: '',
-		// selectedColorName: '',
-		// colors: [{colorValue:'#00759A', colorName: 'Blue'},
-    //         {colorValue:'#F7941D', colorName: 'Orange'}
-    // ],
     color:null,
     prodcol:null,
     prodsize:null,
@@ -115,7 +114,10 @@ export default {
     id: this.$route.params.id,
     prod:null,
     urlprod:"http://localhost:80/show1prod/",
+    checktran:null,
     errorMessage: null,
+    red:true,
+    green:false,
     image:null
     };
   },
@@ -128,32 +130,24 @@ export default {
 			else {
 				return '<span style="background: ' + this.selectedColor + '"></span> ' + this.selectedColorName;
 			}
-		}
+		},
+    mexxage(){
+      return this.errorMessage == null ?"" :this.errorMessage ;
+    }
 	},
-
   methods: {
     showNavHam() {
       this.showNav = !this.showNav;
     },
     handleView() {
       if(window.innerWidth <= 990){
-          this.mobileView = true;
+          this.mobileView = true; 
           this.showNav = false;
       } else if (window.innerWidth > 990){
           this.mobileView = false;
           this.showNav = true;
       }
-      console.log(this.showNav)
-      console.log(this.mobileView)
     },
-		// setColor: function(color, colorName) {
-		// 	this.selectedColor = color;
-		// 	this.selectedColorName = colorName;
-		// 	this.active = false;
-		// },
-		// toggleDropdown: function() {
-		// 	this.active = !this.active;
-		// },
     increment () {
       this.quantity++
     },
@@ -163,26 +157,33 @@ export default {
       } else {
         this.quantity--
       }
+    },
+    addBasket(){
+      
+      if(this.errorMessage != null){
+         this.checktran = true ;
+         this.red = true;
+         this.errorMessage = "asd"
+       }else{
+         this.checktran = true ;
+         this.red = false;
+         this.errorMessage = 'i heer tuuu'
+       }
+
     }
     ,
     async getOneProd(){
       const res =  await fetch(this.urlprod+this.id);
       console.log(res)
-      // console.log(res.json())
       if(res.ok){
         const data = await res.json();
         console.log(data)
         return data
       } else {
-        this.errorMessage = await res.json();
-         console.log(this.errorMessage)
-        // res.json().then((body) => {
-        //   console.log(body.error)
-        //   throw new Error(body.error);
-        // }).catch((error) => {
-        //   this.errorMessage = error.message
-        //   console.log(this.errorMessage);
-        // })
+        this.checktran = true;
+        this.red = true
+        this.errorMessage = await res.json().message;
+        //  setTimeout(()=>{this.checktran = false } , 9000);
       }
     }
   },

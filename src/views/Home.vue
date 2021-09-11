@@ -3,6 +3,9 @@
   <!-- Navbar -->
   <base-nav v-if="showNav" />
   <base-nav-mobile v-if="mobileView" /> 
+  <!-- Error -->
+    <!-- <div class="bg-error py-2 text-white text-center">Text here</div> -->
+    <!-- <div class="bg-primary py-2 text-white text-center">Text here</div> -->
 <!-- Banner desktop -->
 <img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-64 lg:px-44 pt-8 w-full" v-if="!bannerMobile">
 <!-- Seach in mobile -->
@@ -84,6 +87,7 @@ export default {
       }
       this.bannerMobile = window.innerWidth <= 990;
     },
+
     async getProduct(){
      const res =  await fetch(this.urlprod);
      console.log(res)
@@ -91,12 +95,8 @@ export default {
         var data = await res.json();
         return data
       } else {
-        res.json().then((body) => {
-          throw new Error(body.error);
-        }).catch((error) => {
-          this.errorMessage = error.message
-          console.log(this.errorMessage);
-        })
+        this.errorMessage = await res.json();
+        alert(this.errorMessage.message)
       }
     }
   },
