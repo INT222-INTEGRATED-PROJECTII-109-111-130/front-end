@@ -1,11 +1,13 @@
 <template>
   <div class="home">
   <!-- Navbar -->
-  <base-nav v-if="showNav" />
+  <base-nav class="sticky top-0 z-50 w-full" v-if="showNav" />
   <base-nav-mobile v-if="mobileView" /> 
   <!-- Error -->
+  <div class="sticky top-0 z-50 w-full">
     <div class="bg-error py-2 text-white text-center">Text here</div>
     <div class="bg-primary py-2 text-white text-center">Text here</div>
+  </div>
 <!-- Banner desktop -->
 <img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-64 lg:px-44 pt-8 w-full" v-if="!bannerMobile">
 <!-- Seach in mobile -->

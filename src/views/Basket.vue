@@ -1,11 +1,13 @@
 <template>
   <div class="basket">
   <!-- Navbar -->
-  <base-nav v-if="showNav" />
-  <base-nav-mobile v-if="mobileView" /> 
-  <!-- Error -->
-    <div class="bg-error py-2 text-white text-center">Text here</div>
-    <div class="bg-primary py-2 text-white text-center">Text here</div>
+    <base-nav class="sticky top-0 z-50 w-full" v-if="showNav" />
+    <base-nav-mobile v-if="mobileView" /> 
+      <!-- Error -->
+        <div class="sticky top-0 z-50 w-full">
+          <div class="bg-error py-2 text-white text-center">Text here</div>
+          <div class="bg-primary py-2 text-white text-center">Text here</div>
+        </div>
     
   <!-- Emptry Basket -->
   <div v-if="!emptry">
@@ -30,9 +32,9 @@
             <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
           </div>
           <div class="flex-grow pl-4">
-            <h1 class="sm:text-2xl font-semibold text-xs">Name</h1>
-            <p class="text-gray sm:text-base text-xs">Color:</p>
-            <p class="text-gray sm:text-base text-xs">Size:</p>
+            <h1 class="sm:text-2xl font-semibold text-xs">Product Name</h1>
+            <p class="text-gray sm:text-base text-xs">Color: </p>
+            <p class="text-gray sm:text-base text-xs">Size: </p>
             <p class="sm:text-2xl font-semibold text-xs">THB 300.00</p>
           </div>
 

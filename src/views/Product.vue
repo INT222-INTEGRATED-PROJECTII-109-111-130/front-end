@@ -1,11 +1,13 @@
 <template>
   <div class="product">
-  <base-nav v-if="showNav" />
-  <base-nav-mobile v-if="mobileView" /> 
-  <!-- Error -->
-    <div class="bg-error py-2 text-white text-center">Text here</div>
-    <div class="bg-primary py-2 text-white text-center">Text here</div>
-    
+  <!-- Navbar -->
+    <base-nav class="sticky top-0 z-50 w-full" v-if="showNav" />
+    <base-nav-mobile v-if="mobileView" /> 
+      <!-- Error -->
+        <div class="sticky top-0 z-50 w-full">
+          <div class="bg-error py-2 text-white text-center">Text here</div>
+          <div class="bg-primary py-2 text-white text-center">Text here</div>
+        </div>
   <div class="container sm:px-7 px-3 py-8 mx-auto flex flex-wrap">
     <div class="sm:h-96 sm:w-2/4 h-64 w-full rounded-lg overflow-hidden">
       <img alt="feature" class="object-cover object-center h-full w-full" :src=image>
@@ -13,7 +15,7 @@
     <div class="flex flex-wrap lg:w-1/2 lg:pl-8">
       <div class="flex flex-col lg:items-start items-center">
         <div class="flex-grow">
-          <h1 class="sm:text-3xl font-semibold text-xl sm:mt-0 mt-2">Name</h1>
+          <h1 class="sm:text-3xl font-semibold text-xl sm:mt-0 mt-2">Product Name</h1>
           <div class="flex justify-between mb-3">
             <p class="text-secondary sm:text-base text-xs" >{{prodbrand}}</p>
             <p class="sm:text-base text-xs">{{proddate}}</p>

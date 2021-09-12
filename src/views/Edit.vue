@@ -1,15 +1,17 @@
 <template>
 <div class="add">
   <!-- Navbar -->
-  <base-nav v-if="showNav" />
-  <base-nav-mobile v-if="mobileView" /> 
-  <!-- Error -->
-    <div class="bg-error py-2 text-white text-center">Text here</div>
-    <div class="bg-primary py-2 text-white text-center">Text here</div>
-    
+    <base-nav class="sticky top-0 z-50 w-full" v-if="showNav" />
+    <base-nav-mobile v-if="mobileView" /> 
+      <!-- Error -->
+        <div class="sticky top-0 z-50 w-full">
+          <div class="bg-error py-2 text-white text-center">Text here</div>
+          <div class="bg-primary py-2 text-white text-center">Text here</div>
+        </div>
+    <!-- Form -->
     <form @submit.prevent="addProduct">
     <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
-        <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 py-3 font-semibold text-xl">Add Product</h1>
+        <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 py-3 font-semibold text-xl">Edit Product</h1>
         <div class="grid grid-cols-2 gap-x-32 gap-y-4">
             <!-- Product Name -->
             <div>
@@ -65,7 +67,7 @@
                         <div class="space-y-3">
                         <!-- Checkbox size -->
                             <div class="grid grid-cols-5 gap-y-1.5 items-start">
-                            <!-- <div v-for="colors in allcolor" :key="colors.colorId"> -->
+                            <!-- <div v-for="" :key=""> -->
                             <div class="flex items-start">
                             <!-- size loop -->
                                 <div class="rounded flex items-center h-5">
