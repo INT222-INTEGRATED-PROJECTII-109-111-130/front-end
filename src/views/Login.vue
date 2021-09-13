@@ -1,13 +1,13 @@
 <template>
   <div class="login">
   <!-- Navbar -->
-    <base-nav class="sticky top-0 z-50 w-full" v-if="showNav" />
-    <base-nav-mobile v-if="mobileView" /> 
-      <!-- Error -->
-        <div class="sticky top-0 z-50 w-full">
-          <div class="bg-error py-2 text-white text-center">Text here</div>
-          <div class="bg-primary py-2 text-white text-center">Text here</div>
-        </div>
+       <base-nav  v-if="showNav" />
+      <base-nav-mobile  v-if="mobileView" /> 
+        <!-- Error -->
+          <div v-show="checktran">
+            <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
+            <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
+          </div>
 
   <div class="sm:px-96 sm:pt-24 my-auto mx-auto flex flex-wrap" v-if="!mobileView">
     <div class="w-full">
