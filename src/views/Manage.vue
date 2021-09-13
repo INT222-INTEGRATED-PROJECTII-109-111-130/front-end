@@ -1,7 +1,13 @@
 <template>
     <div class="manage">
+      
         <base-nav v-if="showNav" />
-        <base-nav-mobile v-if="mobileView" />  
+        <base-nav-mobile v-if="mobileView" /> 
+          <div v-show="checktran" class="fixed top-0">
+            <div v-show="red" class="bg-error py-2 text-white text-center">Error !! : {{errorMessage}}</div>
+            <div v-show="green" class="bg-primary py-2 text-white text-center">Success</div>
+          </div> 
+        
             <div class="container sm:pb-16 pb-10 sm:pt-0 pt-10 sm:px-9 px-3 mx-auto">
                 <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 pt-6 pb-3 font-semibold text-xl">Manage Products</h1> 
                 <div class="bg-light px-10 py-5 rounded-lg">
@@ -26,10 +32,16 @@
                             <h2 class="title-font sm:text-xl text-lg font-semibold">{{product.productName}}</h2>
                         </div>
                         <div class="flex justify-end gap-6 items-center">
-                            <router-link to="/edit">
+                            <router-link  
+                                :to="{
+                                name: 'Edit',
+                                params: { id: product.productId },
+                             }">
                                 <span class="fi-rr-pencil text-primary text-xl cursor-pointer hover:text-primarydark transition duration-200"></span>
                             </router-link>
+                            <div  @click="deleteP(product.productId)">
                                 <span class="fi-rr-trash text-primary text-xl cursor-pointer hover:text-primarydark transition duration-200"></span>
+                             </div>
                         </div>
                     </div>
                 </div>
@@ -49,6 +61,9 @@ export default {
       showNav: false,
       errorMessage: null,
       allproduct: [],
+      checktran:null,
+      red:false,
+      green:false,
       urlprod:"http://localhost:80/showallproduct",
     };
   },
@@ -65,12 +80,39 @@ export default {
           this.showNav = true;
       }
     },
+    async deleteP(id){
+      console.log(id)
+      const res = await fetch("http://localhost:80/delprod/"+id, {  method: "DELETE", });
+     if( res.ok){
+
+            this.checktran = true;
+            this.red = false;
+            this.green = true;
+            await this.getProduct();
+            setTimeout(()=>{this.checktran = false } , 9000);
+             
+        }else {
+            this.checktran = true;
+            this.red = true;
+            this.green = false;
+            const data = await res.json()
+            this.errorMessage = await data.message
+            setTimeout(()=>{this.checktran = false } , 9000);
+        }
+    },
     async getProduct(){
      const res =  await fetch(this.urlprod);
      console.log(res)
       if(res.ok){
         var data = await res.json();
-        return data
+        this.allproduct = await data
+      if(this.allproduct != undefined){
+      for (let index = 0; index < this.allproduct.length; index++) {
+        var element = "http://localhost:80/files/";
+        this.allproduct[index].productImage = element + this.allproduct[index].productImage;
+        
+      }
+    }
       } else {
         res.json().then((body) => {
           throw new Error(body.error);
@@ -83,14 +125,14 @@ export default {
   },
   async created() {
     this.handleView();
-    this.allproduct = await this.getProduct();
-    if(this.allproduct != undefined){
-      for (let index = 0; index < this.allproduct.length; index++) {
-        var element = "http://localhost:80/files/";
-        this.allproduct[index].productImage = element + this.allproduct[index].productImage;
-        //console.log(this.allproduct[index].productImage);
-      }
-    }
+    await this.getProduct();
+    // if(this.allproduct != undefined){
+    //   for (let index = 0; index < this.allproduct.length; index++) {
+    //     var element = "http://localhost:80/files/";
+    //     this.allproduct[index].productImage = element + this.allproduct[index].productImage;
+        
+    //   }
+    // }
     window.addEventListener("resize", this.handleView);
   },    
 };

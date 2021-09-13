@@ -43,7 +43,7 @@
                 </div>
               </div>
                <option :value="null" disabled class="hidden">
-               - Select Brand -
+               - Select color -
               </option> 
               <option v-for="product in prodcol" :key="product.productcolorId" :value="product.productcolorId">
                 {{ product.colors.colorName }}

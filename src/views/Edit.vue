@@ -4,12 +4,13 @@
   <base-nav v-if="showNav" />
   <base-nav-mobile v-if="mobileView" /> 
   <!-- Error -->
-    <div class="bg-error py-2 text-white text-center">Text here</div>
-    <div class="bg-primary py-2 text-white text-center">Text here</div>
-    
-    <form @submit.prevent="addProduct">
+    <div v-show="checktran">
+      <div v-show="red" class="bg-error py-2 text-white text-center">Error !! : {{errorMessage}}</div>
+      <div v-show="green" class="bg-primary py-2 text-white text-center">Success</div>
+    </div>
+    <form @submit.prevent="editProduct">
     <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
-        <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 py-3 font-semibold text-xl">Add Product</h1>
+        <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 py-3 font-semibold text-xl">Edit Product</h1>
         <div class="grid grid-cols-2 gap-x-32 gap-y-4">
             <!-- Product Name -->
             <div>
@@ -38,17 +39,17 @@
                         <div class="space-y-3">
                         <!-- Checkbox color -->
                             <div class="grid grid-cols-5 gap-y-1.5 items-start">
-                            <!-- <div v-for="colors in allcolor" :key="colors.colorId"> -->
+                            <div v-for="colors in allcolor" :key="colors.colorId"> 
                             <div class="flex items-start">
                             <!-- color loop -->
                                 <div class="rounded flex items-center h-5">
-                                    <input id="color" name="color" type="checkbox" :value="colors" class="h-4 w-4 rounded" v-model="colorspicked"/>
+                                    <input id="color" name="color" type="checkbox"  @click="selectcol(colors)" :checked="colors.checked"  :value="colors.colorId" class="h-4 w-4 rounded" />
                                 </div>
                                 <div class="ml-2 mr-4 text-sm">
-                                    <label for="color" class="font-medium text-gray-700">color</label>
+                                    <label for="color" class="font-medium text-gray-700">{{colors.colorName}}</label>
                                 </div>
                             </div>
-
+                            </div>
                             <div v-if="errorColor"> 
                                 <span class="fi-rr-exclamation text-error flex items-center text-xs pl-1">
                                     <p class="pl-1"> Please Enter Description</p>
@@ -65,17 +66,17 @@
                         <div class="space-y-3">
                         <!-- Checkbox size -->
                             <div class="grid grid-cols-5 gap-y-1.5 items-start">
-                            <!-- <div v-for="colors in allcolor" :key="colors.colorId"> -->
+                             <div v-for="size in allsize" :key="size.sizeId">
                             <div class="flex items-start">
                             <!-- size loop -->
                                 <div class="rounded flex items-center h-5">
-                                    <input id="size" name="size" type="checkbox" class="h-4 w-4 rounded" v-model="size"/>
+                                    <input id="size" name="size" type="checkbox" class="h-4 w-4 rounded" @click="selectsize(size)" :checked="size.checked"  :value="size.sizeId" />
                                 </div>
                                 <div class="ml-2 mr-4 text-sm">
-                                    <label for="size" class="font-medium text-gray-700">size</label>
+                                    <label for="size" class="font-medium text-gray-700">{{size.sizeValue}}</label>
                                 </div>
                             </div>
-
+                             </div>
                             <div v-if="errorSize"> 
                                 <span class="fi-rr-exclamation text-error flex items-center text-xs pt-1 pl-1">
                                     <p class="pl-1"> Please Enter Name</p>
@@ -92,7 +93,7 @@
                 <input type="text" placeholder="Ex. 300.00" v-model="price" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
                 <div v-if="errorPrice"> 
                     <span class="fi-rr-exclamation text-error flex items-center text-xs pl-1 pt-1">
-                        <p class="pl-1"> Please Enter Price</p>
+                        <p class="pl-1"> Please Enter Price or Number</p>
                     </span>
                 </div>             
             </div>
@@ -108,6 +109,9 @@
                             </svg>
                         </div>
                     </div>
+                <option :value="null" disabled class="hidden">
+                    - Select Brand -
+                </option> 
                 <option v-for="brands in allbrand" :key="brands.brandId" :value="brands.brandId">
                     {{ brands.brandName }}
                 </option>
@@ -123,7 +127,7 @@
                 <label class="text-sm flex text-primary">Image</label>
             <div class="mt-2 flex justify-center px-6 py-10 border-2 border-gray border-dashed rounded-xl">
               <div class="space-y-1 text-center">
-                <div v-if="!image">
+                <div v-if="!checkimage">
                   <svg class="mx-auto h-12 w-12 text-gray" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
                     <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
@@ -148,13 +152,12 @@
             </div>  
                 
             </div>
-            <base-button type="submit" class="col-start-2" buttonLabel="Save"/>
+            <base-button type="submit" class="col-start-2" buttonLabel="Add"/>
             <router-link to="/" class="text-gray col-start-2 text-center hover:text-opacity-80">Cancel</router-link> 
         </div>
 
     </div>
     </form>
-    
   </div>
 </template>
 
@@ -175,27 +178,66 @@ export default {
       price: '',
       image: '',
       imageshow: '',
-      color: null,
-      size: null,
+      colorspicked: [],
+      sizepicked: [],
+      id: this.$route.params.id,
       errorName: false,
       errorDescription: false,
       errorBrand: false,
       errorPrice: false,
+      errorDate: false,
       errorImage: false,
       errorColor: false,
       errorSize: false,
+      checktran:null,
+      errorMessage: null,
+      red:false,
+      green:false,
+      allcolor:[],
+      allbrand:[],
+      allsize:[],
+      oneproduct: {},
+      colorA:[],
+      sizeA:[],
+      checkimage:false
     };
   },
   methods: {
-    addProduct() {
+    selectcol(colors) {
+      if (colors.checked == true) {
+        this.colorspicked = this.colorspicked.filter(
+          (colorspicked) => colorspicked.colorId != colors.colorId
+        );
+      }
+      if (colors.checked == false) {
+        this.colorspicked.push(colors);
+      }
+    colors.checked = !colors.checked;
+    },
+    selectsize(colors) {
+      if (colors.checked == true) {
+        this.sizepicked = this.sizepicked.filter(
+          (sizepicked) => sizepicked.sizeId != colors.sizeId
+        );
+      }
+      if (colors.checked == false) {
+        this.sizepicked.push(colors);
+      }
+    colors.checked = !colors.checked;
+    },
+    editProduct() {
       this.errorName = this.name === '' ? true : false;
       this.errorDescription = this.description === '' ? true : false;
       this.errorBrand = this.brand === null ? true : false;
       this.errorPrice = this.price === '' ? true : false;
+      this.errorPrice = isNaN(parseFloat(this.price)) ? true : false;
       this.errorImage = this.image === null ? true : false;
       this.errorColor = this.colorspicked.length == 0 ? true : false;
-      this.errorSize = this.size.length == 0 ? true : false;
-
+      this.errorSize = this.sizepicked.length == 0 ? true : false;
+      // console.log(this.colorspicked);
+      // console.log(this.colorspicked.length);
+      // console.log(this.sizepicked);
+      // console.log(this.sizepicked.length);
       if (
         this.errorName === false &&
         this.errorDescription === false &&
@@ -205,25 +247,71 @@ export default {
         this.errorColor === false &&
         this.errorSize === false
       ) {
-        this.addNewProduct({
-          id: this.prodid,
+          this.add({
           name: this.name,
           description: this.description,
           brand: this.brand,
-          date: this.date,
           price: this.price,
           image: this.image.name,
+        },this.colorspicked
+        ,this.image
+        ,this.sizepicked
+        );
+      }
+    },
+    async add(prod,color,image,size){
+      try {
+          var dateString = new Date();
+        //  console.log(dateString);
+        //  console.log(prod);
+        //  console.log(color);
+        //  console.log(size);
+         
+        for (let index = 0; index < color.length; index++) {
+         this.colorA[index] = color[index].colorId;
+        }
+        for (let index = 0; index < size.length; index++) {
+         this.sizeA[index] = size[index].sizeId;
+        }
+        console.log(this.sizeA)
+        console.log(this.colorA)
+         var formData = new FormData();
+        formData.append("prod", JSON.stringify({
+            productId: this.id,
+            productName: prod.name,
+            productDescription: prod.description,
+            onsaleDate: dateString,
+            productPrice: parseFloat(prod.price),
+            productImage: prod.image,
+            brandId: prod.brand,
+          }));
+        formData.append("prodcolor", this.colorA );
+        formData.append("file", image, image.name);
+        formData.append("size", this.sizeA);
+        var url = "http://localhost:80/"
+        const res = await fetch(url+"editprod", {
+          method: "PUT",
+          body: formData,
         });
-        console.log("startupload");
-        this.addUploadImage(this.image);
-        console.log("endupload");
-        this.sleep(4000);
-        console.log("con");
-        this.loopfethpc();
-        this.colorspicked = [];
+        if( res.ok){
+            this.checktran = true;
+            this.red = false;
+            this.green = true;
+            setTimeout(()=>{this.checktran = false } , 9000);
+        }else {
+            this.checktran = true;
+            this.red = true;
+            this.green = false;
+            const data = await res.json()
+            this.errorMessage = await data.message
+            setTimeout(()=>{this.checktran = false } , 9000);
+        }
+      } catch (error) {
+        console.log(`Could not add ${error}`);
       }
     },
     uploadPhoto(e) {
+      console.log(e.target.files[0])
       this.image = e.target.files[0];
       this.imageshow = e.target.files[0];
       var reader = new FileReader();
@@ -231,8 +319,6 @@ export default {
         this.imageshow = e.target.result;
       };
       reader.readAsDataURL(this.imageshow);
-      console.log(this.image);
-      console.log(this.image.name);
     },
     showNavHam() {
       this.showNav = !this.showNav;
@@ -246,8 +332,97 @@ export default {
           this.showNav = true;
       }
     },
+    async getall(){
+      var url = "http://localhost:80/"
+      const resbrand =  await fetch(url+"showallbrand");
+      const rescolor =  await fetch(url+"showallcolor");
+      const ressize =  await fetch(url+"showallsize");
+      const resprod =  await fetch(url+ "show1prod/" + this.id);
+      if(resbrand.ok && rescolor.ok && ressize.ok){
+        this.allbrand = await resbrand.json();
+        this.allcolor = await rescolor.json();
+        this.allsize = await ressize.json();
+        this.oneproduct  = await resprod.json();
+      }
+    }
   },
-  created() {
+  async created() {
+    
+    await this.getall();
+    for (let index = 0; index < this.allcolor.length; index++) {
+      const object = {
+        colorId: this.allcolor[index].colorId,
+        colorName: this.allcolor[index].colorName,
+        checked: false,
+      };
+      this.allcolor[index] = object;
+    }
+    for (let index = 0; index < this.allcolor.length; index++) {
+      for (
+        let index1 = 0;
+        index1 < this.oneproduct.productcolors.length;
+        index1++
+      ) {
+        if (
+          this.allcolor[index].colorId ==
+          this.oneproduct.productcolors[index1].colorId
+        ) {
+          const object = {
+            colorId: this.oneproduct.productcolors[index1].colorId,
+            colorName: this.oneproduct.productcolors[index1].colors.colorName,
+            checked: true,
+          };
+          this.allcolor[index] = object;
+          this.colorspicked.push(this.allcolor[index]);
+        }
+      }
+    }
+
+    for (let index = 0; index < this.allsize.length; index++) {
+      const object = {
+        sizeId: this.allsize[index].sizeId,
+        sizeValue: this.allsize[index].sizeValue,
+        checked: false,
+      };
+      this.allsize[index] = object;
+    }
+    for (let index = 0; index < this.allsize.length; index++) {
+      for (
+        let index1 = 0;
+        index1 < this.oneproduct.productsizes.length;
+        index1++
+      ) {
+        if (
+          this.allsize[index].sizeId ==
+          this.oneproduct.productsizes[index1].sizeId
+        ) {
+          const object = {
+            sizeId: this.oneproduct.productsizes[index1].sizeId,
+            sizeValue: this.oneproduct.productsizes[index1].sizes.sizeValue,
+            checked: true,
+          };
+          this.allsize[index] = object;
+          this.sizepicked.push(this.allsize[index]);
+        }
+      }
+    }
+    this.name = this.oneproduct.productName;
+    this.brand = this.oneproduct.brandId;
+    this.description = this.oneproduct.productDescription;
+    this.date = this.oneproduct.onsaleDate;
+    this.price = this.oneproduct.productPrice;
+    this.checkimage = true
+   const element = "http://localhost:80/files/";
+   this.imageshow = element + this.oneproduct.productImage;
+   
+    const response  = await fetch("http://localhost:80/files/"+this.oneproduct.productImage);
+    const blob  = await response.blob()
+    this.image = new File([blob], this.oneproduct.productImage, {type: blob.type});
+    //var reader = new FileReader();
+    // reader.onload = this.imageshow.result
+    // reader.readAsDataURL(this.imageshow);
+    // console.log(this.imageshow)
+    
     this.handleView();
     window.addEventListener("resize", this.handleView);
   },
