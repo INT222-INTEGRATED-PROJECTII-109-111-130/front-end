@@ -1,50 +1,43 @@
 <template>
   <div class="home">
   <!-- Navbar -->
-    
-      <base-nav  v-if="showNav" />
-      <base-nav-mobile  v-if="mobileView" /> 
-        <!-- Error -->
-          <div v-show="checktran">
-            <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
-            <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
-          </div>
-      
-<!-- Banner desktop -->
-<img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-64 lg:px-44 pt-8 w-full" v-if="!bannerMobile">
-<!-- Seach in mobile -->
-      <div class="relative flex w-full flex-wrap pt-5 px-3" v-if="bannerMobile">
-        <span class="z-10 h-full text-sm text-gray absolute justify-center pl-3 py-3">
-          <span class="fi-rr-search"></span> 
-        </span>
-        <input type="text" placeholder="Search" class="px-2 py-2 placeholder-gray relative bg-light rounded-full text-md outline-none focus:ring-2 focus:ring-primary w-full pl-8"/>
-      </div>
-<!-- Banner mobile -->
-<img src="../assets/Banner-mobile.png" class="mx-auto pt-4 px-3 w-full" v-if="bannerMobile">
-<!-- Product -->
-  <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
-    <h1 class="sm:text-4xl sm:py-7 py-3 font-semibold text-xl">Products</h1>
-    <div class="grid sm:grid-cols-4 sm:gap-6 gap-2 grid-cols-2">
-      <div v-for="product in allproduct" :key="product.productId">
-        <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
-          <router-link 
-                 :to="{
-                    name: 'Product',
-                    params: { id: product.productId },
-                  }"
-          >
-          <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
-            <img class="object-cover object-center w-full h-full block" :src="product.productImage">
-          </a>
-          <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-            <h2 class="title-font sm:text-lg text-sm font-semibold">{{product.productName}}</h2>
-            <p class="mt-1 text-primary sm:text-base text-xs">THB {{product.productPrice}}</p>
-          </div>
-          </router-link>
+    <base-nav  v-if="showNav"/>
+    <base-nav-mobile  v-if="mobileView"/> 
+      <!-- Error -->
+        <div v-show="checktran">
+          <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
+          <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
+        </div>     
+      <!-- Banner desktop -->
+        <img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-64 lg:px-44 pt-8 w-full" v-if="!bannerMobile">
+          <!-- Seach in mobile -->
+            <div class="relative flex w-full flex-wrap pt-5 px-3" v-if="bannerMobile">
+              <span class="z-10 h-full text-sm text-gray absolute justify-center pl-3 py-3">
+                <span class="fi-rr-search"></span> 
+              </span>
+              <input type="text" placeholder="Search" class="px-2 py-2 placeholder-gray relative bg-light rounded-full text-md outline-none focus:ring-2 focus:ring-primary w-full pl-8"/>
+            </div>
+      <!-- Banner mobile -->
+        <img src="../assets/Banner-mobile.png" class="mx-auto pt-4 px-3 w-full" v-if="bannerMobile">
+      <!-- Product List-->
+        <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
+          <h1 class="sm:text-4xl sm:py-7 py-3 font-semibold text-xl">Products</h1>
+            <div class="grid sm:grid-cols-4 sm:gap-6 gap-2 grid-cols-2">
+              <div v-for="product in allproduct" :key="product.productId">
+                <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
+                  <router-link :to="{name: 'Product', params: { id: product.productId },}">
+                    <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
+                      <img class="object-cover object-center w-full h-full block" :src="product.productImage">
+                    </a>
+                      <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+                        <h2 class="title-font sm:text-lg text-sm font-semibold">{{product.productName}}</h2>
+                        <p class="mt-1 text-primary sm:text-base text-xs">THB {{product.productPrice}}</p>
+                      </div>
+                  </router-link>
+                </div>
+              </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
 
 <!-- See more button -->
   <!-- <div v-if="commentsToShow < reviews.length || reviews.length > commentsToShow">

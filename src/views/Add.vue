@@ -1,7 +1,7 @@
 <template>
 <div class="add">
   <!-- Navbar -->
-        <base-nav  v-if="showNav" />
+      <base-nav  v-if="showNav" />
       <base-nav-mobile  v-if="mobileView" /> 
         <!-- Error -->
           <div v-show="checktran">

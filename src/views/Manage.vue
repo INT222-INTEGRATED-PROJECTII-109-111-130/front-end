@@ -1,7 +1,7 @@
 <template>
     <div class="manage">
     <!-- Navbar -->
-         <base-nav  v-if="showNav" />
+      <base-nav  v-if="showNav" />
       <base-nav-mobile  v-if="mobileView" /> 
         <!-- Error -->
           <div v-show="checktran">
@@ -28,7 +28,9 @@
                 <div v-for="product in allproduct" :key="product.productId">
                     <div class="grid grid-cols-2 pt-6">
                         <div class="flex gap-6 items-center">
-                            <img :src="product.productImage" class="sm:h-24 sm:w-36 h-24 w-36 object-center rounded-md block">
+                          <div class="sm:h-24 sm:w-36 h-24 w-full rounded-lg overflow-hidden">
+                            <img :src="product.productImage" class="h-full w-full object-cover object-center">
+                          </div>
                             <h2 class="title-font sm:text-xl text-lg font-semibold">{{product.productName}}</h2>
                         </div>
                         <div class="flex justify-end gap-6 items-center">
@@ -37,10 +39,10 @@
                                 name: 'Edit',
                                 params: { id: product.productId },
                              }">
-                                <span class="fi-rr-pencil text-primary text-xl cursor-pointer hover:text-primarydark transition duration-200"></span>
+                                <span class="fi-rr-pencil text-xl cursor-pointer hover:text-primary transition duration-200"></span>
                             </router-link>
                             <div  @click="deleteP(product.productId)">
-                                <span class="fi-rr-trash text-primary text-xl cursor-pointer hover:text-primarydark transition duration-200"></span>
+                                <span class="fi-rr-trash text-xl cursor-pointer hover:text-error transition duration-200"></span>
                              </div>
                         </div>
                     </div>
