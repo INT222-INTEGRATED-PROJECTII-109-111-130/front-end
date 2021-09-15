@@ -26,16 +26,16 @@
     <div class="container sm:pb-16 pb-10 pt-10 sm:px-9 px-3 mx-auto">
       <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 pt-6 pb-3 font-semibold text-xl">Basket</h1>
       <!-- Loop here -->
-      <div class="w-full pb-4">
+      <div class="w-full pb-4" v-for="carts in cart" :key="carts.cartId">
         <div class="h-full flex bg-light sm:p-4 p-2 rounded-lg">
           <div class="block relative sm:w-40 sm:h-32 h-16 w-16 rounded-md overflow-hidden ">
             <img class="object-cover object-center w-full h-full block" src="../assets/popcat.jpg">
           </div>
           <div class="flex-grow pl-4">
-            <h1 class="sm:text-2xl font-semibold text-xs">Product Name</h1>
+            <h1 class="sm:text-2xl font-semibold text-xs">{{carts.products.productName}}</h1>
             <p class="text-gray sm:text-base text-xs">Color: </p>
-            <p class="text-gray sm:text-base text-xs">Size: </p>
-            <p class="sm:text-2xl font-semibold text-xs">THB 300.00</p>
+            <p class="text-gray sm:text-base text-xs">Size:{{carts.products.brands.brandName}} </p>
+            <p class="sm:text-2xl font-semibold text-xs">THB {{carts.products.productPrice}}</p>
           </div>
 
           <div class="grid grid-row-2 items-end">
@@ -66,9 +66,7 @@
           </div>
       </div>
     </div>
-
-
-
+   
   </div>
 
   </div>
@@ -86,11 +84,14 @@ export default {
     return {
     mobileView: true,
     showNav: false,
-    emptry: false,
+    emptry: true,
     quantity: 1,
     errorMessage: null,
-      red:false,
-      green:false,
+    red:false,
+    green:false,
+    id: this.$route.params.id,
+    cart:[],
+    checktran:false
     };
   },
 
@@ -107,18 +108,46 @@ export default {
           this.showNav = true;
       }
     },
-    increment () {
-      this.quantity++
-    },
-    decrement () {
-      if(this.quantity === 1) {
-        alert('Negative quantity not allowed')
+    async getOneProd(){
+      const res =  await fetch("http://localhost:80/showallcart");
+      if(res.ok){
+        const data = await res.json();
+        
+        this.cart = await data
+
+        if(this.cart != undefined){
+          var element = "http://localhost:80/files/";
+          for (let index = 0; index < this.cart.length; index++) {
+            this.cart[index].products.productImage = element + this.cart[index].products.productImage;
+            //this.allproduct[index].productImage = element + this.allproduct[index].productImage;
+          //console.log(this.allproduct[index].productImage);
+          }
+        } 
+        this.checktran = true;
+        this.red = false
+        this.green = true;
+        setTimeout(()=>{this.checktran = false } , 4000);
       } else {
-        this.quantity--
+        this.checktran = true;
+        this.red = true
+        this.green = false;
+        this.errorMessage = await res.json().message;
+        //  setTimeout(()=>{this.checktran = false } , 9000);
       }
     }
+  //   increment () {
+  //     this.quantity++
+  //   },
+  //   decrement () {
+  //     if(this.quantity === 1) {
+  //       alert('Negative quantity not allowed')
+  //     } else {
+  //       this.quantity--
+  //     }
+  //   }
   },
-  created() {
+  async created() {
+    await this.getOneProd()
     this.handleView();
     window.addEventListener("resize", this.handleView);
   },
