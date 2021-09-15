@@ -87,7 +87,10 @@ export default {
     mobileView: true,
     showNav: false,
     emptry: false,
-    quantity: 1
+    quantity: 1,
+    errorMessage: null,
+      red:false,
+      green:false,
     };
   },
 

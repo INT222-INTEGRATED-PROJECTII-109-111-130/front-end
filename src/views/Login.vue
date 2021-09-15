@@ -150,7 +150,10 @@ export default {
       openTab: 1,
       openTabMobile: 3,
       login: '',
-      password: ''
+      password: '',
+      errorMessage: null,
+      red:false,
+      green:false,
 
     }
   },

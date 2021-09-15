@@ -54,6 +54,9 @@ export default {
     return {
       mobileView: true,
       showNav: false,
+      errorMessage: null,
+      red:false,
+      green:false,
     };
   },
   methods: {
