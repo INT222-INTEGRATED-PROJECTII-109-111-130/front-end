@@ -26,7 +26,7 @@ const routes = [
     component: Team
   },
   {
-    path: '/basket',
+    path: '/basket/:accid',
     name: 'Basket',
     component: Basket
   },

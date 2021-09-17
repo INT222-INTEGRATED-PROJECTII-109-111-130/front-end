@@ -25,7 +25,12 @@
       </router-link>
 
       <div class="flex items-center space-x-7">
-        <router-link to="/basket">
+          <router-link 
+                 :to="{
+                    name: 'Basket',
+                    params: { accid: 300001 },
+                  }"
+          >
           <span class="fi-rr-shopping-bag text-xl hover:text-primary transition duration-200"></span>
         </router-link>
         <router-link to="/login">

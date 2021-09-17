@@ -82,7 +82,15 @@
               </div>
           </div>
         </div>
-       <base-button @click="addBasket()" buttonLabel="Add to Basket"/> 
+        <router-link 
+                 :to="{
+                    name: 'Basket',
+                    params: { accid: 300001 },
+                  }"
+          >
+           <base-button @click="addBasket()" buttonLabel="Add to Basket"/> 
+        </router-link>
+      
         </div>
       </div>
      </div>
@@ -154,22 +162,54 @@ export default {
     },
     decrement () {
       if(this.quantity === 1) {
-        alert('Negative quantity not allowed')
+        this.checktran = true;
+            this.red = true;
+            this.green = false;
+            this.errorMessage = 'Negative quantity not allowed'
+            console.log (this.errorMessage)
+            setTimeout(()=>{this.checktran = false } , 9000);
+       
       } else {
         this.quantity--
       }
     },
-    addBasket(){
-      
-      if(this.errorMessage != null){
-         this.checktran = true ;
-         this.red = true;
-         this.errorMessage = "asd"
-       }else{
-         this.checktran = true ;
-         this.red = false;
-         this.errorMessage = 'i heer tuuu'
-       }
+    async addBasket(){
+      var url = "http://localhost:80/addcart"
+       const res = await fetch(url, {
+          method: "POST",
+           headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            cartId: 1,
+            accountId: 300001,
+            productId: this.prod.productId,
+            quantity: this.quantity
+          })
+        });
+        if( res.ok){
+            this.checktran = true;
+            this.red = false;
+            this.green = true;
+            setTimeout(()=>{this.checktran = false } , 9000);
+        }else {
+            this.checktran = true;
+            this.red = true;
+            this.green = false;
+            this.errorMessage = await res.json().message
+            console.log (this.errorMessage)
+            setTimeout(()=>{this.checktran = false } , 9000);
+        }
+
+      // if(this.errorMessage != null){
+      //    this.checktran = true ;
+      //    this.red = true;
+      //    this.errorMessage = "asd"
+      //  }else{
+      //    this.checktran = true ;
+      //    this.red = false;
+      //    this.errorMessage = 'i heer tuuu'
+      //  }
 
     }
     ,
@@ -193,9 +233,9 @@ export default {
     this.prod = await this.getOneProd();
     if(this.prod != undefined){
         var element = "http://localhost:80/files/";
-        this.prod.productImage = element + this.prod.productImage;
+        this.prod.productImage 
         console.log( this.prod.productImage)
-        this.image = this.prod.productImage
+        this.image = element +this.prod.productImage
     } 
     this.prodcol  = await this.prod.productcolors
     this.prodsize = await this.prod.productsizes
