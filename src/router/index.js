@@ -8,6 +8,7 @@ import Add from '../views/Add.vue'
 import Edit from '../views/Edit.vue'
 import EditProfile from '../views/EditProfile.vue'
 import Manage from '../views/Manage.vue'
+import ManageUser from '../views/ManageUser.vue'
 
 const routes = [
   {
@@ -54,6 +55,11 @@ const routes = [
     path: '/manage',
     name: 'Manage',
     component: Manage
+  },
+  {
+    path: '/manageUser',
+    name: 'ManageUser',
+    component: ManageUser
   },
 ]
 

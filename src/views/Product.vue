@@ -1,101 +1,92 @@
 <template>
   <div class="product">
   <!-- Navbar -->
-        <base-nav  v-if="showNav" />
-      <base-nav-mobile  v-if="mobileView" /> 
-        <!-- Error -->
-          <div v-show="checktran">
-            <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
-            <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
-          </div>
-  <div class="container sm:px-7 px-3 py-8 mx-auto flex flex-wrap">
-    <div class="sm:h-96 sm:w-2/4 h-64 w-full rounded-lg overflow-hidden">
-      <img alt="feature" class="object-cover object-center h-full w-full" :src=image>
-    </div>
-    <div class="flex flex-wrap lg:w-1/2 lg:pl-8">
-      <div class="flex flex-col lg:items-start items-center">
-        <div class="flex-grow">
-          <h1 class="sm:text-3xl font-semibold text-xl sm:mt-0 mt-2">Product Name</h1>
-          <div class="flex justify-between mb-3">
-            <p class="text-secondary sm:text-base text-xs" >Brand</p>
-            <p class="sm:text-base text-xs">DD-MM-YYYY</p>
-          </div>
-          <div class="flex justify-between mb-3">
-            <p class="sm:text-base text-xs">{{prodbrand}}</p>
-            <p class="sm:text-base text-xs">{{proddate}}</p>
-          </div>
-
-          <h2 class="sm:text-lg text-sm font-semibold">Description</h2>
-          <p class="sm:text-base text-xs">
-            {{proddes}}
-          </p>
-          <h1 class="text-secondary sm:text-3xl text-xl sm:my-4 my-3">THB {{prodprice}}</h1>
-      <div class="grid sm:grid-cols-2 grid-cols-2 sm:gap-3 gap-2">
-  
-        <!-- Color 2 -->
-          <div>
-            <label class="sm:text-sm text-xs flex text-primary">Color</label>
-            <select id="color" name="color" v-model="color" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light appearance-none">
-            <div class="flex justify-between">
-                <div>
-                  <svg class="text-gray fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                  </svg>
+    <base-nav  v-if="showNav" />
+    <base-nav-mobile  v-if="mobileView" /> 
+      <!-- Error -->
+        <div v-show="checktran">
+          <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
+          <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
+        </div>
+        <!-- Product -->
+          <div class="container sm:px-7 px-3 py-8 mx-auto flex flex-wrap">
+            <div class="sm:h-96 sm:w-2/4 h-64 w-full rounded-lg overflow-hidden">
+              <img alt="feature" class="object-cover object-center h-full w-full" :src=image>
+            </div>
+              <div class="flex flex-wrap lg:w-1/2 lg:pl-8">
+                <div class="flex flex-col lg:items-start items-center">
+                  <div class="flex-grow">
+                    <h1 class="sm:text-3xl font-semibold text-xl sm:mt-0 mt-2">Product Name</h1>
+                      <div class="flex justify-between mb-3">
+                        <p class="text-secondary sm:text-base text-xs">{{prodbrand}}</p>
+                        <p class="sm:text-base text-xs">{{proddate}}</p>
+                      </div>
+                        <h2 class="sm:text-lg text-sm font-semibold">Description</h2>
+                        <p class="sm:text-base text-xs">{{proddes}}</p>
+                        <h1 class="text-secondary sm:text-3xl text-xl sm:my-4 my-3">THB {{prodprice}}</h1>
+                          <div class="grid sm:grid-cols-2 grid-cols-2 sm:gap-3 gap-2"> 
+                          <!-- Color -->
+                            <div>
+                              <label class="sm:text-sm text-xs flex text-primary">Color</label>
+                                <select id="color" name="color" v-model="color" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light focus:ring-2 focus:ring-primary">
+                                  <div class="flex justify-between">
+                                    <div>
+                                      <svg class="text-gray fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                                      </svg>
+                                    </div>
+                                  </div>
+                                    <option :value="null" disabled class="hidden">- Select color -</option> 
+                                    <option v-for="product in prodcol" :key="product.productcolorId" :value="product">
+                                      {{ product.colors.colorName }}
+                                    </option>
+                                </select>
+                            </div> 
+                          <!-- Size -->
+                            <div>
+                              <label class="sm:text-sm text-xs flex text-primary">Size</label>
+                                <select id="size" name="size" v-model="size" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light focus:ring-2 focus:ring-primary">
+                                  <div class="flex justify-between">
+                                    <div>
+                                      <svg class="text-gray fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                                      </svg>
+                                    </div>
+                                  </div>
+                                    <option :value="null" disabled class="hidden">- Select Size -</option> 
+                                    <option v-for="product in prodsize" :key="product.productsizeId" :value="product.sizes.sizeValue">
+                                      {{ product.sizes.sizeValue }}
+                                    </option>
+                                </select>
+                            </div>
+                          <!-- Quantity -->
+                            <div class="mb-5">
+                              <label class="sm:text-sm text-xs flex text-primary">Quantity</label>
+                                <div class="flex flex-row sm:h-9 sm:w-32 w-24 rounded-full relative bg-light mt-1">
+                                  <button @click="decrement()" class="bg-gray-300 text-primary  h-full w-20 rounded-l cursor-pointer outline-none">
+                                    <span class="m-auto sm:text-2xl text-xl font-thin">−</span>
+                                  </button>
+                                  <input type="text" :value="quantity" readonly class="focus:outline-none text-center w-full bg-light sm:text-base text-sm flex items-center outline-none">
+                                  <button @click="increment()" class="bg-gray-300 text-primary  h-full w-20 rounded-l cursor-pointer outline-none">
+                                    <span class="m-auto sm:text-2xl text-xl font-thin">+</span>
+                                  </button>
+                                </div>
+                            </div>
+                          </div>
+                        <!-- <router-link 
+                              :to="{
+                                  name: 'Basket',
+                                  params: { accid: 300001 },
+                                }"
+                        > -->
+                        <base-button @click="addBasket()" buttonLabel="Add to Basket"/> 
+                      <!-- </router-link> -->
+                  </div>
                 </div>
-              </div>
-               <option :value="null" disabled class="hidden">
-               - Select color -
-              </option> 
-              <option v-for="product in prodcol" :key="product.productcolorId" :value="product.productcolorId">
-                {{ product.colors.colorName }}
-              </option>
-            </select>
-          </div>         
-          <div>
-            <label class="sm:text-sm text-xs flex text-primary">Size</label>
-            <select id="size" name="size" v-model="size" class="w-full rounded-full sm:px-4 sm:py-2 py-1 bg-light appearance-none">
-            <div class="flex justify-between">
-                <div>
-                  <svg class="text-gray fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                  </svg>
-                </div>
-              </div>
-                <option :value="null" disabled class="hidden">
-                - Select Size -
-                </option> 
-              <option v-for="product in prodsize" :key="product.productsizeId" :value="product.productsizeId">
-                {{ product.sizes.sizeValue }}
-              </option>
-            </select>
-          </div>
-          <div class="mb-5">
-            <label class="sm:text-sm text-xs flex text-primary">Quantity</label>
-              <div class="flex flex-row sm:h-9 sm:w-32 w-24 rounded-full relative bg-light mt-1">
-                <button @click="decrement()" class="bg-gray-300 text-primary  h-full w-20 rounded-l cursor-pointer outline-none">
-                  <span class="m-auto sm:text-2xl text-xl font-thin">−</span>
-                </button>
-                <input type="text" :value="quantity" readonly class="focus:outline-none text-center w-full bg-light sm:text-base text-sm flex items-center outline-none">
-                <button @click="increment()" class="bg-gray-300 text-primary  h-full w-20 rounded-l cursor-pointer outline-none">
-                  <span class="m-auto sm:text-2xl text-xl font-thin">+</span>
-                </button>
               </div>
           </div>
         </div>
-        <router-link 
-                 :to="{
-                    name: 'Basket',
-                    params: { accid: 300001 },
-                  }"
-          >
-           <base-button @click="addBasket()" buttonLabel="Add to Basket"/> 
-        </router-link>
-      
-        </div>
-      </div>
-     </div>
-    </div>
-  </div>
+       
 </template>
 
 <script>
@@ -174,6 +165,7 @@ export default {
       }
     },
     async addBasket(){
+      console.log(this.size)
       var url = "http://localhost:80/addcart"
        const res = await fetch(url, {
           method: "POST",
@@ -184,6 +176,14 @@ export default {
             cartId: 1,
             accountId: 300001,
             productId: this.prod.productId,
+            productName: this.prod.productName,
+            productDescription: this.prod.productDescription,
+            productPrice: this.prod.productPrice,
+            productImage: this.prod.productImage,
+            sizeValue: this.size,
+            brandName: this.prod.brands.brandName,
+            colorName: this.color.colors.colorName,
+            colorValue: this.color.colors.colorValue,
             quantity: this.quantity
           })
         });
@@ -192,6 +192,7 @@ export default {
             this.red = false;
             this.green = true;
             setTimeout(()=>{this.checktran = false } , 9000);
+            await this.$router.push({ name: 'Basket', params: { accid: 300001 } })
         }else {
             this.checktran = true;
             this.red = true;

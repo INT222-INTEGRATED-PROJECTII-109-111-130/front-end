@@ -66,11 +66,9 @@
             <button type="button" disabled class="px-2 py-2 sm:w-40 w-full text-white bg-primarydark rounded-full transition duration-400 hover:bg-primarydark focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">
             Checkout</button>
           </div>
-      </div>
-    </div>
-   
+        </div>
   </div>
-
+  </div>
   </div>
 </template>
 
@@ -87,7 +85,6 @@ export default {
     mobileView: true,
     showNav: false,
     emptry: true,
-    quantity: 1,
     errorMessage: null,
     red:false,
     green:false,
@@ -111,9 +108,8 @@ export default {
         
       }
       return pricez
-    }
-    
     },
+  },
 
   methods: {
     showNavHam() {
