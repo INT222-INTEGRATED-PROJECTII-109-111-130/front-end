@@ -14,56 +14,67 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    props:true
   },
   {
     path: '/login',
     name: 'Login',
     component: Login
+    ,props:true
   },
   {
     path: '/team',
     name: 'Team',
     component: Team
+    ,props:true
   },
   {
     path: '/basket/:accid',
     name: 'Basket',
     component: Basket
+    ,props:true
   },
   {
     path: '/product/:id',
     name: 'Product',
     component: Product
+    ,props:true
   },
   {
     path: '/add',
     name: 'Add',
     component: Add
+    ,props:true
   },
   {
     path: '/edit/:id',
     name: 'Edit',
     component: Edit
+    ,props:true
   },
   {
     path: '/editProfile',
     name: 'EditProfile',
     component: EditProfile
+    ,props:true
   },
   {
     path: '/manage',
     name: 'Manage',
     component: Manage
+    ,props:true
   },
   {
     path: '/manageUser',
     name: 'ManageUser',
     component: ManageUser
+    ,props:true
   },
 ]
 
 const router = createRouter({
+  
   history: createWebHistory(process.env.BASE_URL),
   routes
 })

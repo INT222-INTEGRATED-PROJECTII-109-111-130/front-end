@@ -27,18 +27,18 @@
         <div class="py-5 flex-auto">
           <div class="tab-content tab-space">
           <!-- Login -->
-          <form @submit.prevent="login">
+          <form @submit.prevent="Login">
             <div v-bind:class="{'hidden': openTab !== 1, 'block': openTab === 1}">
               <div>
                 <label class="text-sm flex text-primary pb-1">Email</label>
-                <input type="email" placeholder="example@mail.com" v-model="login" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                <input v-on:keydown='key' type="email" placeholder="example@mail.com" v-model="login" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
               </div>
               <div class="pt-6">
                 <label class="text-sm flex text-primary pb-1">Password</label>
-                <input type="password" placeholder="Password" v-model="password" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                <input v-on:keydown='key' type="password" placeholder="Password" v-model="passwordlogin" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
               </div>
               <div class="mx-auto flex justify-center sm:pt-10 pt-10">
-                <button type="submit" class="items-center sm:text-lg text-xs bg-primary sm:py-2 py-1 w-full hover:bg-primarydark rounded-full text-white transition duration-400 ease-in-out">
+                <button  type="submit" class="items-center sm:text-lg text-xs bg-primary sm:py-2 py-1 w-full hover:bg-primarydark rounded-full text-white transition duration-400 ease-in-out">
                 Login
                 </button>
               </div>         
@@ -50,24 +50,24 @@
               <div class="grid grid-cols-2 gap-4">
                 <div>
                   <label class="text-sm flex text-primary pb-1">First Name</label>
-                  <input type="text" placeholder="First Name" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                  <input v-on:keydown='key' type="text" v-model="firstname" placeholder="First Name" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
                 </div>
                 <div>
                   <label class="text-sm flex text-primary pb-1">Last Name</label>
-                  <input type="text" placeholder="Last Name" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                  <input v-on:keydown='key' type="text" v-model="lastname" placeholder="Last Name" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
                 </div>               
               </div>
               <div class="pt-6">
                 <label class="text-sm flex text-primary pb-1">Email</label>
-                <input type="email" placeholder="example@mail.com" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                <input v-on:keydown='key' type="email" v-model="email" placeholder="example@mail.com" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
               </div>
               <div class="pt-6">
                 <label class="text-sm flex text-primary pb-1">Password</label>
-                <input type="password" placeholder="Password" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                <input v-on:keydown='key'  type="password" v-model="password" placeholder="Password" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
               </div>
             
               <div class="mx-auto flex justify-center sm:pt-10 pt-10">
-                <button class="items-center sm:text-lg text-xs bg-primary sm:py-2 py-1 w-full hover:bg-primarydark rounded-full text-white transition duration-400 ease-in-out">
+                <button type="submit" class="items-center sm:text-lg text-xs bg-primary sm:py-2 py-1 w-full hover:bg-primarydark rounded-full text-white transition duration-400 ease-in-out">
                 Register
                 </button>
               </div> 
@@ -83,18 +83,18 @@
   <!-- Mobile -->
   <div v-if="mobileView">
     <div class="container sm:pb-16 pb-10 sm: pt-10 sm:px-9 px-3 mx-auto">
-      <form @submit.prevent="login">
+      <form @submit.prevent="Login">
         <div v-bind:class="{'hidden': openTabMobile !== 3, 'block': openTabMobile === 3}">
           <h1 class="sm:text-4xl sm:py-7 pt-6 pb-3 font-semibold text-xl">Login</h1>
               <div>
                 <label class="text-xs flex text-primary pb-1">Email</label>
-                <input type="email" placeholder="example@mail.com" v-model="login" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                <input v-on:keydown='key' type="email" placeholder="example@mail.com" v-model="login" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
               </div>
               <div class="pb-7">
                 <label class="text-xs flex text-primary pb-1 pt-4">Password</label>
-                <input type="password" placeholder="Password" v-model="password" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                <input v-on:keydown='key' type="password" placeholder="Password" v-model="passwordlogin" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
               </div>
-              <base-button buttonLabel="Login"/>
+              <base-button type="submit" buttonLabel="Login"/>
               <div class="text-center text-xs text-gray pt-2">Don't have an account?
                 <a class="text-secondary" v-on:click="toggleTabs(4)" v-bind:class="{'': openTabMobile !== 4, '': openTabMobile === 4}">
                   Register
@@ -108,27 +108,29 @@
           <h1 class="sm:text-4xl sm:py-7 pt-6 pb-3 font-semibold text-xl">Register</h1>
             <div>
               <label class="text-xs flex text-primary pb-1">First Name</label>
-              <input type="text" placeholder="First Name" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+              <input  v-on:keydown='key' type="text" placeholder="First Name" name="firstname" id="firstname" v-model="firstname" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
             </div>
             <div>
               <label class="text-xs flex text-primary pb-1 pt-4">Last Name</label>
-              <input type="text" placeholder="Last Name" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+              <input v-on:keydown='key' type="text" placeholder="Last Name" v-model="lastname"  class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
             </div>
             <div>
               <label class="text-xs flex text-primary pb-1 pt-4">Email</label>
-              <input type="email" placeholder="example@mail.com" v-model="login" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+              <input v-on:keydown='key' type="email" placeholder="example@mail.com" v-model="email" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
             </div>
             <div class="pb-7">
               <label class="text-xs flex text-primary pb-1 pt-4">Password</label>
-              <input type="password" placeholder="Password" v-model="password" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+              <input v-on:keydown='key' type="password" placeholder="Password" v-model="password" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
             </div>
-            <base-button buttonLabel="Register"/>
+            
             <div class="text-center text-xs text-gray pt-2">Already have an account?
               <a class="text-secondary" v-on:click="toggleTabs(3)" v-bind:class="{'': openTabMobile !== 3, '': openTabMobile === 3}">
                 Login
               </a>
-            </div>
+            </div> 
+            <base-button type="submit" buttonLabel="Register"/>
         </div>
+       
       </form>
 
     </div>
@@ -146,18 +148,35 @@ export default {
     return {
       mobileView: true,
       showNav: false,
-      // loginMobile: true,
+       loginMobile: true,
+      passwordlogin:null,
+      checktran:true,
       openTab: 1,
+      login:null,
       openTabMobile: 3,
-      login: '',
-      password: '',
+      firstname:null,
+      lastname:null,
+      email:null,
+      password:null,
       errorMessage: null,
+      errorLogin: false,
+      errorPasswordlogin: false,
+      errorLastname: false,
+      errorFirstname: false,
+      errorEmail: false,
+      errorPassword: false,
       red:false,
       green:false,
+      url:"http://localhost:80",
 
     }
   },
   methods: {
+     key: function(event){
+      if(event.keyCode === 32){
+        event.preventDefault();
+      }
+    },
     toggleTabs: function(tabNumber){
       this.openTab = tabNumber
       this.openTabMobile = tabNumber
@@ -176,12 +195,46 @@ export default {
           this.showNav = true;
           // this.loginMobile = false;
       }
-      console.log(this.mobileView)
-      console.log(this.openTabMobile)
+     // console.log(this.mobileView)
+     // console.log(this.openTabMobile)
       // this.loginMobile = window.innerWidth <= 990;
     },
+    async register(){
+     
+      
+      this.errorFirstname = this.firstname === null ? true : false;
+      this.errorLastname = this.lastname === null ? true : false;
+      this.errorEmail = this.email === null ? true : false;
+      this.errorPassword = this.password === null ? true : false;
+      if(this.errorPassword == false && this.errorLastname == false && this.errorFirstname == false && this.errorEmail == false  ){
+        try {
+        const res = await fetch(this.url+"/addaccount", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            accountId: 1,
+            firstName: this.firstname,
+            lastName: this.lastname,
+            email:this.email,
+            password:this.password,
+            accountRole:'Customer',
+          }),
+        });
+        await res.json();
+      } catch (error) {
+        console.log(`Could not add ${error}`);
+      }
+      }else{
+        console.log("fail")
+      }
+    },
+    Login(){
+
+    }
   },
-  created() {
+  async created() {
     this.handleView();
     window.addEventListener("resize", this.handleView);
 

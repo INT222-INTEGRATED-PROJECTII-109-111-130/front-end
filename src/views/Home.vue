@@ -25,7 +25,7 @@
             <div class="grid sm:grid-cols-4 sm:gap-6 gap-2 grid-cols-2">
               <div v-for="product in allproduct" :key="product.productId">
                 <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
-                  <router-link :to="{name: 'Product', params: { id: product.productId },}">
+                  <router-link :to="{name: 'Product', params: { id: product.productId,user:123456 },}">
                     <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
                       <img class="object-cover object-center w-full h-full block" :src="product.productImage">
                     </a>

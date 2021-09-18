@@ -112,6 +112,7 @@ export default {
     size:null,
     quantity: 1,
     id: this.$route.params.id,
+    user:this.$route.params.user,
     prod:null,
     urlprod:"http://localhost:80/show1prod/",
     checktran:null,
@@ -215,11 +216,12 @@ export default {
     }
     ,
     async getOneProd(){
+      console.log(this.user)
       const res =  await fetch(this.urlprod+this.id);
-      console.log(res)
+      //console.log(res)
       if(res.ok){
         const data = await res.json();
-        console.log(data)
+        //console.log(data)
         return data
       } else {
         this.checktran = true;
