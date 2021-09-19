@@ -1,21 +1,23 @@
 <template>
   <div class="home">
   <!-- Navbar -->
+  <div class="fixed w-full z-50">
     <base-nav  v-if="showNav"/>
-    <base-nav-mobile  v-if="mobileView"/> 
+    <base-nav-mobile v-if="mobileView"/> 
       <!-- Error -->
         <div v-show="checktran">
-          <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
-          <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
-        </div>     
+          <div v-show="red" class="bg-error sm:mt-0 mt-14 sm:py-2 py-1 sm:text-base text-xs w-full z-50 text-white text-center">Error !! : {{errorMessage}}</div>
+          <div v-show="green" class="bg-primary sm:py-2 py-1 sm:text-base text-xs w-full z-50 text-white text-center">Success</div>
+        </div>  
+  </div>   
       <!-- Banner desktop -->
-        <img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-64 lg:px-44 pt-8 w-full" v-if="!bannerMobile">
+        <img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-64 lg:px-44 pt-48 w-full" v-if="!bannerMobile">
           <!-- Seach in mobile -->
-            <div class="relative flex w-full flex-wrap pt-5 px-3" v-if="bannerMobile">
+            <div class="relative flex w-full flex-wrap pt-32 px-3" v-if="bannerMobile">
               <span class="z-10 h-full text-sm text-gray absolute justify-center pl-3 py-3">
                 <span class="fi-rr-search"></span> 
               </span>
-              <input type="text" placeholder="Search" class="px-2 py-2 placeholder-gray relative bg-light rounded-full text-md outline-none focus:ring-2 focus:ring-primary w-full pl-8"/>
+              <input type="text" placeholder="Search" v-model="search" class="px-2 py-2 placeholder-gray relative bg-light rounded-full text-md outline-none focus:ring-2 focus:ring-primary w-full pl-8"/>
             </div>
       <!-- Banner mobile -->
         <img src="../assets/Banner-mobile.png" class="mx-auto pt-4 px-3 w-full" v-if="bannerMobile">
@@ -70,7 +72,9 @@ export default {
       urlprod:"http://localhost:80/showallproduct",
       checktran:true,
       red:true,
-      green:true
+      green:true,
+      search: '',
+
     };
   },
   methods: {
@@ -99,6 +103,9 @@ export default {
         alert(this.errorMessage.message)
       }
     }
+  },
+  computed: {
+
   },
   async created() {
     this.handleView();

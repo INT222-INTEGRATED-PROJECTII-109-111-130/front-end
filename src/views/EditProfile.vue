@@ -1,6 +1,7 @@
 <template>
   <div class="editProfile">
   <!-- Navbar -->
+  <div class="fixed w-full">
     <base-nav  v-if="showNav" />
     <base-nav-mobile  v-if="mobileView" /> 
       <!-- Error -->
@@ -8,6 +9,7 @@
           <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
           <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
         </div>
+  </div>
     <div class="container sm:pb-16 pb-10 sm:px-72 px-3 mx-auto">
       <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 pt-6 pb-3 font-semibold text-xl text-center">My Account</h1>
         <div class="grid grid-cols-2 gap-x-6">

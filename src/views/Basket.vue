@@ -92,12 +92,12 @@ export default {
     cart:[],
     checktran:false
     };
-  },computed:{  
+  },
+  computed:{  
     totalCart() {
       var total =0 ;
       for (let index = 0; index < this.cart.length; index++) {
         total = total + this.cart[index].quantity
-        
       }
       return total
     },

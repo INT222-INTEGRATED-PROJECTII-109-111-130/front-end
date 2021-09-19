@@ -12,7 +12,7 @@
         <span class="z-10 h-full text-md text-gray absolute justify-center pl-4 py-3">
           <span class="fi-rr-search"></span>  
         </span>
-        <input type="text" placeholder="Search" class="px-2 py-2 placeholder-gray relative bg-light rounded-full text-lg outline-none focus:ring-2 focus:ring-primary w-full pl-9 "/>
+        <input type="text" placeholder="Search" v-model="search" class="px-2 py-2 placeholder-gray relative bg-light rounded-full text-lg outline-none focus:ring-2 focus:ring-primary w-full pl-9 "/>
       </div>
 
       <router-link to="/team">
@@ -54,8 +54,8 @@ export default {
 
     }
   },
+  computed: {
 
-
-    
+  },
 };
 </script>
