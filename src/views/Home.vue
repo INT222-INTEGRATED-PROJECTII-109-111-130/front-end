@@ -70,9 +70,9 @@ export default {
       errorMessage: null,
       allproduct: [],
       urlprod:"http://20.205.211.187:3000/showallproduct",
-      checktran:true,
-      red:true,
-      green:true,
+      checktran:false,
+      red:false,
+      green:false,
       search: '',
 
     };
