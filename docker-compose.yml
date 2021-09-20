@@ -1,11 +1,8 @@
 version: '2'
 services:
     front-docker:
+        container_name: "frontend"
         build: .
         image: front-docker
         ports:
             - "8080:8080"
-networks:
-        default:
-            external:
-                name: circlenet

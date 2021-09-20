@@ -67,7 +67,7 @@ export default {
       showNav: false,
       errorMessage: null,
       allproduct: [],
-      urlprod:"http://localhost:80/showallproduct",
+      urlprod:"http://20.205.211.187:3000/showallproduct",
       checktran:true,
       red:true,
       green:true
@@ -105,7 +105,7 @@ export default {
     this.allproduct = await this.getProduct();
     if(this.allproduct != undefined){
       for (let index = 0; index < this.allproduct.length; index++) {
-        var element = "http://localhost:80/files/";
+        var element = "http://20.205.211.187:3000/files/";
         this.allproduct[index].productImage = element + this.allproduct[index].productImage;
         //console.log(this.allproduct[index].productImage);
       }
