@@ -17,7 +17,7 @@
 
 
 # EXPOSE 8080
-FROM node:12.13.0-alpine
+FROM node:14.16.0-alpine3.13
 
 # install simple http server for serving static content
 RUN npm install -g http-server
@@ -30,7 +30,7 @@ COPY package*.json ./
 
 # install project dependencies
 RUN npm install
-
+RUN npm i -f
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
 
