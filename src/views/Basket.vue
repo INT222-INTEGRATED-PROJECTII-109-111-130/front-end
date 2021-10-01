@@ -125,7 +125,7 @@ export default {
       }
     },
     async deleteOneCart(id){
-        const res =  await fetch("http://localhost:80/delcart/"+id,{method: "DELETE"} );
+        const res =  await fetch("http://20.205.211.187:3000/delcart/"+id,{method: "DELETE"} );
          if(res.ok){
            await this.getOneProd()
         this.checktran = true;
@@ -142,14 +142,14 @@ export default {
     }
     ,
     async getOneProd(){
-      const res =  await fetch("http://localhost:80/showcart/"+this.accid);
+      const res =  await fetch("http://20.205.211.187:3000/showcart/"+this.accid);
       if(res.ok){
         const data = await res.json();
         
         this.cart = await data
 
         if(this.cart != undefined){
-          var element = "http://localhost:80/files/";
+          var element = "http://20.205.211.187:3000/files/";
           for (let index = 0; index < this.cart.length; index++) {
             this.cart[index].productImage = element + this.cart[index].productImage;
             //this.allproduct[index].productImage = element + this.allproduct[index].productImage;

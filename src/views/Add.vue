@@ -275,7 +275,7 @@ export default {
         formData.append("prodcolor", color);
         formData.append("file", image, image.name);
         formData.append("size", size);
-        var url = "http://localhost:80/"
+        var url = "http://20.205.211.187:3000/"
         const res = await fetch(url+"addprod", {
           method: "POST",
           body: formData,
@@ -308,7 +308,7 @@ export default {
     }
     ,
     async getall(){
-      var url = "http://localhost:80/"
+      var url = "http://20.205.211.187:3000/"
       const resbrand =  await fetch(url+"showallbrand");
       const rescolor =  await fetch(url+"showallcolor");
       const ressize =  await fetch(url+"showallsize");

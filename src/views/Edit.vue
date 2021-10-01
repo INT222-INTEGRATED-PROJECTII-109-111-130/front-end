@@ -289,7 +289,7 @@ export default {
         formData.append("prodcolor", this.colorA );
         formData.append("file", image, image.name);
         formData.append("size", this.sizeA);
-        var url = "http://localhost:80/"
+        var url = "http://20.205.211.187:3000/"
         const res = await fetch(url+"editprod", {
           method: "PUT",
           body: formData,
@@ -334,7 +334,7 @@ export default {
       }
     },
     async getall(){
-      var url = "http://localhost:80/"
+      var url = "http://20.205.211.187:3000/"
       const resbrand =  await fetch(url+"showallbrand");
       const rescolor =  await fetch(url+"showallcolor");
       const ressize =  await fetch(url+"showallsize");
@@ -413,10 +413,10 @@ export default {
     this.date = this.oneproduct.onsaleDate;
     this.price = this.oneproduct.productPrice;
     this.checkimage = true
-   const element = "http://localhost:80/files/";
+   const element = "http://20.205.211.187:3000/files/";
    this.imageshow = element + this.oneproduct.productImage;
    
-    const response  = await fetch("http://localhost:80/files/"+this.oneproduct.productImage);
+    const response  = await fetch("http://20.205.211.187:3000/files/"+this.oneproduct.productImage);
     const blob  = await response.blob()
     this.image = new File([blob], this.oneproduct.productImage, {type: blob.type});
     //var reader = new FileReader();

@@ -114,7 +114,7 @@ export default {
     id: this.$route.params.id,
     user:this.$route.params.user,
     prod:null,
-    urlprod:"http://localhost:80/show1prod/",
+    urlprod:"http://20.205.211.187:3000/show1prod/",
     checktran:null,
     errorMessage: null,
     red:true,
@@ -167,7 +167,7 @@ export default {
     },
     async addBasket(){
       console.log(this.size)
-      var url = "http://localhost:80/addcart"
+      var url = "http://20.205.211.187:3000/addcart"
        const res = await fetch(url, {
           method: "POST",
            headers: {
@@ -235,7 +235,7 @@ export default {
     this.handleView();
     this.prod = await this.getOneProd();
     if(this.prod != undefined){
-        var element = "http://localhost:80/files/";
+        var element = "http://20.205.211.187:3000/files/";
         this.prod.productImage 
         console.log( this.prod.productImage)
         this.image = element +this.prod.productImage

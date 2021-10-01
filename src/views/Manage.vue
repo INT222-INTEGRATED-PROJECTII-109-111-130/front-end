@@ -68,7 +68,7 @@ export default {
       checktran:null,
       red:false,
       green:false,
-      urlprod:"http://localhost:80/showallproduct",
+      urlprod:"http://20.205.211.187:3000/showallproduct",
     };
   },
   methods: {
@@ -86,7 +86,7 @@ export default {
     },
     async deleteP(id){
       console.log(id)
-      const res = await fetch("http://localhost:80/delprod/"+id, {  method: "DELETE", });
+      const res = await fetch("http://20.205.211.187:3000/delprod/"+id, {  method: "DELETE", });
      if( res.ok){
 
             this.checktran = true;
@@ -112,7 +112,7 @@ export default {
         this.allproduct = await data
       if(this.allproduct != undefined){
       for (let index = 0; index < this.allproduct.length; index++) {
-        var element = "http://localhost:80/files/";
+        var element = "http://20.205.211.187:3000/files/";
         this.allproduct[index].productImage = element + this.allproduct[index].productImage;
         
       }

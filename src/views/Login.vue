@@ -167,7 +167,7 @@ export default {
       errorPassword: false,
       red:false,
       green:false,
-      url:"http://localhost:80",
+      url:"http://20.205.211.187:3000",
 
     }
   },
