@@ -20,20 +20,20 @@ jobs:
         with:
           push: true
           tags: ghcr.io/violet-evergardenz/int222-frontend:latest
-  # deploy:
-  #   needs: build
-  #   runs-on: ubuntu-20.04
-  #   if: ${{ github.event_name == 'push' }}
-  #   steps:
-  #   - name: executing remote ssh commands using password
-  #     uses: appleboy/ssh-action@master
-  #     with:
-  #       host: ${{ secrets.TEST_HOSTNAME }}
-  #       username: ${{ secrets.TEST_SSH_USERNAME }}
-  #       password: ${{ secrets.TEST_PASSWORD }}
-  #       port: ${{ secrets.TEST_PORT }}
-  #       script: | 
-  #         docker pull ghcr.io/violet-evergardenz/int222-frontend:latest
-  #         cd front-end
-  #         git pull
-  #         docker-compose up -d
+  deploy:
+    needs: build
+    runs-on: ubuntu-20.04
+    if: ${{ github.event_name == 'push' }}
+    steps:
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.TEST_HOSTNAME }}
+        username: ${{ secrets.TEST_SSH_USERNAME }}
+        password: ${{ secrets.TEST_PASSWORD }}
+        port: ${{ secrets.TEST_PORT }}
+        script: | 
+          docker pull ghcr.io/violet-evergardenz/int222-frontend:latest
+          cd front-end
+          git pull
+          docker-compose up -d
