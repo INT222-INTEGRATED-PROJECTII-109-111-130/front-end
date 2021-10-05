@@ -2,7 +2,7 @@
   <div class="login">
   <!-- Navbar -->
        <base-nav  v-if="showNav" />
-      <base-nav-mobile  v-if="mobileView" /> 
+      <base-nav-mobile  v-if="mobileView"/> 
         <!-- Error -->
           <div v-show="checktran">
             <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
@@ -82,7 +82,7 @@
   
   <!-- Mobile -->
   <div v-if="mobileView">
-    <div class="container sm:pb-16 pb-10 sm: pt-10 sm:px-9 px-3 mx-auto">
+    <div class="sm:pb-16 pb-10  pt-10 sm:px-9 px-6 mx-auto">
       <form @submit.prevent="Login">
         <div v-bind:class="{'hidden': openTabMobile !== 3, 'block': openTabMobile === 3}">
           <h1 class="sm:text-4xl sm:py-7 pt-6 pb-3 font-semibold text-xl">Login</h1>
@@ -148,7 +148,7 @@ export default {
     return {
       mobileView: true,
       showNav: false,
-       loginMobile: true,
+      loginMobile : true,
       passwordlogin:null,
       checktran:true,
       openTab: 1,
@@ -181,6 +181,9 @@ export default {
       this.openTab = tabNumber
       this.openTabMobile = tabNumber
     },
+    // toggleTabsMobile: function(tabNumberMobile){
+    //   this.openTabMobile = tabNumberMobile
+    // },
     showNavHam() {
       this.showNav = !this.showNav;
     },
@@ -189,11 +192,10 @@ export default {
       if(window.innerWidth <= 990){
           this.mobileView = true;
           this.showNav = false;
-          // this.loginMobile = true;
       } else if (window.innerWidth > 990){
           this.mobileView = false;
           this.showNav = true;
-          // this.loginMobile = false;
+
       }
      // console.log(this.mobileView)
      // console.log(this.openTabMobile)

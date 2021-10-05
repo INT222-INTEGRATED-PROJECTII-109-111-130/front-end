@@ -11,18 +11,18 @@
         </div>  
   </div>   
       <!-- Banner desktop -->
-        <img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-64 lg:px-44 pt-28 w-full" v-if="!bannerMobile">
+        <img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-56 lg:px-28 pt-28 w-full" v-if="!bannerMobile">
           <!-- Seach in mobile -->
-            <div class="relative flex w-full flex-wrap pt-32 px-3" v-if="bannerMobile">
+            <div class="relative flex w-full flex-wrap pt-20 px-6" v-if="bannerMobile">
               <span class="z-10 h-full text-sm text-gray absolute justify-center pl-3 py-3">
                 <span class="fi-rr-search"></span> 
               </span>
               <input type="text" placeholder="Search" v-model="search" class="px-2 py-2 placeholder-gray relative bg-light rounded-full text-md outline-none focus:ring-2 focus:ring-primary w-full pl-8"/>
             </div>
       <!-- Banner mobile -->
-        <img src="../assets/Banner-mobile.png" class="mx-auto pt-4 px-3 w-full" v-if="bannerMobile">
+        <img src="../assets/Banner-mobile.png" class="mx-auto pt-4 px-6 w-full" v-if="bannerMobile">
       <!-- Product List-->
-        <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
+        <div class="sm:pb-16 pb-10 sm:px-28 px-6 mx-auto">
           <h1 class="sm:text-4xl sm:py-7 py-3 font-semibold text-xl">Products</h1>
             <div class="grid sm:grid-cols-4 sm:gap-6 gap-2 grid-cols-2">
               <div v-for="product in allproduct" :key="product.productId">
@@ -45,11 +45,11 @@
   <!-- <div v-if="commentsToShow < reviews.length || reviews.length > commentsToShow">
     <button @click="commentsToShow += 3">show more reviews</button>
   </div> -->
-  <div class="mx-auto sm:px-24 px-7 flex justify-center sm:pb-16 pb-10">
+  <!-- <div class="mx-auto sm:px-24 px-7 flex justify-center sm:pb-16 pb-10">
     <button class="items-center sm:text-base text-xs bg-white sm:py-2 py-1 sm:px-9 px-6 border-2 border-primary hover:bg-primary rounded-full text-primary hover:text-white transition duration-300 ease-in-out">
       See More
     </button>
-  </div>
+  </div> -->
 
   </div>
 </template>

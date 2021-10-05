@@ -1,6 +1,6 @@
 <template>
   <header class="bg-white shadow-md">
-    <div class="container mx-auto py-3 px-7 flex justify-between items-center">
+    <div class="mx-auto py-3 px-28 flex justify-between items-center">
       <!-- Logo -->
       <router-link to="/">
         <svg width="91" height="29" viewBox="0 0 91 29" fill="none" xmlns="http://www.w3.org/2000/svg">

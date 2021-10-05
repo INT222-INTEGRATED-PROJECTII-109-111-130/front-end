@@ -9,11 +9,11 @@
           <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
         </div>
         <!-- Product -->
-          <div class="container sm:px-7 px-3 py-8 mx-auto flex flex-wrap">
+          <div class="sm:px-28 px-6 mx-auto sm:pt-10 grid sm:grid-cols-2 grid-cols-1 sm:gap-8">
             <div class="sm:h-96 sm:w-2/4 h-64 w-full rounded-lg overflow-hidden">
               <img alt="feature" class="object-cover object-center h-full w-full" :src=image>
             </div>
-              <div class="flex flex-wrap lg:w-1/2 lg:pl-8">
+              <div class="mx-auto">
                 <div class="flex flex-col lg:items-start items-center">
                   <div class="flex-grow">
                     <h1 class="sm:text-3xl font-semibold text-xl sm:mt-0 mt-2">Product Name</h1>
@@ -36,7 +36,7 @@
                                       </svg>
                                     </div>
                                   </div>
-                                    <option :value="null" disabled class="hidden">- Select color -</option> 
+                                    <option :value="null" disabled class="hidden"> - Select color - </option> 
                                     <option v-for="product in prodcol" :key="product.productcolorId" :value="product">
                                       {{ product.colors.colorName }}
                                     </option>
@@ -85,6 +85,7 @@
                   </div>
                 </div>
               </div>
+            
           </div>
         </div>
        

@@ -23,28 +23,26 @@
 
   <!-- Have Product -->
   <div v-if="emptry">
-    <div class="container sm:pb-16 pb-10 pt-10 sm:px-9 px-3 mx-auto">
-      <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 pt-6 pb-3 font-semibold text-xl">Basket</h1>
+    <div class="sm:pb-16 pb-10 sm:pt-10 pt-6 sm:px-28 px-3 mx-auto">
+      <h1 class="sm:text-4xl sm:pb-7 pb-3 font-semibold text-xl">Basket</h1>
       <!-- Loop here -->
       <div class="w-full pb-4" v-for="carts in cart" :key="carts.cartId">
-        <div class="h-full flex bg-green-600 bg-opacity-30 sm:p-4 p-2 rounded-lg">
+        <div class="h-full flex bg-light sm:p-4 p-2 rounded-lg">
           <div class="block relative sm:w-40 sm:h-32 h-16 w-16 rounded-md overflow-hidden ">
             <img class="object-cover object-center w-full h-full block" :src="carts.productImage">
           </div>
           <div class="flex-grow pl-4">
             <h1 class="sm:text-2xl font-semibold text-xs">{{carts.productName}}</h1>
-            <p class="text-gray sm:text-base text-xs">Brand : {{carts.brandName}} </p>
-            <p class="text-gray sm:text-base text-xs">Color :<span :style="{color: carts.colorValue}"> {{carts.colorName}}</span> </p>
-            <p class="text-gray sm:text-base text-xs">Size : {{carts.sizeValue}}</p>
-            <p class="sm:text-2xl font-semibold text-xs">THB {{carts.productPrice}}</p>
+            <p class="text-gray sm:text-base text-xs">{{carts.brandName}}, Color : {{carts.colorName}}, Size : {{carts.sizeValue}}</p>
+            <p class="text-gray sm:text-base text-xs">Quantity : {{carts.quantity}}</p>
+            <p class="sm:text-2xl text-xs text-secondary">THB {{carts.productPrice}}</p>
           </div>
 
-          <div class="grid grid-row-2 items-end">
-             <div class="flex justify-end sm:pb-10 pb-3"  @click="deleteOneCart(carts.cartId)" >
+          <div class="grid grid-row-2 ">
+             <div class="flex"  @click="deleteOneCart(carts.cartId)" >
               <span class="fi-rr-trash sm:text-xl text-sm text-error cursor-pointer relative"></span>
             </div>
-            <div>
-              {{carts.quantity}}
+            
               <!-- <div class="flex flex-row sm:h-9 sm:w-32 w-20 rounded-full relative bg-white mt-1">
                 <button @click="decrement()" class="bg-gray-300 text-primary h-full sm:w-20 w-12 rounded-l cursor-pointer outline-none">
                   <span class="m-auto sm:text-2xl text-lg font-thin">−</span>
@@ -54,14 +52,14 @@
                   <span class="m-auto sm:text-2xl text-lg font-thin">+</span>
                 </button>
               </div> -->
-            </div>
+            
           </div>
 
         </div>
       </div>
       <div class="grid sm:grid-cols-2 grid-cols-1">
-          <p class="font-semibold sm:col-span-2 sm:text-base text-xs">Total {{totalCart}}</p>
-          <h1 class="text-secondary sm:text-4xl text-xl">THB {{totalPrice}}</h1>
+          <p class="font-semibold sm:col-span-2 sm:text-base text-xs">{{totalCart}} items in shopping cart</p>
+          <h1 class="text-secondary sm:text-3xl text-xl">Total For This Order THB {{totalPrice}}</h1>
           <div class="flex sm:justify-end sm:pt-0 pt-3">
             <button type="button" disabled class="px-2 py-2 sm:w-40 w-full text-white bg-primarydark rounded-full transition duration-400 hover:bg-primarydark focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">
             Checkout</button>

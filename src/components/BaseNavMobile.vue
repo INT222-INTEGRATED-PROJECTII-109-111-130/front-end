@@ -1,6 +1,6 @@
 <template>
-  <div class="z-50 inset-0 overflow-x-hidden overflow-y-auto fixed">
-    <div class="bg-white w-full text-center py-4 px-3">
+  <div class="inset-0 overflow-x-hidden overflow-y-auto fixed z-40">
+    <div class="bg-white w-full text-center py-4 px-6">
       <div class="flex justify-between items-center">
         <div @click="showNavHam()">
           <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +54,7 @@
 
     </div>
   </div>
-  <div v-if="showNav" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+  <div v-if="showNav" class="opacity-25 fixed z-10 inset-0 bg-black"></div>
 </template>
 
 <script>
