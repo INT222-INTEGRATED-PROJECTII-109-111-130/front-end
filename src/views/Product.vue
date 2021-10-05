@@ -234,6 +234,7 @@ export default {
   async created() {
     this.handleView();
     this.prod = await this.getOneProd();
+    console.log(this.prod)
     if(this.prod != undefined){
         var element = "http://20.205.211.187:3000/files/";
         this.prod.productImage 
@@ -246,6 +247,7 @@ export default {
     this.proddate = await this.prod.onsaleDate
     this.proddes = await this.prod.productDescription    
     this.prodprice = await this.prod.productPrice
+
     window.addEventListener("resize", this.handleView);
   },
 };
