@@ -11,7 +11,7 @@
         </div>  
   </div>   
       <!-- Banner desktop -->
-        <img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-64 lg:px-44 pt-48 w-full" v-if="!bannerMobile">
+        <img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-64 lg:px-44 pt-28 w-full" v-if="!bannerMobile">
           <!-- Seach in mobile -->
             <div class="relative flex w-full flex-wrap pt-32 px-3" v-if="bannerMobile">
               <span class="z-10 h-full text-sm text-gray absolute justify-center pl-3 py-3">
