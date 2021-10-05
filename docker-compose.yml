@@ -3,6 +3,6 @@ services:
     front-docker:
         container_name: "frontend"
         build: .
-        image: front-docker
+        image: ghcr.io/violet-evergardenz/int222-frontend:latest
         ports:
             - "8080:8080"
