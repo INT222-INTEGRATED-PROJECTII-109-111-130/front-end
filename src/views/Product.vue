@@ -59,6 +59,7 @@
                                     </option>
                                 </select>
                             </div>
+                            
                           <!-- Quantity -->
                             <div class="mb-5">
                               <label class="sm:text-sm text-xs flex text-primary">Quantity</label>
