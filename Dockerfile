@@ -28,8 +28,8 @@ COPY . .
 RUN npm run build
 FROM nginx as production-stage
 COPY --from=build-stage /app/dist /usr/share/nginx/html
-COPY /nginx/config/nginx.conf /etc/nginx/nginx.conf/
-COPY /nginx/config/conf.d/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=build-stage /nginx/config/nginx.conf /etc/nginx/nginx.conf/
+COPY --from=build-stage /nginx/config/conf.d/default.conf /etc/nginx/conf.d/default.conf
 # COPY /nginx/logs /var/log/nginx/
 # COPY /nginx/ssl /ssl/
 EXPOSE 80
