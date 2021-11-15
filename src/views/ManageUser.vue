@@ -69,7 +69,7 @@ export default {
   //   console.log(c ? c.substring("Token=".length) : null);
   //   console.log("data is", accid);
   //   if (accid !== undefined) {
-  //     const res = await fetch("http://localhost:3000/1acc/" + accid, {
+  //     const res = await fetch("http://52.237.119.127:3000/1acc/" + accid, {
   //       headers: {
   //         Authorization: `Bearer ${c.substring("Token=".length)}`,
   //       },
@@ -106,7 +106,7 @@ export default {
       .find((c) => c.trim().startsWith("Token="));
       console.log(c.substring("Token=".length))
       try {
-        const res = await fetch("http://localhost:3000/updateroleacc", {
+        const res = await fetch("http://52.237.119.127:3000/updateroleacc", {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${c.substring("Token=".length)}`,
@@ -133,7 +133,7 @@ export default {
       .find((c) => c.trim().startsWith("Token="));
       console.log(c.substring("Token=".length))
       try {
-        const res = await fetch("http://localhost:3000/delaccount/"+a, {
+        const res = await fetch("http://52.237.119.127:3000/delaccount/"+a, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${c.substring("Token=".length)}`,
@@ -161,7 +161,7 @@ export default {
           const c = document.cookie
           .split(";")
           .find((c) => c.trim().startsWith("Token="));
-      const res =  await fetch("http://localhost:3000/showallaccount",{
+      const res =  await fetch("http://52.237.119.127:3000/showallaccount",{
          headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
         },
@@ -193,7 +193,7 @@ export default {
         .find((c) => c.trim().startsWith("accid="))
       acc.trim()
       console.log(acc.trim().substring("accid=".length))
-      const res = await fetch("http://localhost:3000/1acc/" + acc.trim().substring("accid=".length), {
+      const res = await fetch("http://52.237.119.127:3000/1acc/" + acc.trim().substring("accid=".length), {
         headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
         },});

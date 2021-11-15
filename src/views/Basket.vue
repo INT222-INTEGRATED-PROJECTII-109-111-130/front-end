@@ -129,7 +129,7 @@ export default {
       const c = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
-        const res =  await fetch("http://localhost:3000/delcart/"+id,{
+        const res =  await fetch("http://52.237.119.127:3000/delcart/"+id,{
           method: "DELETE",
           headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
@@ -154,7 +154,7 @@ export default {
       const c = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
-      const res =  await fetch("http://localhost:3000/showcart/"+this.accid,{
+      const res =  await fetch("http://52.237.119.127:3000/showcart/"+this.accid,{
            headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
         },
@@ -165,7 +165,7 @@ export default {
         this.cart = await data
 
         if(this.cart != undefined){
-          var element = "http://localhost:3000/files/";
+          var element = "http://52.237.119.127:3000/files/";
           for (let index = 0; index < this.cart.length; index++) {
             this.cart[index].productImage = element + this.cart[index].productImage;
             //this.allproduct[index].productImage = element + this.allproduct[index].productImage;
@@ -190,7 +190,7 @@ export default {
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
     if (this.user !== undefined) {
-      const res = await fetch("http://localhost:3000/1acc/" + this.accid, {
+      const res = await fetch("http://52.237.119.127:3000/1acc/" + this.accid, {
         headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
         },

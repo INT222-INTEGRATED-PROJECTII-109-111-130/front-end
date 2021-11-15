@@ -171,7 +171,7 @@ export default {
   //   console.log(c ? c.substring("Token=".length) : null);
   //   console.log("data is", accid);
   //   if (accid !== undefined) {
-  //     const res = await fetch("http://localhost:3000/1acc/" + accid, {
+  //     const res = await fetch("http://52.237.119.127:3000/1acc/" + accid, {
   //       // mode: "cors",
   //       // method: "GET",
   //       headers: {
@@ -198,7 +198,7 @@ export default {
       showNav: false,
       errorMessage: null,
       allproduct: [],
-      urlprod: "http://localhost:3000/showallproduct",
+      urlprod: "http://52.237.119.127:3000/showallproduct",
       checktran: false,
       red: false,
       green: false,
@@ -308,7 +308,7 @@ export default {
         .find((c) => c.trim().startsWith("accid="))
       acc.trim()
       console.log(acc.trim().substring("accid=".length))
-      const res = await fetch("http://localhost:3000/1acc/" + acc.trim().substring("accid=".length), {
+      const res = await fetch("http://52.237.119.127:3000/1acc/" + acc.trim().substring("accid=".length), {
         headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
         },});
@@ -325,7 +325,7 @@ export default {
     this.allproduct = await this.getProduct();
     if (this.allproduct != undefined) {
       for (let index = 0; index < this.allproduct.length; index++) {
-        var element = "http://localhost:3000/files/";
+        var element = "http://52.237.119.127:3000/files/";
         this.allproduct[index].productImage =
           element + this.allproduct[index].productImage;
         //console.log(this.allproduct[index].productImage);

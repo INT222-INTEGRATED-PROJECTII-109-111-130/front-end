@@ -178,7 +178,7 @@ export default {
   //   console.log(c ? c.substring("Token=".length) : null);
   //   console.log("data is", accid);
   //   if (accid !== undefined) {
-  //     const res = await fetch("http://localhost:3000/1acc/" + accid
+  //     const res = await fetch("http://52.237.119.127:3000/1acc/" + accid
   //     , {
   //       headers: {
   //         Authorization: `Bearer ${c.substring("Token=".length)}`, 
@@ -303,7 +303,7 @@ export default {
         const c = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
-        var url = "http://localhost:3000/"
+        var url = "http://52.237.119.127:3000/"
         const res = await fetch(url+"addprod", {
           method: "POST",
            headers: {
@@ -339,7 +339,7 @@ export default {
     }
     ,
     async getall(){
-      var url = "http://20.205.211.187:3000/"
+      var url = "http://52.237.119.127:3000/"
       const resbrand =  await fetch(url+"showallbrand");
       const rescolor =  await fetch(url+"showallcolor");
       const ressize =  await fetch(url+"showallsize");
@@ -363,7 +363,7 @@ export default {
         .find((c) => c.trim().startsWith("accid="))
       acc.trim()
       console.log(acc.trim().substring("accid=".length))
-      const res = await fetch("http://localhost:3000/1acc/" + acc.trim().substring("accid=".length), {
+      const res = await fetch("http://52.237.119.127:3000/1acc/" + acc.trim().substring("accid=".length), {
         headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
         },});

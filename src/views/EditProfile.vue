@@ -54,7 +54,7 @@ export default {
   //     .split(";")
   //     .find((c) => c.trim().startsWith("Token="));
   //   if (accid !== undefined) {
-  //     const res = await fetch("http://localhost:3000/1acc/" + accid, {
+  //     const res = await fetch("http://52.237.119.127:3000/1acc/" + accid, {
   //       headers: {
   //         Authorization: `Bearer ${c.substring("Token=".length)}`,
   //       },
@@ -88,7 +88,7 @@ export default {
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
       try {
-        const res = await fetch("http://localhost:3000/updateaccount", {
+        const res = await fetch("http://52.237.119.127:3000/updateaccount", {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${c.substring("Token=".length)}`,
@@ -134,7 +134,7 @@ export default {
         .find((c) => c.trim().startsWith("accid="))
       acc.trim()
       console.log(acc.trim().substring("accid=".length))
-      const res = await fetch("http://localhost:3000/1acc/" + acc.trim().substring("accid=".length), {
+      const res = await fetch("http://52.237.119.127:3000/1acc/" + acc.trim().substring("accid=".length), {
         headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
         },});

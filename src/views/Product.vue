@@ -106,7 +106,7 @@ export default {
   //   console.log(c ? c.substring("Token=".length) : null);
   //   console.log("data is", accid);
   //   if (accid !== undefined) {
-  //     const res = await fetch("http://localhost:3000/1acc/" + accid, {
+  //     const res = await fetch("http://52.237.119.127:3000/1acc/" + accid, {
   //       headers: {
   //         Authorization: `Bearer ${c.substring("Token=".length)}`,
   //       },
@@ -137,7 +137,7 @@ export default {
     user:this.$route.params.accid,
     acc:null,
     prod:null,
-    urlprod:"http://localhost:3000/show1prod/",
+    urlprod:"http://52.237.119.127:3000/show1prod/",
     checktran:null,
     errorMessage: null,
     red:true,
@@ -189,7 +189,7 @@ export default {
     },
     async addBasket(){
       console.log(this.size)
-      var url = "http://localhost:3000/addcart"
+      var url = "http://52.237.119.127:3000/addcart"
       const c = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
@@ -265,7 +265,7 @@ export default {
   //   console.log(c ? c.substring("Token=".length) : null);
   //   console.log(this.user);
   //   if (this.user !== undefined) {
-  //     const res = await fetch("http://localhost:3000/1acc/" + this.user, {
+  //     const res = await fetch("http://52.237.119.127:3000/1acc/" + this.user, {
   //       headers: {
   //         Authorization: `Bearer ${c.substring("Token=".length)}`,
   //       },
@@ -293,7 +293,7 @@ export default {
         .find((c) => c.trim().startsWith("accid="))
       acc.trim()
       console.log(acc.trim().substring("accid=".length))
-      const res = await fetch("http://localhost:3000/1acc/" + acc.trim().substring("accid=".length), {
+      const res = await fetch("http://52.237.119.127:3000/1acc/" + acc.trim().substring("accid=".length), {
         headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
         },});
@@ -310,7 +310,7 @@ export default {
     this.prod = await this.getOneProd();
     console.log(this.prod)
     if(this.prod != undefined){
-        var element = "http://localhost:3000/files/";
+        var element = "http://52.237.119.127:3000/files/";
         this.prod.productImage 
         console.log( this.prod.productImage)
         this.image = element +this.prod.productImage
