@@ -25,10 +25,19 @@
       </router-link>
 
       <div class="flex items-center space-x-7">
-          <router-link 
-                 :to="{
+
+          <router-link v-if="acc"
+                  :to="{
                     name: 'Basket',
-                    params: { accid: 300001 },
+                    params: { accid: this.acc.accountId },
+                  }"
+          >
+          <span class="fi-rr-shopping-bag text-xl hover:text-primary transition duration-200"></span>
+        </router-link>
+         <router-link v-if="!acc"
+                  :to="{
+                    name: 'Basket',
+                    params: { accid: 1 },
                   }"
           >
           <span class="fi-rr-shopping-bag text-xl hover:text-primary transition duration-200"></span>
@@ -51,11 +60,37 @@ export default {
     },
   data(){
     return {
-
+      acc:null
     }
   },
   computed: {
 
   },
+    async created() {
+          if(document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="))){
+      console.log("เข้า")
+      const c = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("Token="));
+      const acc = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("accid="))
+      acc.trim()
+      console.log(acc.trim().substring("accid=".length))
+      const res = await fetch("http://localhost:3000/1acc/" + acc.trim().substring("accid=".length), {
+        headers: {
+          Authorization: `Bearer ${c.substring("Token=".length)}`,
+        },});
+      if (res.ok) {
+        console.log("เข้า cookie")
+        this.acc  = await res.json();
+        console.log(this.acc)
+      } else {
+        console.log("error");
+      }
+    }
+    },
 };
 </script>

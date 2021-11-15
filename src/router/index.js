@@ -15,66 +15,105 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    props:true
+    meta: {
+      auth: true
+    }
+    // props:true
   },
   {
     path: '/login',
     name: 'Login',
     component: Login
     ,props:true
+    ,
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/team',
     name: 'Team',
     component: Team
     ,props:true
+    ,
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/basket/:accid',
     name: 'Basket',
     component: Basket
     ,props:true
+    ,
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/product/:id',
     name: 'Product',
     component: Product
     ,props:true
+    ,
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/add',
     name: 'Add',
     component: Add
     ,props:true
+    ,
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/edit/:id',
     name: 'Edit',
     component: Edit
     ,props:true
+    ,
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/editProfile',
     name: 'EditProfile',
     component: EditProfile
     ,props:true
+    ,
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/manage',
     name: 'Manage',
     component: Manage
     ,props:true
+    ,
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/manageUser',
     name: 'ManageUser',
     component: ManageUser
     ,props:true
+    ,
+    meta: {
+      auth: true
+    }
   },
 ]
 
 const router = createRouter({
-  
+  mode:"history",
   history: createWebHistory(process.env.BASE_URL),
   routes
 })

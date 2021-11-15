@@ -36,20 +36,17 @@
                             <h2 class="title-font sm:text-xl text-lg font-semibold">{{product.productName}}</h2>
                         </div>
                         <div class="flex justify-end gap-6 items-center">
-                            <router-link  
-                                :to="{
-                                name: 'Edit',
-                                params: { id: product.productId },
-                             }">
+                            <div @click="Edit(product.productId)">
                                 <span class="fi-rr-pencil text-xl cursor-pointer hover:text-primary transition duration-200"></span>
-                            </router-link>
+                            </div>
                             <div  @click="deleteP(product.productId)">
                                 <span class="fi-rr-trash text-xl cursor-pointer hover:text-error transition duration-200"></span>
                              </div>
                         </div>
                     </div>
                 </div>
-            </div>              
+            </div>
+            <div v-show="acc">{{this.acc}}</div>              
     </div>
 </template>
 
@@ -59,8 +56,33 @@ export default {
   components: {
 
   },
+  // async mounted() {
+  //   var accid = this.$route.params.accid;
+  //   const c = document.cookie
+  //     .split(";")
+  //     .find((c) => c.trim().startsWith("Token="));
+  //   console.log(c ? c.substring("Token=".length) : null);
+  //   console.log("data is", accid);
+  //   if (accid !== undefined) {
+  //     const res = await fetch("http://localhost:3000/1acc/" + accid
+  //     , {
+  //       headers: {
+  //         Authorization: `Bearer ${c.substring("Token=".length)}`, 
+  //       },
+  //     }
+  //     );
+  //     if (res.ok) {
+  //       var data = await res.json();
+  //       this.acc  = await data
+  //       console.log(this.id);
+  //     } else {
+  //       console.log("data is", accid);
+  //     }
+  //   }
+  // },
   data() {
     return {
+      acc:null,
       mobileView: true,
       showNav: false,
       errorMessage: null,
@@ -68,10 +90,16 @@ export default {
       checktran:null,
       red:false,
       green:false,
-      urlprod:"http://20.205.211.187:3000/showallproduct",
+      urlprod:"http://localhost:3000/showallproduct",
     };
   },
   methods: {
+    Edit(a){
+       this.$router.push({
+          name: "Edit",
+          params: {id:a, accid: this.acc.accountId },
+        });
+    },
     showNavHam() {
       this.showNav = !this.showNav;
     },
@@ -86,7 +114,15 @@ export default {
     },
     async deleteP(id){
       console.log(id)
-      const res = await fetch("http://20.205.211.187:3000/delprod/"+id, {  method: "DELETE", });
+          const c = document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="));
+      const res = await fetch("http://localhost:3000/delprod/"+id, {  
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${c.substring("Token=".length)}`, 
+        }, 
+        });
      if( res.ok){
 
             this.checktran = true;
@@ -112,7 +148,7 @@ export default {
         this.allproduct = await data
       if(this.allproduct != undefined){
       for (let index = 0; index < this.allproduct.length; index++) {
-        var element = "http://20.205.211.187:3000/files/";
+        var element = "http://localhost:3000/files/";
         this.allproduct[index].productImage = element + this.allproduct[index].productImage;
         
       }
@@ -128,6 +164,29 @@ export default {
     }
   },
   async created() {
+        if(document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="))){
+      console.log("เข้า")
+      const c = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("Token="));
+      const acc = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("accid="))
+      acc.trim()
+      console.log(acc.trim().substring("accid=".length))
+      const res = await fetch("http://localhost:3000/1acc/" + acc.trim().substring("accid=".length), {
+        headers: {
+          Authorization: `Bearer ${c.substring("Token=".length)}`,
+        },});
+      if (res.ok) {
+        console.log("เข้า cookie")
+        this.acc  = await res.json();
+      } else {
+        console.log("error");
+      }
+    }
     this.handleView();
     await this.getProduct();
     // if(this.allproduct != undefined){

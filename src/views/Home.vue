@@ -1,67 +1,196 @@
 <template>
   <div class="home">
-  <!-- Navbar -->
-  <div class="fixed w-full z-50">
-    <base-nav  v-if="showNav"/>
-    <base-nav-mobile v-if="mobileView"/> 
+    <!-- Navbar -->
+    <div class="fixed w-full z-50">
+      <base-nav v-if="showNav" />
+      <base-nav-mobile v-if="mobileView" />
       <!-- Error -->
-        <div v-show="checktran">
-          <div v-show="red" class="bg-error sm:mt-0 mt-14 sm:py-2 py-1 sm:text-base text-xs w-full z-50 text-white text-center">Error !! : {{errorMessage}}</div>
-          <div v-show="green" class="bg-primary sm:py-2 py-1 sm:text-base text-xs w-full z-50 text-white text-center">Success</div>
-        </div>  
-  </div>   
-      <!-- Banner desktop -->
-        <img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-56 lg:px-28 pt-28 w-full" v-if="!bannerMobile">
-          <!-- Seach in mobile -->
-            <div class="relative flex w-full flex-wrap pt-20 px-6" v-if="bannerMobile">
-              <span class="z-10 h-full text-sm text-gray absolute justify-center pl-3 py-3">
-                <span class="fi-rr-search"></span> 
-              </span>
-              <input type="text" placeholder="Search" v-model="search" class="px-2 py-2 placeholder-gray relative bg-light rounded-full text-md outline-none focus:ring-2 focus:ring-primary w-full pl-8"/>
-            </div>
-      <!-- Banner mobile -->
-        <img src="../assets/Banner-mobile.png" class="mx-auto pt-4 px-6 w-full" v-if="bannerMobile">
-      <!-- Product List-->
-        <div class="sm:pb-16 pb-10 sm:px-28 px-6 mx-auto">
-          <h1 class="sm:text-4xl sm:py-7 py-3 font-semibold text-xl">Products</h1>
-            <div class="grid sm:grid-cols-4 sm:gap-6 gap-2 grid-cols-2">
-              <div v-for="product in allproduct" :key="product.productId">
-                <div class="bg-white sm:rounded-lg rounded-md shadow-xl hover:shadow-2xl transition duration-500">
-                  <router-link :to="{name: 'Product', params: { id: product.productId,user:123456 },}">
-                    <a class="block relative sm:h-56 h-36 sm:rounded-t-lg rounded-t-md overflow-hidden">
-                      <img class="object-cover object-center w-full h-full block" :src="product.productImage">
-                    </a>
-                      <div class="sm:my-3 sm:mx-4 my-2 mx-3">
-                        <h2 class="title-font sm:text-lg text-sm font-semibold">{{product.productName}}</h2>
-                        <p class="mt-1 text-primary sm:text-base text-xs">THB {{product.productPrice}}</p>
-                      </div>
-                  </router-link>
-                </div>
-              </div>
-            </div>
+      <div v-show="checktran">
+        <div
+          v-show="red"
+          class="
+            bg-error
+            sm:mt-0
+            mt-14
+            sm:py-2
+            py-1
+            sm:text-base
+            text-xs
+            w-full
+            z-50
+            text-white text-center
+          "
+        >
+          Error !! : {{ errorMessage }}
         </div>
+        <div
+          v-show="green"
+          class="
+            bg-primary
+            sm:py-2
+            py-1
+            sm:text-base
+            text-xs
+            w-full
+            z-50
+            text-white text-center
+          "
+        >
+          Success
+        </div>
+      </div>
+    </div>
+    <!-- Banner desktop -->
+    <img
+      src="../assets/Banner-desk.png"
+      class="object-center mx-auto sm:px-56 lg:px-28 pt-28 w-full"
+      v-if="!bannerMobile"
+    />
+    <!-- Seach in mobile -->
+    <div class="relative flex w-full flex-wrap pt-20 px-6" v-if="bannerMobile">
+      <span
+        class="z-10 h-full text-sm text-gray absolute justify-center pl-3 py-3"
+      >
+        <span class="fi-rr-search"></span>
+      </span>
+      <input
+        type="text"
+        placeholder="Search"
+        v-model="search"
+        class="
+          px-2
+          py-2
+          placeholder-gray
+          relative
+          bg-light
+          rounded-full
+          text-md
+          outline-none
+          focus:ring-2 focus:ring-primary
+          w-full
+          pl-8
+        "
+      />
+    </div>
+    <!-- Banner mobile -->
+    <img
+      src="../assets/Banner-mobile.png"
+      class="mx-auto pt-4 px-6 w-full"
+      v-if="bannerMobile"
+    />
+    <div v-show="id">{{ this.id }}
+      <div  @click="Add()">Add</div> 
+      <div  @click="Manage()">Manage</div>
+      <div  @click="EditProfile()">EditProfile</div>
+      <div  @click="ManageUser()">ManageUser</div>
+    </div>
+    <div  @click="delcook()">delcook</div>
+    <!-- Product List-->
+    <div class="sm:pb-16 pb-10 sm:px-28 px-6 mx-auto">
+      <h1 class="sm:text-4xl sm:py-7 py-3 font-semibold text-xl">Products</h1>
+      <div class="grid sm:grid-cols-4 sm:gap-6 gap-2 grid-cols-2">
+        <div v-for="product in allproduct" :key="product.productId">
+          <div
+            @click="passid(product.productId)"
+            class="
+              bg-white
+              sm:rounded-lg
+              rounded-md
+              shadow-xl
+              hover:shadow-2xl
+              transition
+              duration-500
+            "
+          >
+            <!-- <router-link 
+              :to="{
+                name: 'Product',
+                params: { id: product.productId },
+              }"
+            > -->
+            <a
+              class="
+                block
+                relative
+                sm:h-56
+                h-36
+                sm:rounded-t-lg
+                rounded-t-md
+                overflow-hidden
+              "
+            >
+              <img
+                class="object-cover object-center w-full h-full block"
+                :src="product.productImage"
+              />
+            </a>
+            <div class="sm:my-3 sm:mx-4 my-2 mx-3">
+              <h2 class="title-font sm:text-lg text-sm font-semibold">
+                {{ product.productName }}
+              </h2>
+              <p class="mt-1 text-primary sm:text-base text-xs">
+                THB {{ product.productPrice }}
+              </p>
+            </div>
+            <!-- </router-link> -->
+          </div>
+        </div>
+      </div>
+    </div>
 
-<!-- See more button -->
-  <!-- <div v-if="commentsToShow < reviews.length || reviews.length > commentsToShow">
+    <!-- See more button -->
+    <!-- <div v-if="commentsToShow < reviews.length || reviews.length > commentsToShow">
     <button @click="commentsToShow += 3">show more reviews</button>
   </div> -->
-  <!-- <div class="mx-auto sm:px-24 px-7 flex justify-center sm:pb-16 pb-10">
+    <!-- <div class="mx-auto sm:px-24 px-7 flex justify-center sm:pb-16 pb-10">
     <button class="items-center sm:text-base text-xs bg-white sm:py-2 py-1 sm:px-9 px-6 border-2 border-primary hover:bg-primary rounded-full text-primary hover:text-white transition duration-300 ease-in-out">
       See More
     </button>
   </div> -->
-
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
+// import axios from 'axios'
 export default {
+  components: {},
+  //   props: {
+  //   title: String
+  // },
+  // setup(props) {
+  //  console.log(props.title)
 
-  components: {
-
-  },
+  // },
+  // async mounted() {
+  //   var accid = this.$route.params.accid;
+  //   const c = document.cookie
+  //     .split(";")
+  //     .find((c) => c.trim().startsWith("Token="));
+    
+  //   console.log(c ? c.substring("Token=".length) : null);
+  //   console.log("data is", accid);
+  //   if (accid !== undefined) {
+  //     const res = await fetch("http://localhost:3000/1acc/" + accid, {
+  //       // mode: "cors",
+  //       // method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${c.substring("Token=".length)}`,
+  //         // Accept: "application/json",
+  //         // "Access-Control-Allow-Origin": "*",
+  //         // "Access-Control-Allow-Headers": "*",
+  //       },
+  //     });
+  //     if (res.ok) {
+  //       var data = await res.json();
+  //       console.log(data);
+  //       this.id = await data;
+  //       return data;
+  //     } else {
+  //       console.log("data is", accid);
+  //     }
+  //   }
+  // },
   data() {
     return {
       mobileView: true,
@@ -69,51 +198,136 @@ export default {
       showNav: false,
       errorMessage: null,
       allproduct: [],
-      urlprod:"http://20.205.211.187:3000/showallproduct",
-      checktran:false,
-      red:false,
-      green:false,
-      search: '',
-
+      urlprod: "http://localhost:3000/showallproduct",
+      checktran: false,
+      red: false,
+      green: false,
+      search: "",
+      id: null,
     };
   },
   methods: {
+    Add(){
+      this.$router.push({
+          name: "Add",
+          params: { accid: this.id.accountId },
+        });
+    },
+    Manage(){
+       this.$router.push({
+          name: "Manage",
+          params: { accid: this.id.accountId },
+        });
+    },
+    ManageUser(){
+       this.$router.push({
+          name: "ManageUser",
+          params: { accid: this.id.accountId },
+        });
+    },
+    EditProfile(){
+       this.$router.push({
+          name: "EditProfile",
+          params: { accid: this.id.accountId },
+        });
+    },
+    passid(a) {
+      // console.log(this.id.accountId);
+      // console.log(a);
+      if (this.id != null) {
+        this.$router.push({
+          name: "Product",
+          params: { id: a, accid: this.id.accountId },
+        });
+      }
+      if (this.id == null) {
+        this.$router.push({
+          name: "Product",
+          params: { id: a},
+        });
+      }
+    },
     showNavHam() {
       this.showNav = !this.showNav;
     },
     handleView() {
-      if(window.innerWidth <= 990){
-          this.mobileView = true;
-          this.showNav = false;
-      } else if (window.innerWidth > 990){
-          this.mobileView = false;
-          this.showNav = true;
+      if (window.innerWidth <= 990) {
+        this.mobileView = true;
+        this.showNav = false;
+      } else if (window.innerWidth > 990) {
+        this.mobileView = false;
+        this.showNav = true;
       }
       this.bannerMobile = window.innerWidth <= 990;
     },
+    delcook(){
+        document.cookie = 'Token=ok;expires = Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+        document.cookie = 'accid=ok;expires = Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+        this.$router.go()
+    }
+    ,
+    async getProduct() {
+      const c = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("Token="));
+      console.log(c ? c.substring("Token=".length) : null);
 
-    async getProduct(){
-     const res =  await fetch(this.urlprod);
-     console.log(res)
-      if(res.ok){
+      const res = await fetch(
+        this.urlprod
+        // , {
+        //   mode: "cors",
+        //   method: "GET",
+        //   headers: {
+        //     Authorization: `Bearer ${c.substring("Token=".length)}`,
+        //     Accept: "application/json",
+        //   },
+        // }
+      );
+
+      console.log(res);
+      if (res.ok) {
         var data = await res.json();
-        return data
+        return data;
       } else {
         this.errorMessage = await res.json();
-        alert(this.errorMessage.message)
+        alert(this.errorMessage.message);
+      }
+    },
+  },
+  computed: {},
+  async created() {
+    if(document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="))){
+      console.log("เข้า")
+      const c = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("Token="));
+      const acc = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("accid="))
+      acc.trim()
+      console.log(acc.trim().substring("accid=".length))
+      const res = await fetch("http://localhost:3000/1acc/" + acc.trim().substring("accid=".length), {
+        headers: {
+          Authorization: `Bearer ${c.substring("Token=".length)}`,
+        },});
+      if (res.ok) {
+        console.log("เข้า cookie")
+        this.id  = await res.json();
+      } else {
+        console.log("error");
       }
     }
-  },
-  computed: {
 
-  },
-  async created() {
+
     this.handleView();
     this.allproduct = await this.getProduct();
-    if(this.allproduct != undefined){
+    if (this.allproduct != undefined) {
       for (let index = 0; index < this.allproduct.length; index++) {
-        var element = "http://20.205.211.187:3000/files/";
-        this.allproduct[index].productImage = element + this.allproduct[index].productImage;
+        var element = "http://localhost:3000/files/";
+        this.allproduct[index].productImage =
+          element + this.allproduct[index].productImage;
         //console.log(this.allproduct[index].productImage);
       }
     }

@@ -159,7 +159,7 @@
 
     </div>
     </form>
-    
+    <div v-show="acc">{{this.acc}}</div>
   </div>
 </template>
 
@@ -170,8 +170,33 @@ export default {
   components: {
 
   },
+  //   async mounted() {
+  //   var accid = this.$route.params.accid;
+  //   const c = document.cookie
+  //     .split(";")
+  //     .find((c) => c.trim().startsWith("Token="));
+  //   console.log(c ? c.substring("Token=".length) : null);
+  //   console.log("data is", accid);
+  //   if (accid !== undefined) {
+  //     const res = await fetch("http://localhost:3000/1acc/" + accid
+  //     , {
+  //       headers: {
+  //         Authorization: `Bearer ${c.substring("Token=".length)}`, 
+  //       },
+  //     }
+  //     );
+  //     if (res.ok) {
+  //       var data = await res.json();
+  //       this.acc  = await data
+  //       console.log(this.id);
+  //     } else {
+  //       console.log("data is", accid);
+  //     }
+  //   }
+  // },
   data() {
     return {
+      acc:null,
       mobileView: true,
       showNav: false,
       name: '',
@@ -275,9 +300,15 @@ export default {
         formData.append("prodcolor", color);
         formData.append("file", image, image.name);
         formData.append("size", size);
-        var url = "http://20.205.211.187:3000/"
+        const c = document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="));
+        var url = "http://localhost:3000/"
         const res = await fetch(url+"addprod", {
           method: "POST",
+           headers: {
+          Authorization: `Bearer ${c.substring("Token=".length)}`, 
+          },
           body: formData,
         });
         if( res.ok){
@@ -320,6 +351,29 @@ export default {
     }
   },
   async created() {
+    if(document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="))){
+      console.log("เข้า")
+      const c = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("Token="));
+      const acc = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("accid="))
+      acc.trim()
+      console.log(acc.trim().substring("accid=".length))
+      const res = await fetch("http://localhost:3000/1acc/" + acc.trim().substring("accid=".length), {
+        headers: {
+          Authorization: `Bearer ${c.substring("Token=".length)}`,
+        },});
+      if (res.ok) {
+        console.log("เข้า cookie")
+        this.acc  = await res.json();
+      } else {
+        console.log("error");
+      }
+    }
     await this.getall();
     this.handleView();
     window.addEventListener("resize", this.handleView);

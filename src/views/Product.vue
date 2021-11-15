@@ -85,7 +85,7 @@
                   </div>
                 </div>
               </div>
-            
+            <div v-show="acc">{{this.acc}}</div>
           </div>
         </div>
        
@@ -97,8 +97,28 @@
 export default {
 	el: '#color-picker',
   components: {
-
   },
+  //   async mounted() {
+  //   var accid = this.$route.params.accid;
+  //   const c = document.cookie
+  //     .split(";")
+  //     .find((c) => c.trim().startsWith("Token="));
+  //   console.log(c ? c.substring("Token=".length) : null);
+  //   console.log("data is", accid);
+  //   if (accid !== undefined) {
+  //     const res = await fetch("http://localhost:3000/1acc/" + accid, {
+  //       headers: {
+  //         Authorization: `Bearer ${c.substring("Token=".length)}`,
+  //       },
+  //     });
+  //     if (res.ok) {
+  //       var data = await res.json();
+  //       this.acc = await data;
+  //     } else {
+  //       console.log("data is", accid);
+  //     }
+  //   }
+  // },
   data() {
     return {
     mobileView: true,
@@ -114,9 +134,10 @@ export default {
     size:null,
     quantity: 1,
     id: this.$route.params.id,
-    user:this.$route.params.user,
+    user:this.$route.params.accid,
+    acc:null,
     prod:null,
-    urlprod:"http://20.205.211.187:3000/show1prod/",
+    urlprod:"http://localhost:3000/show1prod/",
     checktran:null,
     errorMessage: null,
     red:true,
@@ -124,7 +145,6 @@ export default {
     image:null
     };
   },
-
   computed: {
 		selector: function() {
 			if(!this.selectedColor) {
@@ -169,15 +189,20 @@ export default {
     },
     async addBasket(){
       console.log(this.size)
-      var url = "http://20.205.211.187:3000/addcart"
+      var url = "http://localhost:3000/addcart"
+      const c = document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="));
+      console.log(c.substring("Token=".length))
        const res = await fetch(url, {
           method: "POST",
            headers: {
+             Authorization: `Bearer ${c.substring("Token=".length)}`,
             "content-type": "application/json",
           },
           body: JSON.stringify({
             cartId: 1,
-            accountId: 300001,
+            accountId: this.user,
             productId: this.prod.productId,
             productName: this.prod.productName,
             productDescription: this.prod.productDescription,
@@ -195,7 +220,7 @@ export default {
             this.red = false;
             this.green = true;
             setTimeout(()=>{this.checktran = false } , 9000);
-            await this.$router.push({ name: 'Basket', params: { accid: 300001 } })
+            await this.$router.push({ name: 'Basket', params: { accid: this.acc.accountId } })
         }else {
             this.checktran = true;
             this.red = true;
@@ -231,14 +256,61 @@ export default {
         this.errorMessage = await res.json().message;
         //  setTimeout(()=>{this.checktran = false } , 9000);
       }
-    }
+    },
+  //   async getacc() {
+    
+  //   const c = document.cookie
+  //     .split(";")
+  //     .find((c) => c.trim().startsWith("Token="));
+  //   console.log(c ? c.substring("Token=".length) : null);
+  //   console.log(this.user);
+  //   if (this.user !== undefined) {
+  //     const res = await fetch("http://localhost:3000/1acc/" + this.user, {
+  //       headers: {
+  //         Authorization: `Bearer ${c.substring("Token=".length)}`,
+  //       },
+  //     });
+  //     if (res.ok) {
+  //       var data = await res.json();
+  //       return  data;
+  //     } else {
+  //       console.log("data is", this.user);
+  //     }
+  //   }
+  // },
   },
   async created() {
     this.handleView();
+    if(document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="))){
+      console.log("เข้า")
+      const c = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("Token="));
+      const acc = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("accid="))
+      acc.trim()
+      console.log(acc.trim().substring("accid=".length))
+      const res = await fetch("http://localhost:3000/1acc/" + acc.trim().substring("accid=".length), {
+        headers: {
+          Authorization: `Bearer ${c.substring("Token=".length)}`,
+        },});
+      if (res.ok) {
+        console.log("เข้า cookie")
+        this.acc  = await res.json();
+      } else {
+        console.log("error");
+      }
+    }
+      // this.acc = await this.getacc();
+      // console.log(this.acc)
+    
     this.prod = await this.getOneProd();
     console.log(this.prod)
     if(this.prod != undefined){
-        var element = "http://20.205.211.187:3000/files/";
+        var element = "http://localhost:3000/files/";
         this.prod.productImage 
         console.log( this.prod.productImage)
         this.image = element +this.prod.productImage

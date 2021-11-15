@@ -24,33 +24,34 @@
                     </div>
                 </div>
                 <!-- <div v-for="product in allproduct" :key="product.productId"> -->
-                    <div class="grid grid-cols-4 pt-6 px-4 gap-36">
+                    <div v-for="acc in allAcc" :key="acc.accountId" class="grid grid-cols-4 pt-6 px-4 gap-36">
                         <div class="flex items-center col-span-2">
                           <div class="sm:h-20 sm:w-20 h-16 mr-8 w-full rounded-full overflow-hidden">
                             <img src="../assets/profile.png" class="h-full w-full object-cover object-center">
                           </div>
                           <div class="grid grid-cols-2 gap-2">
-                            <h2 class="title-font text-xl">First Name</h2>
-                            <h2 class="title-font text-xl">Last Name</h2> 
+                            <h2 class="title-font text-xl">{{acc.firstName}}</h2>
+                            <h2 class="title-font text-xl">{{acc.lastName}}</h2> 
                             </div>                         
                         </div>
                         <div class="flex items-center">
-                            <select id="size" name="size" v-model="size" class="text-xl w-full rounded-full sm:py-2 py-1">
-                            <option :value="Role" disabled class="">
+                            <select id="size" name="size" :value="acc.accountRole"  @change="onChange(role,acc.accountId)" class="text-xl w-full rounded-full sm:py-2 py-1">
+                            <option :value="null" disabled class="hidden">
                                 Role
                             </option> 
-                            <option v-for="product in prodsize" :key="product.productsizeId" :value="product.productsizeId">
-                                {{ product.sizes.sizeValue }}
-                            </option>
+                            <option value="Admin">Admin</option>
+                            <option value="Customer">Customer</option>
+                            <option value="Seller">Seller</option>
                             </select>
                         </div> 
-                        <div @click="deleteP(product.productId)" class="flex items-center justify-end">
+                        <div @click="deleteA(acc.accountId)" class="flex items-center justify-end">
                             <span class="fi-rr-trash text-xl cursor-pointer hover:text-error transition duration-200"></span>
                         </div>
                     </div>
 
                 <!-- </div> -->    
             </div>
+            <div v-show="acc">{{this.acc}}</div>
     </div>
 </template>
 
@@ -60,6 +61,29 @@ export default {
   components: {
 
   },
+  //  async mounted() {
+  //   var accid = this.$route.params.accid;
+  //   const c = document.cookie
+  //     .split(";")
+  //     .find((c) => c.trim().startsWith("Token="));
+  //   console.log(c ? c.substring("Token=".length) : null);
+  //   console.log("data is", accid);
+  //   if (accid !== undefined) {
+  //     const res = await fetch("http://localhost:3000/1acc/" + accid, {
+  //       headers: {
+  //         Authorization: `Bearer ${c.substring("Token=".length)}`,
+  //       },
+  //     });
+  //     if (res.ok) {
+  //       var data = await res.json();
+  //       console.log(data);
+  //       this.acc = await data;
+  //       return data;
+  //     } else {
+  //       console.log("data is", accid);
+  //     }
+  //   }
+  // },
   data() {
     return {
       mobileView: true,
@@ -67,9 +91,60 @@ export default {
       errorMessage: null,
       red:false,
       green:false,
+      acc:null,
+      role:null,
+      allAcc:[]
     };
   },
   methods: {
+    async onChange(event,a) {
+      // console.log(event.target.value)
+      console.log(event)
+      console.log(a)
+      const c = document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="));
+      console.log(c.substring("Token=".length))
+      try {
+        const res = await fetch("http://localhost:3000/updateroleacc", {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${c.substring("Token=".length)}`,
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            accountId: a,
+            firstName: "pass",
+            lastName: "pass",
+            email: "pass",
+            password:"pass",
+            accountRole: event,
+          }),
+        });
+        await res.json();
+      } catch (error) {
+        console.log(`Could not add ${error}`);
+      }
+    },
+    async deleteA(a){
+      console.log(a)
+       const c = document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="));
+      console.log(c.substring("Token=".length))
+      try {
+        const res = await fetch("http://localhost:3000/delaccount/"+a, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${c.substring("Token=".length)}`,
+            "content-type": "application/json",
+          },
+        });
+        await res.json();
+      } catch (error) {
+        console.log(`Could not add ${error}`);
+      }
+    },
     showNavHam() {
       this.showNav = !this.showNav;
     },
@@ -82,8 +157,54 @@ export default {
           this.showNav = true;
       }
     },
+    async getAllAcc(){
+          const c = document.cookie
+          .split(";")
+          .find((c) => c.trim().startsWith("Token="));
+      const res =  await fetch("http://localhost:3000/showallaccount",{
+         headers: {
+          Authorization: `Bearer ${c.substring("Token=".length)}`,
+        },
+      });
+
+      if(res.ok){
+        this.allAcc = await res.json();
+        console.log(this.allAcc)
+       
+      } else {
+        this.checktran = true;
+        this.red = true
+        this.errorMessage = await res.json().message;
+        console.log(this.errorMessage)
+        //  setTimeout(()=>{this.checktran = false } , 9000);
+      }
+    }
   },
-  created() {
+  async created() {
+          if(document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="))){
+      console.log("เข้า")
+      const c = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("Token="));
+      const acc = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("accid="))
+      acc.trim()
+      console.log(acc.trim().substring("accid=".length))
+      const res = await fetch("http://localhost:3000/1acc/" + acc.trim().substring("accid=".length), {
+        headers: {
+          Authorization: `Bearer ${c.substring("Token=".length)}`,
+        },});
+      if (res.ok) {
+        console.log("เข้า cookie")
+        this.acc  = await res.json();
+      } else {
+        console.log("error");
+      }
+    }
+    await this.getAllAcc();
     this.handleView();
     window.addEventListener("resize", this.handleView);
   },

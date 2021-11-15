@@ -66,7 +66,9 @@
           </div>
         </div>
   </div>
+
   </div>
+   <div v-show="acc">{{this.acc}}</div>
   </div>
 </template>
 
@@ -87,6 +89,7 @@ export default {
     red:false,
     green:false,
     accid: this.$route.params.accid,
+    acc: null,
     cart:[],
     checktran:false
     };
@@ -123,7 +126,15 @@ export default {
       }
     },
     async deleteOneCart(id){
-        const res =  await fetch("http://20.205.211.187:3000/delcart/"+id,{method: "DELETE"} );
+      const c = document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="));
+        const res =  await fetch("http://localhost:3000/delcart/"+id,{
+          method: "DELETE",
+          headers: {
+          Authorization: `Bearer ${c.substring("Token=".length)}`,
+        },
+          } );
          if(res.ok){
            await this.getOneProd()
         this.checktran = true;
@@ -140,14 +151,21 @@ export default {
     }
     ,
     async getOneProd(){
-      const res =  await fetch("http://20.205.211.187:3000/showcart/"+this.accid);
+      const c = document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="));
+      const res =  await fetch("http://localhost:3000/showcart/"+this.accid,{
+           headers: {
+          Authorization: `Bearer ${c.substring("Token=".length)}`,
+        },
+      });
       if(res.ok){
         const data = await res.json();
         
         this.cart = await data
 
         if(this.cart != undefined){
-          var element = "http://20.205.211.187:3000/files/";
+          var element = "http://localhost:3000/files/";
           for (let index = 0; index < this.cart.length; index++) {
             this.cart[index].productImage = element + this.cart[index].productImage;
             //this.allproduct[index].productImage = element + this.allproduct[index].productImage;
@@ -165,7 +183,25 @@ export default {
         this.errorMessage = await res.json().message;
         //  setTimeout(()=>{this.checktran = false } , 9000);
       }
+    },
+    async getacc() {
+    
+    const c = document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="));
+    if (this.user !== undefined) {
+      const res = await fetch("http://localhost:3000/1acc/" + this.accid, {
+        headers: {
+          Authorization: `Bearer ${c.substring("Token=".length)}`,
+        },
+      });
+      if (res.ok) {
+        this.acc = await res.json();
+      } else {
+        console.log("data is", this.user);
+      }
     }
+  },
   //   increment () {
   //     this.quantity++
   //   },
@@ -180,6 +216,7 @@ export default {
   async created() {
     console.log(this.accid)
     await this.getOneProd()
+
     this.handleView();
     window.addEventListener("resize", this.handleView);
   },

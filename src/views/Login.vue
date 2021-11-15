@@ -167,8 +167,8 @@ export default {
       errorPassword: false,
       red:false,
       green:false,
-      url:"http://20.205.211.187:3000",
-
+      url:"http://localhost:3000",
+      
     }
   },
   methods: {
@@ -210,7 +210,7 @@ export default {
       this.errorPassword = this.password === null ? true : false;
       if(this.errorPassword == false && this.errorLastname == false && this.errorFirstname == false && this.errorEmail == false  ){
         try {
-        const res = await fetch(this.url+"/addaccount", {
+        const res = await fetch(this.url+"/register", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -232,8 +232,37 @@ export default {
         console.log("fail")
       }
     },
-    Login(){
-
+    async Login(){
+      console.log(this.login)
+      console.log(this.passwordlogin)
+       if(this.login != null  &&  this.passwordlogin != null ){
+      try {
+        const res = await fetch(this.url+"/authenticate", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            username:this.login,
+            password:this.passwordlogin
+          }),
+        });
+        
+        if( res.ok){
+            var data = await res.json();
+            console.log(data.id);
+            console.log(data.token);
+            document.cookie = `Token=${data.token}; path=/;`
+            document.cookie = `accid=${data.id}; path=/;`
+            await this.$router.push({ name: 'Home', params: { accid: data.id } })
+            
+        }
+      } catch (error) {
+        console.log(`Could not add ${error}`);
+      }
+      }else{
+        console.log("fail")
+      }
     }
   },
   async created() {
