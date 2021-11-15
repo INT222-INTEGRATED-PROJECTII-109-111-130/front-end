@@ -79,7 +79,7 @@ export default {
         .find((c) => c.trim().startsWith("accid="))
       acc.trim()
       console.log(acc.trim().substring("accid=".length))
-      const res = await fetch("http://localhost:3000/1acc/" + acc.trim().substring("accid=".length), {
+      const res = await fetch("http://52.237.119.127:3000/1acc/" + acc.trim().substring("accid=".length), {
         headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
         },});
