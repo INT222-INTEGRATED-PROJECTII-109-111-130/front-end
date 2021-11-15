@@ -27,7 +27,6 @@ RUN npm install
 COPY . .
 RUN npm run build
 FROM nginx as production-stage
-RUN npm install http-server -g
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 COPY --from=build-stage /app/nginx/config/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build-stage /app/nginx/config/conf.d/default.conf /etc/nginx/conf.d/default.conf
