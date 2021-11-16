@@ -3,6 +3,6 @@ services:
     front-docker:
         container_name: "frontend"
         image: ghcr.io/violet-evergardenz/int222-frontend:latest
-        port:
+        ports:
             - "8080:8080"
         restart: on-failure
