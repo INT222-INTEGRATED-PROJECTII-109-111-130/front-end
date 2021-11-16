@@ -8,4 +8,6 @@ services:
             - "443:443"
         volumes:
             - /home/bluzeadmin/front-end/nginx/data/.well-known/pki-validation:/usr/share/nginx/html/.well-known/pki-validation/
+            - /home/bluzeadmin/front-end/nginx:/var/log/nginx/
+            - /home/bluzeadmin/front-end/nginx/ssl:/ssl/
         restart: on-failure
