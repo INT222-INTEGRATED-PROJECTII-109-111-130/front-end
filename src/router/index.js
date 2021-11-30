@@ -16,7 +16,7 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: {
-      auth: true
+      auth: true,
     }
     // props:true
   },
@@ -27,7 +27,7 @@ const routes = [
     ,props:true
     ,
     meta: {
-      auth: true
+      auth: true,
     }
   },
   {

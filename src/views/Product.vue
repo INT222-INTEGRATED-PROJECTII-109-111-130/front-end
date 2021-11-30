@@ -74,14 +74,7 @@
                                 </div>
                             </div>
                           </div>
-                        <!-- <router-link 
-                              :to="{
-                                  name: 'Basket',
-                                  params: { accid: 300001 },
-                                }"
-                        > -->
                         <base-button @click="addBasket()" buttonLabel="Add to Basket"/> 
-                      <!-- </router-link> -->
                   </div>
                 </div>
               </div>
@@ -95,30 +88,7 @@
 // @ is an alias to /src
 
 export default {
-	el: '#color-picker',
-  components: {
-  },
-  //   async mounted() {
-  //   var accid = this.$route.params.accid;
-  //   const c = document.cookie
-  //     .split(";")
-  //     .find((c) => c.trim().startsWith("Token="));
-  //   console.log(c ? c.substring("Token=".length) : null);
-  //   console.log("data is", accid);
-  //   if (accid !== undefined) {
-  //     const res = await fetch("http://52.237.119.127:3000/1acc/" + accid, {
-  //       headers: {
-  //         Authorization: `Bearer ${c.substring("Token=".length)}`,
-  //       },
-  //     });
-  //     if (res.ok) {
-  //       var data = await res.json();
-  //       this.acc = await data;
-  //     } else {
-  //       console.log("data is", accid);
-  //     }
-  //   }
-  // },
+	// el: '#color-picker',
   data() {
     return {
     mobileView: true,
@@ -229,16 +199,6 @@ export default {
             console.log (this.errorMessage)
             setTimeout(()=>{this.checktran = false } , 9000);
         }
-
-      // if(this.errorMessage != null){
-      //    this.checktran = true ;
-      //    this.red = true;
-      //    this.errorMessage = "asd"
-      //  }else{
-      //    this.checktran = true ;
-      //    this.red = false;
-      //    this.errorMessage = 'i heer tuuu'
-      //  }
 
     }
     ,

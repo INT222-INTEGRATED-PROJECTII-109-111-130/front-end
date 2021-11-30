@@ -1,7 +1,7 @@
 <template>
   <div class="editProfile">
   <!-- Navbar -->
-  <div class="fixed w-full">
+  <div class="fixed w-full z-50">
     <base-nav  v-if="showNav" />
     <base-nav-mobile  v-if="mobileView" /> 
       <!-- Error -->
@@ -11,12 +11,12 @@
         </div>
   </div>
     <form @submit.prevent="editP">
-    <div class="container sm:pb-16 pb-10 sm:px-72 px-3 mx-auto">
+    <div class="container sm:pb-16 pb-10 sm:px-72 px-3 pt-28 mx-auto">
       <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 pt-6 pb-3 font-semibold text-xl text-center">My Account</h1>
         <div class="grid grid-cols-2 gap-x-6">
             <div class="h-full bg-primary px-4 py-8 rounded-xl overflow-hidden text-center relative col-span-2">
                 <img class="object-cover object-center w-24 block mx-auto" src="../assets/profile.png">
-                <h1 class="pt-5 text-2xl font-semibold">Name Surname</h1>
+                <h1 class="pt-5 text-2xl font-semibold">{{ this.id.firstName }} {{ this.id.lastName }}</h1>
             </div>
             <div class="pt-8">
               <label class="text-sm flex text-primary pb-1">First Name</label>
@@ -26,10 +26,6 @@
               <label class="text-sm flex text-primary pb-1">Last Name</label>
               <input type="text" placeholder="Last Name" v-model="lastName" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
             </div>
-            <!-- <div class="pt-8 col-span-2">
-                <label class="text-sm flex text-primary pb-1">Email</label>
-                <input type="email" placeholder="example@mail.com" class="pl-4 py-3 placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
-            </div> -->
             <div class="pt-8 col-span-2">
                 <base-button type="submit" buttonLabel="Update"/>
             </div>

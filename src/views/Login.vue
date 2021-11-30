@@ -1,7 +1,7 @@
 <template>
   <div class="login">
   <!-- Navbar -->
-       <base-nav  v-if="showNav" />
+      <base-nav  v-if="showNav" />
       <base-nav-mobile  v-if="mobileView"/> 
         <!-- Error -->
           <div v-show="checktran">
@@ -167,7 +167,8 @@ export default {
       errorPassword: false,
       red:false,
       green:false,
-      url:"http://52.237.119.127:3000",
+      //url:"http://52.237.119.127:3000",
+      url: "https://www-bluzeshirt.ddns.net/api"
       
     }
   },
@@ -203,7 +204,6 @@ export default {
     },
     async register(){
      
-      
       this.errorFirstname = this.firstname === null ? true : false;
       this.errorLastname = this.lastname === null ? true : false;
       this.errorEmail = this.email === null ? true : false;

@@ -10,7 +10,7 @@
             <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
           </div>
     </div>
-            <div class="container sm:pb-16 pb-10 sm:pt-0 pt-10 sm:px-9 px-3 mx-auto">
+            <div class="container sm:pb-16 pb-10 sm:pt-20 pt-10 sm:px-9 px-3 mx-auto">
                 <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 pt-6 pb-3 font-semibold text-xl">Manage Products</h1> 
                 <div class="bg-light px-10 py-5 rounded-lg">
                     <div class="flex w-full relative">

@@ -167,33 +167,6 @@
 // @ is an alias to /src 
 
 export default {
-  components: {
-
-  },
-  //   async mounted() {
-  //   var accid = this.$route.params.accid;
-  //   const c = document.cookie
-  //     .split(";")
-  //     .find((c) => c.trim().startsWith("Token="));
-  //   console.log(c ? c.substring("Token=".length) : null);
-  //   console.log("data is", accid);
-  //   if (accid !== undefined) {
-  //     const res = await fetch("http://52.237.119.127:3000/1acc/" + accid
-  //     , {
-  //       headers: {
-  //         Authorization: `Bearer ${c.substring("Token=".length)}`, 
-  //       },
-  //     }
-  //     );
-  //     if (res.ok) {
-  //       var data = await res.json();
-  //       this.acc  = await data
-  //       console.log(this.id);
-  //     } else {
-  //       console.log("data is", accid);
-  //     }
-  //   }
-  // },
   data() {
     return {
       acc:null,

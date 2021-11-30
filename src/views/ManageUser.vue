@@ -1,7 +1,7 @@
 <template>
     <div class="manageUser">
     <!-- Navbar -->
-    <div class="fixed w-full">
+    <div class="fixed w-full z-50">
       <base-nav  v-if="showNav" />
       <base-nav-mobile  v-if="mobileView" /> 
         <!-- Error -->
@@ -9,8 +9,8 @@
                 <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
                 <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
             </div>
-    </div>
-            <div class="container sm:pb-16 pb-10 sm:pt-0 pt-10 sm:px-9 px-3 mx-auto">
+          </div>
+            <div class="container sm:pb-16 pb-10 sm:pt-20 pt-10 sm:px-9 px-3 mx-auto">
                 <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 pt-6 pb-3 font-semibold text-xl">Manage User</h1> 
                 <div class="bg-light grid grid-cols-4 py-4 px-4 rounded-lg gap-36">
                     <div class="flex col-span-2 gap-16">
@@ -23,7 +23,7 @@
                     <div>
                     </div>
                 </div>
-                <!-- <div v-for="product in allproduct" :key="product.productId"> -->
+             
                     <div v-for="acc in allAcc" :key="acc.accountId" class="grid grid-cols-4 pt-6 px-4 gap-36">
                         <div class="flex items-center col-span-2">
                           <div class="sm:h-20 sm:w-20 h-16 mr-8 w-full rounded-full overflow-hidden">
@@ -35,7 +35,7 @@
                             </div>                         
                         </div>
                         <div class="flex items-center">
-                            <select id="size" name="size" :value="acc.accountRole"  @change="onChange(role,acc.accountId)" class="text-xl w-full rounded-full sm:py-2 py-1">
+                            <select id="size" name="size" :value="acc.accountRole"  @change="onChange($event,acc.accountId)" class="text-xl w-full rounded-full sm:py-2 py-1">
                             <option :value="null" disabled class="hidden">
                                 Role
                             </option> 
@@ -48,8 +48,7 @@
                             <span class="fi-rr-trash text-xl cursor-pointer hover:text-error transition duration-200"></span>
                         </div>
                     </div>
-
-                <!-- </div> -->    
+               
             </div>
             <div v-show="acc">{{this.acc}}</div>
     </div>
@@ -98,15 +97,15 @@ export default {
   },
   methods: {
     async onChange(event,a) {
-      // console.log(event.target.value)
-      console.log(event)
+      console.log(event.target.value)
+      // console.log(event)
       console.log(a)
       const c = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
       console.log(c.substring("Token=".length))
       try {
-        const res = await fetch("http://52.237.119.127:3000/updateroleacc", {
+        const res = await fetch("https://www-bluzeshirt.ddns.net/api/updateroleacc", {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${c.substring("Token=".length)}`,
@@ -118,7 +117,7 @@ export default {
             lastName: "pass",
             email: "pass",
             password:"pass",
-            accountRole: event,
+            accountRole: event.target.value,
           }),
         });
         await res.json();
