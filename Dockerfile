@@ -20,17 +20,30 @@
 # EXPOSE 8080
 # CMD [ "http-server", "dist" ]
 
-FROM node:lts-alpine as build-stage
+# FROM node:lts-alpine as build-stage
+# WORKDIR /app
+# COPY package*.json ./
+# RUN npm install
+# COPY . .
+# RUN npm run build
+# FROM nginx as production-stage
+# COPY --from=build-stage /app/dist /usr/share/nginx/html
+# COPY --from=build-stage /app/nginx/config/nginx.conf /etc/nginx/nginx.conf
+# # COPY --from=build-stage /app/nginx/config/conf.d/default.conf /etc/nginx/conf.d/default.conf
+# # COPY /nginx/logs /var/log/nginx/
+# # COPY /nginx/ssl /ssl/
+# EXPOSE 8080
+# CMD ["nginx", "-g", "daemon off;"]
+
+FROM node:16.13.0-alpine as build-stage
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
-COPY . .
+COPY ./ .
 RUN npm run build
+
 FROM nginx as production-stage
-COPY --from=build-stage /app/dist /usr/share/nginx/html
-COPY --from=build-stage /app/nginx/config/nginx.conf /etc/nginx/nginx.conf
-# COPY --from=build-stage /app/nginx/config/conf.d/default.conf /etc/nginx/conf.d/default.conf
-# COPY /nginx/logs /var/log/nginx/
-# COPY /nginx/ssl /ssl/
+RUN mkdir /app
+COPY --from=build-stage /app/dist /app
+COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 8080
-CMD ["nginx", "-g", "daemon off;"]
