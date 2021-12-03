@@ -172,6 +172,7 @@ export default {
     }
   },computed:{
     errorm(){
+      console.log(this.errorMessage)
       return this.errorMessage
     }
   },

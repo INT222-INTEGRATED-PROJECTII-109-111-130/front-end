@@ -16,7 +16,7 @@
               <div class="mx-auto">
                 <div class="flex flex-col lg:items-start items-center">
                   <div class="flex-grow">
-                    <h1 class="sm:text-3xl font-semibold text-xl sm:mt-0 mt-2">Product Name</h1>
+                    <h1 class="sm:text-3xl font-semibold text-xl sm:mt-0 mt-2">{{prodname}}</h1>
                       <div class="flex justify-between mb-3">
                         <p class="text-secondary sm:text-base text-xs">{{prodbrand}}</p>
                         <p class="sm:text-base text-xs">{{proddate}}</p>
@@ -95,6 +95,7 @@ export default {
     bannerMobile: true,
     showNav: false,
     color:null,
+    prodname:null,
     prodcol:null,
     prodsize:null,
     prodbrand:null,
@@ -275,6 +276,7 @@ export default {
         console.log( this.prod.productImage)
         this.image = element +this.prod.productImage
     } 
+    this.prodname = await this.prod.productName
     this.prodcol  = await this.prod.productcolors
     this.prodsize = await this.prod.productsizes
     this.prodbrand = await this.prod.brands.brandName

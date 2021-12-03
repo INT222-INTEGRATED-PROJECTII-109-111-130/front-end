@@ -9,7 +9,7 @@
             <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
           </div>
     <!-- Form -->
-    <form @submit.prevent="addProduct">
+    <form @submit.prevent="editProduct">
     <div class="container sm:pb-16 pb-10 sm:px-9 px-3 mx-auto">
         <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 py-3 font-semibold text-xl">Edit Product</h1>
         <div class="grid grid-cols-2 gap-x-32 gap-y-4">

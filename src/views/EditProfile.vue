@@ -91,7 +91,7 @@ export default {
             "content-type": "application/json",
           },
           body: JSON.stringify({
-            accountId: this.acc.accountId,
+            accountId: this.id.accountId,
             firstName: this.firstname,
             lastName: this.lastname,
             email: "pass",
@@ -139,6 +139,7 @@ export default {
         this.id  = await res.json();
         this.firstName = await this.id.firstName;
         this.lastName = await this.id.lastName;
+        console.log(this.id)
       } else {
         console.log("error");
       }
