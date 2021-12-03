@@ -165,6 +165,11 @@ export default {
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
       console.log(c.substring("Token=".length))
+       c ? c.substring("Token=".length) : null
+        if(c == null){
+          this.$router.push({ name: 'Login' })
+        }
+
        const res = await fetch(url, {
           method: "POST",
            headers: {

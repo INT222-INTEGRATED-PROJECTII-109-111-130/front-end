@@ -200,10 +200,16 @@ export default {
       if (res.ok) {
         console.log("เข้า cookie")
         this.acc  = await res.json();
+          if(this.acc.accountRole == 'Customer' || this.acc.accountRole == 'Seller'){
+              this.$router.push({ name: 'Home' })
+            }
       } else {
         console.log("error");
       }
-    }
+
+    }else{
+        this.$router.push({ name: 'Home' })
+      }
     await this.getAllAcc();
     this.handleView();
     window.addEventListener("resize", this.handleView);

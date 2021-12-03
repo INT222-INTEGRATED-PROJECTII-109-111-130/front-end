@@ -78,6 +78,7 @@ export default {
   },
   methods: {
     async editP(){
+      console.log(this.id.accountId)
       console.log(this.firstName)
       console.log(this.lastName)
       const c = document.cookie
@@ -92,8 +93,8 @@ export default {
           },
           body: JSON.stringify({
             accountId: this.id.accountId,
-            firstName: this.firstname,
-            lastName: this.lastname,
+            firstName: this.firstName,
+            lastName: this.lastName,
             email: "pass",
             password:"pass",
             accountRole:"pass",

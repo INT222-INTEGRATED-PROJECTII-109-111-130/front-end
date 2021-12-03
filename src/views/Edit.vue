@@ -372,9 +372,14 @@ export default {
           if (res.ok) {
             console.log("เข้า cookie")
             this.acc  = await res.json();
+            if(this.acc.accountRole == 'Customer'){
+              this.$router.push({ name: 'Home' })
+            }
           } else {
             console.log("error");
           }
+      }else{
+        this.$router.push({ name: 'Home' })
       }
     await this.getall();
     for (let index = 0; index < this.allcolor.length; index++) {

@@ -171,8 +171,11 @@ export default {
       
     }
   },computed:{
-    errorm(){
-      console.log(this.errorMessage)
+    errorm(a){
+      console.log(a.message)
+      if(this.errorMessage != null){
+          return this.errorMessage.message
+      }
       return this.errorMessage
     }
   },
@@ -239,7 +242,9 @@ export default {
             this.checktran = true;
             this.red = true;
             this.green = false;
-            this.errorMessage = await res.json().message
+            this.errorMessage = await res.json()
+            this.errorm(this.errorMessage)
+             alert(this.errorMessage.message)
             console.log (this.errorMessage)
             setTimeout(()=>{this.checktran = false } , 9000);
         }

@@ -11,7 +11,7 @@
           </div>
         </div>
   <!-- Emptry Basket -->
-  <div v-if="!emptry">
+  <div v-show="emptry">
   <img src="../assets/Shopping_cart.png" class="object-center mx-auto sm:px-96 sm:pt-28 sm:w-4/6 px-20 pt-32 w-auto">
   <h1 class="sm:text-2xl text-xl font-semibold text-center sm:pt-6 pt-4">Your Basket is Empty</h1>
     <p class="text-center text-gray pt-2 pb-4 sm:text-base text-xs">Looks like you haven’t made your choice yet</p>
@@ -23,7 +23,7 @@
   </div>
 
   <!-- Have Product -->
-  <div v-if="emptry">
+  <div v-show="!emptry">
     <div class="sm:pb-16 pb-10 sm:pt-32 pt-6 sm:px-28 px-3 mx-auto">
       <h1 class="sm:text-4xl sm:pb-7 pb-3 font-semibold text-xl">Basket</h1>
       <!-- Loop here -->
@@ -186,10 +186,6 @@ export default {
           //console.log(this.allproduct[index].productImage);
           }
         } 
-        this.checktran = true;
-        this.red = false
-        this.green = true;
-        setTimeout(()=>{this.checktran = false } , 4000);
       } else {
         this.checktran = true;
         this.red = true
@@ -220,7 +216,7 @@ export default {
   async created() {
     console.log(this.accid)
     await this.getOneProd()
-
+    this.emptry = true;
     this.handleView();
     window.addEventListener("resize", this.handleView);
   },

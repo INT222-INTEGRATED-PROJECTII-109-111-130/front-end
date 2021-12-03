@@ -324,6 +324,7 @@ export default {
     }
   },
   async created() {
+    
     if(document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("Token="))){
@@ -343,9 +344,15 @@ export default {
       if (res.ok) {
         console.log("เข้า cookie")
         this.acc  = await res.json();
+        console.log(this.acc.accountRole)
+        if(this.acc.accountRole == 'Customer'){
+          this.$router.push({ name: 'Home' })
+        }
       } else {
         console.log("error");
       }
+    }else{   
+      this.$router.push({ name: 'Home' })
     }
     await this.getall();
     this.handleView();
