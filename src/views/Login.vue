@@ -1,11 +1,11 @@
 <template>
   <div class="login">
   <!-- Navbar -->
-       <base-nav  v-if="showNav" />
+      <base-nav  v-if="showNav" />
       <base-nav-mobile  v-if="mobileView"/> 
         <!-- Error -->
           <div v-show="checktran">
-            <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
+            <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorm}}</div>
             <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
           </div>
 
@@ -170,6 +170,10 @@ export default {
       url:"https://www-bluzeshirt.ddns.net/api",
       
     }
+  },computed:{
+    errorm(){
+      return this.errorMessage
+    }
   },
   methods: {
      key: function(event){
@@ -203,7 +207,6 @@ export default {
     },
     async register(){
      
-      
       this.errorFirstname = this.firstname === null ? true : false;
       this.errorLastname = this.lastname === null ? true : false;
       this.errorEmail = this.email === null ? true : false;
@@ -224,11 +227,31 @@ export default {
             accountRole:'Customer',
           }),
         });
-        await res.json();
+        if( res.ok){
+            this.toggleTabs(1);
+            this.checktran = true;
+            this.red = false;
+            this.green = true;
+            setTimeout(()=>{this.checktran = false } , 9000);
+            
+        }else {
+            this.checktran = true;
+            this.red = true;
+            this.green = false;
+            this.errorMessage = await res.json().message
+            console.log (this.errorMessage)
+            setTimeout(()=>{this.checktran = false } , 9000);
+        }
+        
       } catch (error) {
         console.log(`Could not add ${error}`);
       }
       }else{
+        this.checktran = true;
+        this.red = true;
+        this.green = false;
+        this.errorMessage = 'can not emtpy input'
+        setTimeout(()=>{this.checktran = false } , 3000);
         console.log("fail")
       }
     },

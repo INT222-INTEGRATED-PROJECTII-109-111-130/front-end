@@ -10,7 +10,7 @@
             <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
           </div>
     </div>
-            <div class="container sm:pb-16 pb-10 sm:pt-0 pt-10 sm:px-9 px-3 mx-auto">
+            <div class="container sm:pb-16 pb-10 sm:pt-20 pt-10 sm:px-9 px-3 mx-auto">
                 <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 pt-6 pb-3 font-semibold text-xl">Manage Products</h1> 
                 <div class="bg-light px-10 py-5 rounded-lg">
                     <div class="flex w-full relative">
@@ -64,7 +64,7 @@ export default {
   //   console.log(c ? c.substring("Token=".length) : null);
   //   console.log("data is", accid);
   //   if (accid !== undefined) {
-  //     const res = await fetch("http://52.237.119.127:3000/1acc/" + accid
+  //     const res = await fetch("https://www-bluzeshirt.ddns.net/api/1acc/" + accid
   //     , {
   //       headers: {
   //         Authorization: `Bearer ${c.substring("Token=".length)}`, 
@@ -90,7 +90,7 @@ export default {
       checktran:null,
       red:false,
       green:false,
-      urlprod:"http://52.237.119.127:3000/showallproduct",
+      urlprod:"https://www-bluzeshirt.ddns.net/api/showallproduct",
     };
   },
   methods: {
@@ -117,7 +117,7 @@ export default {
           const c = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
-      const res = await fetch("http://52.237.119.127:3000/delprod/"+id, {  
+      const res = await fetch("https://www-bluzeshirt.ddns.net/api/delprod/"+id, {  
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`, 
@@ -148,7 +148,7 @@ export default {
         this.allproduct = await data
       if(this.allproduct != undefined){
       for (let index = 0; index < this.allproduct.length; index++) {
-        var element = "http://52.237.119.127:3000/files/";
+        var element = "https://www-bluzeshirt.ddns.net/api/files/";
         this.allproduct[index].productImage = element + this.allproduct[index].productImage;
         
       }
@@ -176,7 +176,7 @@ export default {
         .find((c) => c.trim().startsWith("accid="))
       acc.trim()
       console.log(acc.trim().substring("accid=".length))
-      const res = await fetch("http://52.237.119.127:3000/1acc/" + acc.trim().substring("accid=".length), {
+      const res = await fetch("https://www-bluzeshirt.ddns.net/api/1acc/" + acc.trim().substring("accid=".length), {
         headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
         },});

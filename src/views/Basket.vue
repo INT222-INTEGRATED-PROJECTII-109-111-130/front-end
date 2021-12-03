@@ -1,14 +1,15 @@
 <template>
   <div class="basket">
   <!-- Navbar -->
-      <base-nav  v-if="showNav" />
-      <base-nav-mobile  v-if="mobileView" /> 
+    <div class="fixed w-full z-50">
+      <base-nav v-if="showNav" />
+      <base-nav-mobile v-if="mobileView" />
         <!-- Error -->
           <div v-show="checktran">
             <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
             <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
           </div>
-    
+        </div>
   <!-- Emptry Basket -->
   <div v-if="!emptry">
   <img src="../assets/Shopping_cart.png" class="object-center mx-auto sm:px-96 sm:pt-28 sm:w-4/6 px-20 pt-32 w-auto">
@@ -23,7 +24,7 @@
 
   <!-- Have Product -->
   <div v-if="emptry">
-    <div class="sm:pb-16 pb-10 sm:pt-10 pt-6 sm:px-28 px-3 mx-auto">
+    <div class="sm:pb-16 pb-10 sm:pt-32 pt-6 sm:px-28 px-3 mx-auto">
       <h1 class="sm:text-4xl sm:pb-7 pb-3 font-semibold text-xl">Basket</h1>
       <!-- Loop here -->
       <div class="w-full pb-4" v-for="carts in cart" :key="carts.cartId">
@@ -42,21 +43,10 @@
              <div class="flex"  @click="deleteOneCart(carts.cartId)" >
               <span class="fi-rr-trash sm:text-xl text-sm text-error cursor-pointer relative"></span>
             </div>
-            
-              <!-- <div class="flex flex-row sm:h-9 sm:w-32 w-20 rounded-full relative bg-white mt-1">
-                <button @click="decrement()" class="bg-gray-300 text-primary h-full sm:w-20 w-12 rounded-l cursor-pointer outline-none">
-                  <span class="m-auto sm:text-2xl text-lg font-thin">−</span>
-                </button>
-                <input type="text" :value="quantity" readonly class="focus:outline-none text-center w-full bg-white sm:text-base text-xs flex items-center outline-none">
-                <button @click="increment()" class="bg-gray-300 text-primary h-full sm:w-20 w-12 rounded-l cursor-pointer outline-none">
-                  <span class="m-auto sm:text-2xl text-lg font-thin">+</span>
-                </button>
-              </div> -->
-            
           </div>
-
         </div>
       </div>
+
       <div class="grid sm:grid-cols-2 grid-cols-1">
           <p class="font-semibold sm:col-span-2 sm:text-base text-xs">{{totalCart}} items in shopping cart</p>
           <h1 class="text-secondary sm:text-3xl text-xl">Total For This Order THB {{totalPrice}}</h1>
@@ -68,7 +58,7 @@
   </div>
 
   </div>
-   <div v-show="acc">{{this.acc}}</div>
+   <div v-show="acc">{{this.acc}}</div>  
   </div>
 </template>
 
@@ -91,7 +81,7 @@ export default {
     accid: this.$route.params.accid,
     acc: null,
     cart:[],
-    checktran:false
+    checktran:false,
     };
   },
   computed:{  
@@ -116,6 +106,30 @@ export default {
     showNavHam() {
       this.showNav = !this.showNav;
     },
+    Add(){
+      this.$router.push({
+          name: "Add",
+          params: { accid: this.id.accountId },
+        });
+    },
+    Manage(){
+       this.$router.push({
+          name: "Manage",
+          params: { accid: this.id.accountId },
+        });
+    },
+    ManageUser(){
+       this.$router.push({
+          name: "ManageUser",
+          params: { accid: this.id.accountId },
+        });
+    },
+    EditProfile(){
+       this.$router.push({
+          name: "EditProfile",
+          params: { accid: this.id.accountId },
+        });
+    },
     handleView() {
       if(window.innerWidth <= 990){
           this.mobileView = true;
@@ -129,7 +143,7 @@ export default {
       const c = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
-        const res =  await fetch("http://52.237.119.127:3000/delcart/"+id,{
+        const res =  await fetch("https://www-bluzeshirt.ddns.net/api/delcart/"+id,{
           method: "DELETE",
           headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
@@ -154,7 +168,7 @@ export default {
       const c = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
-      const res =  await fetch("http://52.237.119.127:3000/showcart/"+this.accid,{
+      const res =  await fetch("https://www-bluzeshirt.ddns.net/api/showcart/"+this.accid,{
            headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
         },
@@ -165,7 +179,7 @@ export default {
         this.cart = await data
 
         if(this.cart != undefined){
-          var element = "http://52.237.119.127:3000/files/";
+          var element = "https://www-bluzeshirt.ddns.net/api/files/";
           for (let index = 0; index < this.cart.length; index++) {
             this.cart[index].productImage = element + this.cart[index].productImage;
             //this.allproduct[index].productImage = element + this.allproduct[index].productImage;
@@ -190,7 +204,7 @@ export default {
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
     if (this.user !== undefined) {
-      const res = await fetch("http://52.237.119.127:3000/1acc/" + this.accid, {
+      const res = await fetch("https://www-bluzeshirt.ddns.net/api/1acc/" + this.accid, {
         headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
         },
@@ -202,16 +216,6 @@ export default {
       }
     }
   },
-  //   increment () {
-  //     this.quantity++
-  //   },
-  //   decrement () {
-  //     if(this.quantity === 1) {
-  //       alert('Negative quantity not allowed')
-  //     } else {
-  //       this.quantity--
-  //     }
-  //   }
   },
   async created() {
     console.log(this.accid)

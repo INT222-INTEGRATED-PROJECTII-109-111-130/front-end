@@ -74,14 +74,7 @@
                                 </div>
                             </div>
                           </div>
-                        <!-- <router-link 
-                              :to="{
-                                  name: 'Basket',
-                                  params: { accid: 300001 },
-                                }"
-                        > -->
                         <base-button @click="addBasket()" buttonLabel="Add to Basket"/> 
-                      <!-- </router-link> -->
                   </div>
                 </div>
               </div>
@@ -95,30 +88,7 @@
 // @ is an alias to /src
 
 export default {
-	el: '#color-picker',
-  components: {
-  },
-  //   async mounted() {
-  //   var accid = this.$route.params.accid;
-  //   const c = document.cookie
-  //     .split(";")
-  //     .find((c) => c.trim().startsWith("Token="));
-  //   console.log(c ? c.substring("Token=".length) : null);
-  //   console.log("data is", accid);
-  //   if (accid !== undefined) {
-  //     const res = await fetch("http://52.237.119.127:3000/1acc/" + accid, {
-  //       headers: {
-  //         Authorization: `Bearer ${c.substring("Token=".length)}`,
-  //       },
-  //     });
-  //     if (res.ok) {
-  //       var data = await res.json();
-  //       this.acc = await data;
-  //     } else {
-  //       console.log("data is", accid);
-  //     }
-  //   }
-  // },
+	// el: '#color-picker',
   data() {
     return {
     mobileView: true,
@@ -137,7 +107,7 @@ export default {
     user:this.$route.params.accid,
     acc:null,
     prod:null,
-    urlprod:"http://52.237.119.127:3000/show1prod/",
+    urlprod:"https://www-bluzeshirt.ddns.net/api/show1prod/",
     checktran:null,
     errorMessage: null,
     red:true,
@@ -189,7 +159,7 @@ export default {
     },
     async addBasket(){
       console.log(this.size)
-      var url = "http://52.237.119.127:3000/addcart"
+      var url = "https://www-bluzeshirt.ddns.net/api/addcart"
       const c = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
@@ -230,16 +200,6 @@ export default {
             setTimeout(()=>{this.checktran = false } , 9000);
         }
 
-      // if(this.errorMessage != null){
-      //    this.checktran = true ;
-      //    this.red = true;
-      //    this.errorMessage = "asd"
-      //  }else{
-      //    this.checktran = true ;
-      //    this.red = false;
-      //    this.errorMessage = 'i heer tuuu'
-      //  }
-
     }
     ,
     async getOneProd(){
@@ -265,7 +225,7 @@ export default {
   //   console.log(c ? c.substring("Token=".length) : null);
   //   console.log(this.user);
   //   if (this.user !== undefined) {
-  //     const res = await fetch("http://52.237.119.127:3000/1acc/" + this.user, {
+  //     const res = await fetch("https://www-bluzeshirt.ddns.net/api/1acc/" + this.user, {
   //       headers: {
   //         Authorization: `Bearer ${c.substring("Token=".length)}`,
   //       },
@@ -293,7 +253,7 @@ export default {
         .find((c) => c.trim().startsWith("accid="))
       acc.trim()
       console.log(acc.trim().substring("accid=".length))
-      const res = await fetch("http://52.237.119.127:3000/1acc/" + acc.trim().substring("accid=".length), {
+      const res = await fetch("https://www-bluzeshirt.ddns.net/api/1acc/" + acc.trim().substring("accid=".length), {
         headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
         },});
@@ -310,7 +270,7 @@ export default {
     this.prod = await this.getOneProd();
     console.log(this.prod)
     if(this.prod != undefined){
-        var element = "http://52.237.119.127:3000/files/";
+        var element = "https://www-bluzeshirt.ddns.net/api/files/";
         this.prod.productImage 
         console.log( this.prod.productImage)
         this.image = element +this.prod.productImage

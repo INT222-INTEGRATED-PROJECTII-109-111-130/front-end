@@ -11,6 +11,7 @@ module.exports = {
         primarydark: '#1EAE94',
         secondary: '#F99928',
         dark: '#2D2D2D',
+        errorhover: '#DB6565',
         error: '#F77272'
       }
     },

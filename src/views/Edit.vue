@@ -167,33 +167,6 @@
 // @ is an alias to /src 
 
 export default {
-  components: {
-
-  },
-  //   async mounted() {
-  //   var accid = this.$route.params.accid;
-  //   const c = document.cookie
-  //     .split(";")
-  //     .find((c) => c.trim().startsWith("Token="));
-  //   console.log(c ? c.substring("Token=".length) : null);
-  //   console.log("data is", accid);
-  //   if (accid !== undefined) {
-  //     const res = await fetch("http://52.237.119.127:3000/1acc/" + accid
-  //     , {
-  //       headers: {
-  //         Authorization: `Bearer ${c.substring("Token=".length)}`, 
-  //       },
-  //     }
-  //     );
-  //     if (res.ok) {
-  //       var data = await res.json();
-  //       this.acc  = await data
-  //       console.log(this.id);
-  //     } else {
-  //       console.log("data is", accid);
-  //     }
-  //   }
-  // },
   data() {
     return {
       acc:null,
@@ -318,7 +291,7 @@ export default {
       const c = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
-        var url = "http://52.237.119.127:3000/"
+        var url = "https://www-bluzeshirt.ddns.net/api/"
         const res = await fetch(url+"editprod", {
           method: "PUT",
           headers: {
@@ -366,7 +339,7 @@ export default {
       }
     },
     async getall(){
-      var url = "http://52.237.119.127:3000/"
+      var url = "https://www-bluzeshirt.ddns.net/api/"
       const resbrand =  await fetch(url+"showallbrand");
       const rescolor =  await fetch(url+"showallcolor");
       const ressize =  await fetch(url+"showallsize");
@@ -392,7 +365,7 @@ export default {
             .find((c) => c.trim().startsWith("accid="))
           acc.trim()
           console.log(acc.trim().substring("accid=".length))
-          const res = await fetch("http://52.237.119.127:3000/1acc/" + acc.trim().substring("accid=".length), {
+          const res = await fetch("https://www-bluzeshirt.ddns.net/api/1acc/" + acc.trim().substring("accid=".length), {
             headers: {
               Authorization: `Bearer ${c.substring("Token=".length)}`,
             },});
@@ -467,10 +440,10 @@ export default {
     this.date = this.oneproduct.onsaleDate;
     this.price = this.oneproduct.productPrice;
     this.checkimage = true
-   const element = "http://52.237.119.127:3000/files/";
+   const element = "https://www-bluzeshirt.ddns.net/api/files/";
    this.imageshow = element + this.oneproduct.productImage;
    
-    const response  = await fetch("http://52.237.119.127:3000/files/"+this.oneproduct.productImage);
+    const response  = await fetch("https://www-bluzeshirt.ddns.net/api/files/"+this.oneproduct.productImage);
     const blob  = await response.blob()
     this.image = new File([blob], this.oneproduct.productImage, {type: blob.type});
     //var reader = new FileReader();
