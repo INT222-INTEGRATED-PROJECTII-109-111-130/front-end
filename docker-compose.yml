@@ -6,3 +6,13 @@ services:
         ports:
             - "8080:8080"
         restart: on-failure
+        networks:
+            project2-net:
+                ipv4_address: 172.21.0.2
+networks:
+    default:
+        external:
+            name: project2-net
+    project2-net:
+        external: true
+        

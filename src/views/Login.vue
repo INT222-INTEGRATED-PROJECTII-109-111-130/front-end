@@ -167,7 +167,7 @@ export default {
       errorPassword: false,
       red:false,
       green:false,
-      url:"http://52.237.119.127:3000",
+      url:"https://www-bluzeshirt.ddns.net/api",
       
     }
   },
