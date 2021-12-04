@@ -72,8 +72,8 @@ export default {
   },
   data() {
     return {
-    mobileView: true,
-    showNav: false,
+    mobileView: false,
+    showNav: true,
     emptry: true,
     errorMessage: null,
     red:false,
@@ -172,10 +172,12 @@ export default {
     }
     ,
     async getOneProd(){
+      console.log(this.accid)
       const c = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
-      const res =  await fetch("https://www-bluzeshirt.ddns.net/api/showcart/"+this.accid,{
+      if(c.substring("Token=".length) != undefined){
+      const res =  await fetch("https://www-bluzeshirt.ddns.net/api/showcart/"+this.acc.accountId,{
            headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
         },
@@ -199,35 +201,73 @@ export default {
         this.green = false;
         this.errorMessage = await res.json();
          setTimeout(()=>{this.checktran = false } , 9000);
+      }}else{
+        this.emptry = true
       }
+
     },
     async getacc() {
-    
-    const c = document.cookie
+        if(document.cookie
       .split(";")
-      .find((c) => c.trim().startsWith("Token="));
-    if (this.user !== undefined) {
-      const res = await fetch("https://www-bluzeshirt.ddns.net/api/1acc/" + this.accid, {
+      .find((c) => c.trim().startsWith("Token="))){
+      console.log("เข้า")
+      const c = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("Token="));
+      const acc = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("accid="))
+      acc.trim()
+      console.log(acc.trim().substring("accid=".length))
+      const res = await fetch("https://www-bluzeshirt.ddns.net/api/1acc/" + acc.trim().substring("accid=".length), {
         headers: {
           Authorization: `Bearer ${c.substring("Token=".length)}`,
-        },
-      });
+        },});
       if (res.ok) {
-        this.acc = await res.json();
+        console.log("เข้า cookie")
+        this.acc  = await res.json();
+        console.log(this.acc)
+        await this.getOneProd()
+    
       } else {
-        this.checktran = true;
-        this.red = true
-        this.green = false;
-        this.errorMessage = await res.json();
-        setTimeout(()=>{this.checktran = false } , 9000);
-        // console.log("data is", this.user);
+            this.checktran = true;
+            this.red = true;
+            this.green = false;
+            this.errorMessage = await res.json()
+            console.log (this.errorMessage)
+            setTimeout(()=>{this.checktran = false } , 9000);
       }
+    }else{   
+      this.$router.push({ name: 'Home' })
     }
+    // const c = document.cookie
+    //   .split(";")
+    //   .find((c) => c.trim().startsWith("Token="));
+    
+    //   const res = await fetch("https://www-bluzeshirt.ddns.net/api/1acc/" + this.accid, {
+    //     headers: {
+    //       Authorization: `Bearer ${c.substring("Token=".length)}`,
+    //     },
+    //   });
+    //   if (res.ok) {
+    //     this.acc = await res.json();
+    //   } else {
+    //     this.checktran = true;
+    //     this.red = true
+    //     this.green = false;
+    //     this.errorMessage = await res.json();
+    //     setTimeout(()=>{this.checktran = false } , 9000);
+    //     // console.log("data is", this.user);
+    //   }
+    
   },
   },
   async created() {
     console.log(this.accid)
-    await this.getOneProd()
+    if(this.accid == 1){
+      this.$router.push({ name: 'Login' })
+    }
+    
     this.emptry = true;
     this.handleView();
     window.addEventListener("resize", this.handleView);

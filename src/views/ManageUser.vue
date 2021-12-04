@@ -471,9 +471,9 @@ export default {
       if (res.ok) {
         console.log("เข้า cookie")
         this.acc  = await res.json();
-          // if(this.acc.accountRole == 'Customer' || this.acc.accountRole == 'Seller'){
-          //     this.$router.push({ name: 'Home' })
-          //   }
+          if(this.acc.accountRole == 'Customer' || this.acc.accountRole == 'Seller'){
+              this.$router.push({ name: 'Home' })
+            }
       } else {
         console.log("error");
       }
