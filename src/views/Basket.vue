@@ -6,7 +6,7 @@
       <base-nav-mobile v-if="mobileView" />
         <!-- Error -->
           <div v-show="checktran">
-            <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
+            <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorm}}</div>
             <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
           </div>
         </div>
@@ -100,6 +100,13 @@ export default {
       }
       return pricez
     },
+    errorm(a){
+      console.log(a.message)
+      if(this.errorMessage != null){
+          return this.errorMessage.message
+      }
+      return this.errorMessage
+    }
   },
 
   methods: {
@@ -159,7 +166,7 @@ export default {
         this.checktran = true;
         this.red = true
         this.green = false;
-        this.errorMessage = await res.json().message;
+        this.errorMessage = await res.json();
           setTimeout(()=>{this.checktran = false } , 9000);
       }
     }
@@ -190,8 +197,8 @@ export default {
         this.checktran = true;
         this.red = true
         this.green = false;
-        this.errorMessage = await res.json().message;
-        //  setTimeout(()=>{this.checktran = false } , 9000);
+        this.errorMessage = await res.json();
+         setTimeout(()=>{this.checktran = false } , 9000);
       }
     },
     async getacc() {
@@ -208,7 +215,12 @@ export default {
       if (res.ok) {
         this.acc = await res.json();
       } else {
-        console.log("data is", this.user);
+        this.checktran = true;
+        this.red = true
+        this.green = false;
+        this.errorMessage = await res.json();
+        setTimeout(()=>{this.checktran = false } , 9000);
+        // console.log("data is", this.user);
       }
     }
   },

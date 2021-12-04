@@ -6,7 +6,7 @@
       <base-nav-mobile  v-if="mobileView" /> 
         <!-- Error -->
           <div v-show="checktran">
-            <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
+            <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorm}}</div>
             <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
           </div>
     </div>
@@ -92,6 +92,14 @@ export default {
       green:false,
       urlprod:"https://www-bluzeshirt.ddns.net/api/showallproduct",
     };
+  },computed:{
+    errorm(a){
+      console.log(a.message)
+      if(this.errorMessage != null){
+          return this.errorMessage.message
+      }
+      return this.errorMessage
+    }
   },
   methods: {
     Edit(a){
@@ -187,6 +195,12 @@ export default {
           this.$router.push({ name: 'Home' })
         }
       } else {
+              this.checktran = true;
+            this.red = true;
+            this.green = false;
+            this.errorMessage = await res.json()
+            console.log (this.errorMessage)
+            setTimeout(()=>{this.checktran = false } , 9000);
         console.log("error");
       }
     }else{

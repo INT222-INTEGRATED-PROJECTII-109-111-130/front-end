@@ -5,7 +5,7 @@
       <base-nav-mobile  v-if="mobileView" /> 
         <!-- Error -->
           <div v-show="checktran">
-            <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
+            <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorm}}</div>
             <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
           </div>
     <!-- Form -->
@@ -201,6 +201,14 @@ export default {
       sizeA:[],
       checkimage:false
     };
+  },computed:{
+    errorm(a){
+      console.log(a.message)
+      if(this.errorMessage != null){
+          return this.errorMessage.message
+      }
+      return this.errorMessage
+    }
   },
   methods: {
     selectcol(colors) {
@@ -308,8 +316,8 @@ export default {
             this.checktran = true;
             this.red = true;
             this.green = false;
-            const data = await res.json()
-            this.errorMessage = await data.message
+            this.errorMessage = await res.json()
+            console.log (this.errorMessage)
             setTimeout(()=>{this.checktran = false } , 9000);
         }
       } catch (error) {
@@ -376,7 +384,12 @@ export default {
               this.$router.push({ name: 'Home' })
             }
           } else {
-            console.log("error");
+            this.checktran = true;
+            this.red = true;
+            this.green = false;
+            this.errorMessage = await res.json()
+            console.log (this.errorMessage)
+            setTimeout(()=>{this.checktran = false } , 9000);
           }
       }else{
         this.$router.push({ name: 'Home' })

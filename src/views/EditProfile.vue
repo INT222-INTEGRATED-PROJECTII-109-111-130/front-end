@@ -6,7 +6,7 @@
     <base-nav-mobile  v-if="mobileView" /> 
       <!-- Error -->
         <div v-show="checktran">
-          <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
+          <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorm}}</div>
           <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
         </div>
   </div>
@@ -75,6 +75,14 @@ export default {
       firstName:null,
       lastName:null
     };
+  },computed:{
+    errorm(a){
+      console.log(a.message)
+      if(this.errorMessage != null){
+          return this.errorMessage.message
+      }
+      return this.errorMessage
+    }
   },
   methods: {
     async editP(){
@@ -100,6 +108,19 @@ export default {
             accountRole:"pass",
           }),
         });
+        if (res.ok) {
+           this.checktran = true;
+            this.red = false;
+            this.green = true;
+            setTimeout(()=>{this.checktran = false } , 9000);
+        }else{
+            this.checktran = true;
+            this.red = true;
+            this.green = false;
+            this.errorMessage = await res.json()
+            console.log (this.errorMessage)
+            setTimeout(()=>{this.checktran = false } , 9000);
+        }
         await res.json();
       } catch (error) {
         console.log(`Could not add ${error}`);
@@ -142,6 +163,12 @@ export default {
         this.lastName = await this.id.lastName;
         console.log(this.id)
       } else {
+            this.checktran = true;
+            this.red = true;
+            this.green = false;
+            this.errorMessage = await res.json()
+            console.log (this.errorMessage)
+            setTimeout(()=>{this.checktran = false } , 9000);
         console.log("error");
       }
     }

@@ -5,7 +5,7 @@
       <base-nav-mobile  v-if="mobileView" /> 
         <!-- Error -->
           <div v-show="checktran">
-            <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
+            <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorm}}</div>
             <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
           </div>
     <!-- Form -->
@@ -196,6 +196,13 @@ export default {
       allbrand:[],
       allsize:[],
     };
+  },computed:{
+    errorm(){
+      if(this.errorMessage != null){
+          return this.errorMessage.message
+      }
+      return this.errorMessage
+    }
   },
   methods: {
     addProduct() {
@@ -293,7 +300,7 @@ export default {
             this.checktran = true;
             this.red = true;
             this.green = false;
-            this.errorMessage = await res.json().message
+            this.errorMessage = await res.json()
             console.log (this.errorMessage)
             setTimeout(()=>{this.checktran = false } , 9000);
         }
@@ -349,7 +356,12 @@ export default {
           this.$router.push({ name: 'Home' })
         }
       } else {
-        console.log("error");
+            this.checktran = true;
+            this.red = true;
+            this.green = false;
+            this.errorMessage = await res.json()
+            console.log (this.errorMessage)
+            setTimeout(()=>{this.checktran = false } , 9000);
       }
     }else{   
       this.$router.push({ name: 'Home' })

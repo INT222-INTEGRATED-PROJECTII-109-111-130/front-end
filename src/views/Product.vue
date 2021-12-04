@@ -5,7 +5,7 @@
     <base-nav-mobile  v-if="mobileView" /> 
       <!-- Error -->
         <div v-show="checktran">
-          <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorMessage}}</div>
+          <div v-show="red" class="bg-error py-2 w-full text-white text-center">Error !! : {{errorm}}</div>
           <div v-show="green" class="bg-primary py-2 w-full text-white text-center">Success</div>
         </div>
         <!-- Product -->
@@ -117,6 +117,13 @@ export default {
     };
   },
   computed: {
+     errorm(a){
+      console.log(a.message)
+      if(this.errorMessage != null){
+          return this.errorMessage.message
+      }
+      return this.errorMessage
+    },
 		selector: function() {
 			if(!this.selectedColor) {
 				return 'Color';
@@ -195,13 +202,13 @@ export default {
             this.checktran = true;
             this.red = false;
             this.green = true;
-            setTimeout(()=>{this.checktran = false } , 9000);
+            setTimeout(()=>{this.checktran = false } , 3000);
             await this.$router.push({ name: 'Basket', params: { accid: this.acc.accountId } })
         }else {
             this.checktran = true;
             this.red = true;
             this.green = false;
-            this.errorMessage = await res.json().message
+            this.errorMessage = await res.json()
             console.log (this.errorMessage)
             setTimeout(()=>{this.checktran = false } , 9000);
         }
@@ -219,8 +226,9 @@ export default {
       } else {
         this.checktran = true;
         this.red = true
-        this.errorMessage = await res.json().message;
-        //  setTimeout(()=>{this.checktran = false } , 9000);
+        this.errorMessage = await res.json();
+        setTimeout(()=>{this.checktran = false } , 2000);
+        this.$router.push({ name: 'Home' })
       }
     },
   //   async getacc() {
@@ -267,7 +275,13 @@ export default {
         console.log("เข้า cookie")
         this.acc  = await res.json();
       } else {
-        console.log("error");
+          this.checktran = true;
+          this.red = true;
+          this.green = false;
+          this.errorMessage = await res.json()
+          console.log (this.errorMessage)
+          setTimeout(()=>{this.checktran = false } , 9000);
+          console.log("error");
       }
     }
       // this.acc = await this.getacc();

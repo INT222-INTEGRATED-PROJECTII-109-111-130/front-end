@@ -7,7 +7,7 @@
       <!-- Error -->
       <div v-show="checktran">
         <div v-show="red" class="bg-error sm:mt-0 mt-14 sm:py-2 py-1 sm:text-base text-xs w-full z-50 text-white text-center">
-          Error !! : {{ errorMessage }}
+          Error !! : {{ errorm }}
         </div>
         <div v-show="green" class=" bg-primary sm:py-2 py-1 sm:text-base text-xs w-full z-50 text-white text-center">
           Success
@@ -71,6 +71,14 @@ export default {
       search: "",
       id: null,
     };
+  },computed:{
+    errorm(){
+      
+      if(this.errorMessage != null){
+          return this.errorMessage.message
+      }
+      return this.errorMessage
+    }
   },
   methods: {
     Add(){
@@ -158,7 +166,6 @@ export default {
       }
     },
   },
-  computed: {},
   async created() {
     if(document.cookie
       .split(";")
@@ -179,7 +186,15 @@ export default {
       if (res.ok) {
         console.log("เข้า cookie")
         this.id  = await res.json();
+
       } else {
+         this.checktran = true;
+            this.red = true;
+            this.green = false;
+            this.errorMessage = await res.json()
+            // this.errorm(this.errorMessage)
+            console.log (this.errorMessage)
+            setTimeout(()=>{this.checktran = false } , 9000);
         console.log("error");
       }
     }

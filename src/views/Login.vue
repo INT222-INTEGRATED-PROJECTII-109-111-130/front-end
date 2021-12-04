@@ -243,8 +243,7 @@ export default {
             this.red = true;
             this.green = false;
             this.errorMessage = await res.json()
-            this.errorm(this.errorMessage)
-             alert(this.errorMessage.message)
+            // this.errorm(this.errorMessage)
             console.log (this.errorMessage)
             setTimeout(()=>{this.checktran = false } , 9000);
         }
