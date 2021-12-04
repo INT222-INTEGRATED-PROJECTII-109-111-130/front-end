@@ -58,7 +58,7 @@
   </div>
 
   </div>
-   <div v-show="acc">{{this.acc}}</div>  
+   <!-- <div v-show="acc">{{this.acc}}</div>   -->
   </div>
 </template>
 
@@ -167,6 +167,7 @@ export default {
         this.red = true
         this.green = false;
         this.errorMessage = await res.json();
+        this.errorm(this.errorMessage)
           setTimeout(()=>{this.checktran = false } , 9000);
       }
     }

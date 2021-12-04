@@ -108,7 +108,7 @@
                   
                 </form> 
             </div>
-            <div v-show="acc">{{this.acc}}</div>
+            <!-- <div v-show="acc">{{this.acc}}</div> -->
     </div>
 </template>
 
@@ -137,7 +137,13 @@ export default {
       vcn:null,
       vcid:null 
     };
-  },
+  },computed:{    errorm(a){
+      console.log(a.message)
+      if(this.errorMessage != null){
+          return this.errorMessage.message
+      }
+      return this.errorMessage
+    } },
   methods: {
     async addb(){
         console.log(this.vbn)
@@ -261,6 +267,8 @@ export default {
         this.checktran = true;
         this.red = true
         this.errorMessage = await res.json();
+        console.log(this.errorMessage)
+        this.errorm(this.errorMessage)
         setTimeout(()=>{this.checktran = false } , 2000);
       }
         // await res.json();
@@ -303,6 +311,7 @@ export default {
       const c = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
+      console.log(this.idcon)
       if(this.conb){
         console.log(this.idcon)
          const res = await fetch("https://www-bluzeshirt.ddns.net/api/cdelbrand/"+this.idcon, {
@@ -347,10 +356,12 @@ export default {
         await this.getAllBrand();
       } else {
         this.idcon = a
-        this.conc = false
+        this.conb = true
         this.checktran = true;
         this.red = true
         this.errorMessage = await res.json();
+         console.log(this.errorMessage)
+        // this.errorm(this.errorMessage)
         setTimeout(()=>{this.checktran = false } , 2000);
       }
         // await res.json();

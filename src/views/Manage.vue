@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            <div v-show="acc">{{this.acc}}</div>              
+            <!-- <div v-show="acc">{{this.acc}}</div>               -->
     </div>
 </template>
 

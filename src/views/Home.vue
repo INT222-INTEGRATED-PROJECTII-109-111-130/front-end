@@ -19,13 +19,13 @@
     <!-- Banner mobile -->
     <img src="../assets/Banner-mobile.png" class="mx-auto pt-4 px-6 w-full" v-if="bannerMobile"/>
     
-    <div v-show="id">{{ this.id }}
+    <!-- <div v-show="id">{{ this.id }}
       <div  @click="Add()">Add</div> 
       <div  @click="Manage()">Manage</div>
       <div  @click="EditProfile()">EditProfile</div>
       <div  @click="ManageUser()">ManageUser</div>
       <div  @click="delcook()">delcook</div>
-    </div>
+    </div> -->
     
     
     <!-- Product List-->
