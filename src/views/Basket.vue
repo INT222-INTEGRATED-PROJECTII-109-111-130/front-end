@@ -172,7 +172,7 @@ export default {
     }
     ,
     async getOneProd(){
-      console.log(this.accid)
+      console.log("เข้าไหม")
       const c = document.cookie
       .split(";")
       .find((c) => c.trim().startsWith("Token="));
@@ -184,7 +184,7 @@ export default {
       });
       if(res.ok){
         const data = await res.json();
-        
+        this.emptry = false;
         this.cart = await data
 
         if(this.cart != undefined){
@@ -267,8 +267,8 @@ export default {
     if(this.accid == 1){
       this.$router.push({ name: 'Login' })
     }
-    
-    this.emptry = true;
+    await this.getacc()
+    // this.emptry = true;
     this.handleView();
     window.addEventListener("resize", this.handleView);
   },
