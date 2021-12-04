@@ -100,9 +100,9 @@
                  
                   <div>
                   <label class="text-xs flex text-primary pb-1">Color Name</label>
-                  <input  v-on:keydown='key' type="text" placeholder="Brand Name" name="vcn" id="vcn" v-model="vcn" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                  <input  v-on:keydown='key' type="text" placeholder="Color Name" name="vcn" id="vcn" v-model="vcn" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
                   <label class="text-xs flex text-primary pb-1">Color Code</label>
-                  <input  v-on:keydown='key' type="text" placeholder="Brand Name" name="vcid" id="vcid" v-model="vcid" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
+                  <input  v-on:keydown='key' type="text" placeholder="Hex Color for example ->> #CD5C5C" name="vcid" id="vcid" v-model="vcid" class="pl-4 py-2 text-sm placeholder-gray relative bg-light rounded-full outline-none focus:ring-2 focus:ring-primary w-full"/>
                   <base-button type="submit" buttonLabel="ADD"/>
                   </div>
                   
