@@ -11,8 +11,8 @@
         </div>
   </div>
     <form @submit.prevent="editP">
-    <div class="container sm:pb-16 pb-10 sm:px-72 px-3 pt-28 mx-auto">
-      <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 pt-6 pb-3 font-semibold text-xl text-center">My Account</h1>
+    <div class="container sm:pb-16 pb-10 sm:px-72 px-6 pt-16 mx-auto">
+      <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 pt-6 pb-3 font-semibold text-xl">My Account</h1>
         <div class="grid grid-cols-2 gap-x-6">
             <div class="h-full bg-primary px-4 py-8 rounded-xl overflow-hidden text-center relative col-span-2">
                 <img class="object-cover object-center w-24 block mx-auto" src="../assets/profile.png">

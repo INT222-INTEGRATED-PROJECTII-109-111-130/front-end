@@ -82,7 +82,7 @@
   
   <!-- Mobile -->
   <div v-if="mobileView">
-    <div class="sm:pb-16 pb-10  pt-10 sm:px-9 px-6 mx-auto">
+    <div class="sm:pb-16 pb-10 sm:px-9 px-6 mx-auto">
       <form @submit.prevent="Login">
         <div v-bind:class="{'hidden': openTabMobile !== 3, 'block': openTabMobile === 3}">
           <h1 class="sm:text-4xl sm:py-7 pt-6 pb-3 font-semibold text-xl">Login</h1>

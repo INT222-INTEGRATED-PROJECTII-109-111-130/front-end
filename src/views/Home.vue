@@ -17,7 +17,7 @@
     <!-- Banner desktop -->
     <img src="../assets/Banner-desk.png" class="object-center mx-auto sm:px-56 lg:px-28 pt-28 w-full" v-if="!bannerMobile"/>
     <!-- Banner mobile -->
-    <img src="../assets/Banner-mobile.png" class="mx-auto pt-4 px-6 w-full" v-if="bannerMobile"/>
+    <img src="../assets/Banner-mobile.png" class="mx-auto pt-20 px-6 w-full" v-if="bannerMobile"/>
     
     <!-- <div v-show="id">{{ this.id }}
       <div  @click="Add()">Add</div> 

@@ -27,6 +27,84 @@
 
       <div v-if="showNav" >
        <div class="mt-4">
+      <!-- <router-link to="/">
+          <div class="flex justify-center items-center">
+            <span class="fi-rr-home text-sm mt-1"></span>
+            <p class="font-medium ml-2 text-base">Home</p>
+          </div>
+      </router-link>
+
+      <router-link to="/team">
+          <div class="flex justify-center items-center mt-1">
+            <span class="fi-rr-users text-sm mt-1"></span>
+            <p class="font-medium ml-2 text-base">Team</p>
+          </div>
+      </router-link>
+
+      <router-link to="/login">
+          <div class="flex justify-center items-center mt-1">
+            <span class="fi-rr-user text-primary text-sm mt-1"></span>
+            <p class="font-medium ml-2 text-base text-primary hover:text-dark transition duration-200">Login</p>
+          </div>
+      </router-link> -->
+<div v-if="customer">
+  <!-- <div class="text-center"> -->
+      <!-- <div class="relative inline-flex align-middle w-full"> -->
+        <!-- <div class="right-0"> -->
+        <!-- <div class="bg-gray text-center z-50 px-16 py-5 shadow-xl"> -->
+          <div class="h-16 w-16 rounded-full overflow-hidden mx-auto">
+            <img src="../assets/profile.png" class="h-full w-full object-cover object-center">
+          </div>
+            <h1 class="text-lg py-2 block w-full whitespace-nowrap text-dark border-b-2 border-light">
+              {{ this.acc.firstName}} {{ this.acc.lastName}}
+            </h1>   
+          <div class="py-2">        
+        <router-link to="/">
+          <div class="items-center text-dark flex justify-center">
+            <span class="fi-rr-home text-sm mt-1"></span>
+            <p class="font-medium ml-2 text-base">Home</p>
+          </div>
+        </router-link>
+          <router-link to="/team">
+          <div class="items-center text-dark flex justify-center">
+            <span class="fi-rr-users text-sm mt-1"></span>
+            <p class="font-medium ml-2 text-base">Team</p>
+          </div>
+      </router-link>
+            <router-link to="/editProfile">
+              <div class="items-center text-dark flex justify-center">
+                <span class="fi-rr-user"></span> 
+                <p class="font-medium ml-2 text-base">My Account</p>
+              </div>
+            </router-link>
+
+          <div v-if="seller">
+            <router-link to="/manage">
+            <div class="items-center text-dark flex justify-center">
+              <span class="fi-rr-pencil"></span> 
+              <p class="font-medium ml-2 text-base">Manage Products</p>
+            </div>
+            </router-link>
+          </div>
+
+          <div v-if="admin">
+            <router-link to="/manageUser">
+            <div class="items-center text-dark flex justify-center">
+              <i class="ri-group-line"></i> 
+              <p class="font-medium ml-2 text-base">Manage User</p>
+            </div>
+            </router-link>
+          </div>
+        </div>
+          <button @click="delcook()" type="button" class="px-4 py-1 w-full text-white bg-error rounded-full transition duration-400 hover:bg-errorhover focus:outline-none focus:ring-2 ring-offset-current ring-offset-2">
+            Logout
+          </button>
+        <!-- </div> -->
+        <!-- </div> -->
+      <!-- </div> -->
+  <!-- </div> -->
+</div>
+  <div v-else>
       <router-link to="/">
           <div class="flex justify-center items-center">
             <span class="fi-rr-home text-sm mt-1"></span>
@@ -47,6 +125,10 @@
             <p class="font-medium ml-2 text-base text-primary hover:text-dark transition duration-200">Login</p>
           </div>
       </router-link>
+  </div>
+
+
+
 
       </div>
       </div>
@@ -61,12 +143,65 @@ export default {
     return {
       mobileView: true,
       showNav: false,
+      acc:null,
+      admin: false,
+      seller: false,
+      customer: false,
     };
   },
   methods: {
     showNavHam() {
       this.showNav = !this.showNav;
     },
+    delcook() {
+      document.cookie =
+        "Token=ok;expires = Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+      document.cookie =
+        "accid=ok;expires = Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+      this.$router.go();
+    },
+
+  },
+    async created() {
+      if(document.cookie
+      .split(";")
+      .find((c) => c.trim().startsWith("Token="))){
+      console.log("เข้า")
+      const c = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("Token="));
+      const acc = document.cookie
+        .split(";")
+        .find((c) => c.trim().startsWith("accid="))
+      acc.trim()
+      console.log(acc.trim().substring("accid=".length))
+      const res = await fetch("https://www-bluzeshirt.ddns.net/api/1acc/" + acc.trim().substring("accid=".length), {
+        headers: {
+          Authorization: `Bearer ${c.substring("Token=".length)}`,
+        },});
+      if (res.ok) {
+        console.log("เข้า cookie")
+        this.acc  = await res.json();
+        console.log(this.acc)
+      if(this.acc.accountRole === "Customer"){
+        this.admin = false
+        this.seller = false
+        this.customer = true
+      }
+      if(this.acc.accountRole === "Seller"){
+        this.admin = false
+        this.seller = true
+        this.customer = true
+      }
+      if(this.acc.accountRole === "Admin") {
+        this.admin = true
+        this.seller = true
+        this.customer = true
+      }
+      } else {
+        console.log("error");
+      }
+    }
   },
 };
 </script>
