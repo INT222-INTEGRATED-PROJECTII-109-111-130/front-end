@@ -385,9 +385,10 @@ export default {
             "content-type": "application/json",
           },
         });
+        location.reload();
         await res.json();
         await this.getAllAcc();
-        location.reload();
+        
       } catch (error) {
         console.log(`Could not add ${error}`);
       }
