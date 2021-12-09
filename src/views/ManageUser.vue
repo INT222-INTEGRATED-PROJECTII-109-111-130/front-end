@@ -387,6 +387,7 @@ export default {
         });
         await res.json();
         await this.getAllAcc();
+        location.reload();
       } catch (error) {
         console.log(`Could not add ${error}`);
       }
