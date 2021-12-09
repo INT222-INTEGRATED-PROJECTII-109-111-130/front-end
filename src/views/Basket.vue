@@ -24,7 +24,7 @@
 
   <!-- Have Product -->
   <div v-show="!emptry">
-    <div class="sm:pb-16 pb-10 sm:pt-32 pt-6 sm:px-28 px-3 mx-auto">
+    <div class="sm:pb-16 pb-10 sm:pt-32 pt-20 sm:px-28 px-6 mx-auto">
       <h1 class="sm:text-4xl sm:pb-7 pb-3 font-semibold text-xl">Basket</h1>
       <!-- Loop here -->
       <div class="w-full pb-4" v-for="carts in cart" :key="carts.cartId">

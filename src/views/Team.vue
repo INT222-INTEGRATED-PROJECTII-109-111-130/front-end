@@ -6,7 +6,7 @@
       <base-nav-mobile v-if="mobileView" />
     </div>
 
-  <div class="sm:pb-16 pb-10 sm:pt-20 pt-6 sm:px-28 px-6 mx-auto">
+  <div class="sm:pb-16 pb-10 sm:pt-20 pt-16 sm:px-28 px-6 mx-auto">
     <h1 class="sm:text-4xl sm:pt-10 sm:pb-7 pt-6 pb-3 font-semibold text-xl">Team</h1>
     <div class="grid sm:grid-cols-3 sm:gap-6 gap-2 grid-cols-1">
 
